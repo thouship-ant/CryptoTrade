@@ -1,6 +1,6 @@
 const LOCAL_HOSTNAMES = ['localhost', '127.0.0.1', '::1'];
 // Set NEXT_PUBLIC_API_URL at build time to point a deployed frontend at its API.
-const PRODUCTION_API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://api.antcryptotrade.example';
+const PRODUCTION_API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://crypto.api.antrobotrade.cloud';
 const LOCAL_API_URL = 'http://localhost:8000';
 
 export function getApiBaseUrl() {
