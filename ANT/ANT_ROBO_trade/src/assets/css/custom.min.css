@@ -1,0 +1,61 @@
+
+/*# sourceMappingURL=custom.min.css.map */
+#loading {
+    background: url('../images/spinner.gif') no-repeat center center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 9999999;
+}
+
+#loading_chart {
+    background: url('../images/spinner.gif') no-repeat center center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 350px;
+    width: 100%;
+    z-index: 9999999;
+}
+
+.hide{
+	display: none !important;
+}
+
+.float-right {
+    float: right !important;
+}
+
+.bottom-50px {
+    bottom: 50px !important;
+}
+
+.cursor_default {
+    cursor: default !important;
+}
+
+.dark-mode {
+    background-color : black !important;
+}
+
+.header-line-text {
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #405189;
+    text-shadow: 1px 2px #808080;
+}
+
+.display-head {
+    font-size: calc(1.125rem + 1.15vw);
+    font-weight: 300;
+    line-height: 1.2;
+}
+
+.claimedRight {
+    display:block; width: 165px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

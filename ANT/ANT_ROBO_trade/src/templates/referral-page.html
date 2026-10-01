@@ -1,0 +1,125 @@
+{% extends "_main_layout.html"%}
+{% block title%}Crypto Orders{%endblock%}
+{% block content%}
+    <div class="page-content" data-ng-app="cdApp" data-ng-controller="cdCtrl" style="display:none;">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-xxl-2 col-lg-2">
+                    &nbsp;
+                </div><!-- end col -->
+                <div class="col-xxl-6 col-lg-6">
+                    <div class="card card-body text-center">
+                        <div class="text-center">
+                            <lord-icon src="https://cdn.lordicon.com/zpxybbhl.json" trigger="loop" colors="primary:#405189,secondary:#0ab39c" style="width:150px;height:150px"></lord-icon>
+                        </div>
+                        <h4 class="card-title">Refer Your Friends</h4>
+                        <p class="card-text text-muted"><a href="https://antrobotrade.com/register?refcode={{session['referral_code_encode']}}">https://antrobotrade.com/register?refcode={{session['referral_code']}}</a></p>
+                        <a href="whatsapp://send?text=https://antrobotrade.com/register?refcode={{session['referral_code_encode']|safe}}" data-action="share/whatsapp/share" type="button" class="btn rounded-pill btn-success waves-effect waves-light"><i class="ri-whatsapp-line fs-16"></i> Share</a>
+                    </div>
+                </div><!-- end col -->
+                <div class="col-xxl-3 col-lg-3">
+                    <div class="card card-body">
+                        <div class="text-center mt-1">
+                        <lord-icon src="https://cdn.lordicon.com/hcowevpv.json" trigger="loop"
+                            colors="primary:#b4b4b4,secondary:#e8b730,tertiary:#ebe6ef" style="width:100px;height:100px">
+                        </lord-icon>
+                        </div>
+                        <div class="table-responsive table-card">
+                            <table class="table table-nowrap mb-0">
+                            <thead>
+                                <tr>
+                                    <th scope="col">S. no.</th>
+                                    <th class="text-center" scope="col">Levels</th>
+                                    <th class="text-center" scope="col">Referral Income (%)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td class="text-center">Level 1</td>
+                                    <td class="text-center"><span class="badge badge-soft-primary">15%</span></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">2</th>
+                                    <td class="text-center">Level 2</td>
+                                    <td class="text-center"><span class="badge badge-soft-primary">10%</span></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">3</th>
+                                    <td class="text-center">Level 3</td>
+                                    <td class="text-center"><span class="badge badge-soft-primary">5%</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- end row -->
+
+        </div>
+        <!-- container-fluid -->
+    </div>
+    <!-- End Page-content -->
+{%endblock%}
+
+{% block script%}
+    <script>
+        var app = angular.module('cdApp', []);
+        app.filter('displayPageData', function() {
+            return function(input, start) {
+            start = +start; //parse to int
+            return input?.slice(start);
+            }
+         });
+        app.controller('cdCtrl', function($scope, $filter, $http, $interval, $timeout) {
+
+            /* Order Report */
+            $scope.is_order_report_data = false;
+            $scope.todayOrPast = 'today';
+            $scope.fromToDate = '';
+            $scope.bs_type = '';
+            $scope.or_status = '';
+            $scope.currentPage = 0;
+            $scope.searchText = '';
+            $scope.sort = 'date';
+            $scope.sortType = true;
+            $scope.limit = 10;
+            $scope.lstOrderReport = [];
+
+            $scope.numberOfPages=function(){
+                var pageno=($filter('filter')($scope.lstOrderReport, $scope.searchText)).length/$scope.limit;
+                if(pageno==0){
+                    pageno++;
+                }
+                return pageno;
+            }
+           $scope.numberOfItems=function(){ return ($filter('filter')($scope.lstOrderReport, $scope.searchText)).length; }
+
+            $scope.get_order_report = function(todayOrPast){
+                $http({
+                    url: '/order_report?type='+todayOrPast,
+                    method: "GET"
+                    }).then(function (response) {
+                        data = response.data;
+                        $scope.lstOrderReport = data;
+                        $scope.is_order_report_data = true;
+                    },function (error) {
+                        console.error(`Error ${error}`);
+                    });
+              }
+
+            $scope.get_order_report($scope.todayOrPast);
+
+            /* Time interval*/
+            $interval(function(){
+                $scope.get_order_report($scope.todayOrPast);
+            }, 60000);
+        });
+    </script>
+    <script>
+        $(function() {
+            $('.page-content').attr('style', 'display:block !important;')
+        });
+    </script>
+{%endblock%}

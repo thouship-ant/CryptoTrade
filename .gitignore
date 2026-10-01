@@ -216,3 +216,10 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+*.zip
+ANT/TA_Lib-0.4.24-cp310-cp310-win_amd64.whl
+*.bat
+ANT/BNB_ABT/.idea/*
+ANT/ANT_ROBO_trade/venv/*
+ANT/ANT_ROBO_trade_2.0/backend/venv/*
+ANT/BNB_ABT/*

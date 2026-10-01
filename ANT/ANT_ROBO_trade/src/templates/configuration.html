@@ -1,0 +1,172 @@
+{% extends "_main_layout.html"%}
+{% block title%}Configuration{%endblock%}
+{% block content%}
+    <div class="page-content" style="display:none;">
+        <div class="container-fluid">
+
+            <!-- start page title -->
+                <div class="row" style="{{style['is_edit']}}">
+                    <div class="col-lg-12">
+                        <div class="card overflow-hidden m-0">
+                            <div class="row justify-content-center g-0">
+                                <div class="col-lg-6">
+                                    <div class="p-lg-5 p-4 auth-one-bg h-100">
+                                        <div class="bg-overlay"></div>
+                                        <div class="position-relative h-100 d-flex flex-column">
+                                            <div class="mt-auto">
+                                                <div id="qoutescarouselIndicators" class="carousel slide" data-bs-ride="carousel">
+                                                    <div class="carousel-indicators">
+                                                        <button type="button" data-bs-target="#qoutescarouselIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                                                        <button type="button" data-bs-target="#qoutescarouselIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                                        <button type="button" data-bs-target="#qoutescarouselIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                                                        <button type="button" data-bs-target="#qoutescarouselIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                                                        <button type="button" data-bs-target="#qoutescarouselIndicators" data-bs-slide-to="4" aria-label="Slide 5"></button>
+                                                        <button type="button" data-bs-target="#qoutescarouselIndicators" data-bs-slide-to="5" aria-label="Slide 6"></button>
+                                                    </div>
+                                                    <div class="carousel-inner text-center text-white-50 pb-5">
+                                                        <div class="carousel-item active">
+                                                            <img src="/assets/images/crypto/api/api_config_1.jpg" alt="" class="img-fluid" />
+                                                            <p class="fs-15 fst-italic">Click "more" option in your Binance exchange home page.</p>
+                                                        </div>
+                                                        <div class="carousel-item">
+                                                            <img src="/assets/images/crypto/api/api_config_2.jpg" alt="" class="img-fluid" />
+                                                            <p class="fs-15 fst-italic">Select "API Management" setting option.</p>
+                                                        </div>
+                                                        <div class="carousel-item">
+                                                            <img src="/assets/images/crypto/api/api_config_3.jpg" alt="" class="img-fluid" />
+                                                            <p class="fs-15 fst-italic">Click "Create" button to create new API configuration for ANT Robo trade.</p>
+                                                        </div>
+                                                        <div class="carousel-item">
+                                                            <img src="/assets/images/crypto/api/api_config_4.jpg" alt="" class="img-fluid" />
+                                                            <p class="fs-15 fst-italic">Copy "API Key" and "Secret Key" then provide in respected fields in right sidebar.</p>
+                                                            <p class="text-muted fs-13">Note: "Secret Key" is not visible again. So, Please keep in store securely...</p>
+                                                        </div>
+                                                        <div class="carousel-item">
+                                                            <img src="/assets/images/crypto/api/api_config_5.jpg" alt="" class="img-fluid" />
+                                                            <p class="fs-15 fst-italic">Check on "Enable Spot &amp; Margin Trading" option.</p>
+                                                            <p class="text-muted fs-13">Please be ensure all other options are disabled as shown in image</p>
+                                                            <p class="text-muted fs-13">Note: In Robo trade using only Spot trading purpose only </p>
+                                                        </div>
+                                                        <div class="carousel-item">
+                                                            <img src="/assets/images/crypto/api/api_config_6.jpg" alt="" class="img-fluid" />
+                                                            <p class="fs-15 fst-italic">Select "Restrict access to trusted IPs only" then add provided IP address in below field and click Confirm</p>
+                                                            <p class="text-muted fs-13">Then select "Save" option in above and binance ask 2FA.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- end carousel -->
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <div class="p-lg-5 p-4">
+                                        <div class="text-center mt-2">
+                                            <h5 class="text-primary">ROBO Trading Configuration</h5>
+                                        </div>
+                                        <div class="p-2 mt-4">
+                                            <form class="needs-validation" novalidate autocomplete="off" method="post">
+
+                                                <div class="mb-3">
+                                                    <label for="exchange_name" class="form-label">Exchange Name <span class="text-danger">*</span></label>
+                                                    <input type="text" class="form-control" name="exchange_name" id="exchange_name" required disabled value="Binance">
+                                                </div>
+
+                                                <div class="mb-3">
+                                                    <label for="api_key" class="form-label">API Key <span class="text-danger">*</span></label>
+                                                    <input type="text" autocomplete="off" class="form-control" name="api_key" id="api_key" placeholder="Enter API Key from exchange" required  value="{{ data['api_key'] }}">
+                                                    <div class="invalid-feedback" style="{{ style['api_key']}}">
+                                                        Please enter API Key
+                                                    </div>
+                                                    <div class="invalid-feedback" style="{{ style_valid['api_key']}}">
+                                                        Provided API Key already exists in our record
+                                                    </div>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="secret_key" class="form-label">Secret Key <span class="text-danger">*</span></label>
+                                                    <input type="password" autocomplete="new-password" class="form-control" name="secret_key" id="secret_key" placeholder="Enter Secret Key" required  value="{{ data['secret_key'] }}">
+                                                    <div class="invalid-feedback" style="{{ style['secret_key']}}">
+                                                        Please enter secret key
+                                                    </div>
+                                                </div>
+
+                                                <div class="mb-3">
+                                                    <div class="form-check form-check-success mb-3">
+                                                        <input class="form-check-input" type="checkbox" id="formCheck8" name="ip_confirm">
+                                                        <label class="form-check-label" for="formCheck8">
+                                                            Please add ({{data['ip_address']}}) IP address in your API configuration.
+                                                        </label>
+                                                        <div class="invalid-feedback" style="{{ style['ip_address']}}">
+                                                            Please add ip address in your config and then check above field...
+                                                        </div>
+                                                    </div>
+                                                    <p class="text-muted fs-14">This will restrict to use this API key with another IP addresses...</p>
+                                                </div>
+
+                                                <div class="mt-4">
+                                                    <button class="btn btn-success w-100" type="submit">Configure</button>
+                                                </div>
+
+                                            </form>
+
+                                        </div>
+                                    </div>
+                                    <!-- end card body -->
+                                </div>
+                                <!-- end card -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="{{style['is_exist']}}">
+                    <div class="col-lg-6">
+                        <div class="p-lg-5 p-4">
+                            <div class="text-center mt-2">
+                                <h5 class="text-primary">ROBO Trading Configuration</h5>
+                            </div>
+                            <div class="p-2 mt-4">
+                                <div class="mb-3">
+                                    <label for="ext_exchange_name" class="form-label">Exchange Name </label>
+                                    <input type="text" class="form-control" name="ext_exchange_name" id="ext_exchange_name" required disabled value="Binance">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="ext_api_key" class="form-label">API Key </label>
+                                    <input type="text" autocomplete="off" class="form-control" name="ext_api_key" id="ext_api_key" placeholder="Enter API Key from exchange" required disabled value="{{ data['api_key'] }}">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="ext_secret_key" class="form-label">Secret Key </label>
+                                    <input type="password" autocomplete="new-password" class="form-control" name="ext_secret_key" id="ext_secret_key" placeholder="Enter Secret Key" required disabled value="{{ data['secret_key'] }}">
+                                </div>
+
+                                <div class="mb-3">
+                                    <div class="form-check form-check-success mb-3">
+                                        <input class="form-check-input" type="checkbox" id="ext_formCheck8" name="ip_confirm" checked disabled>
+                                        <label class="form-check-label" for="ext_formCheck8">
+                                            Added ({{data['ip_address']}}) IP address in your API configuration.
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="mt-4">
+                                    <input type="hidden" autocomplete="off" class="form-control" name="ext_edit" id="ext_edit" disabled value="yes">
+                                    <a class="btn btn-success w-100" href="./configuration?edit=yes" type="button">Edit</a>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- end card body -->
+                    </div>
+                </div>
+        </div>
+    </div>
+{%endblock%}
+{% block script%}
+    <script>
+        $(function() {
+            $('.page-content').attr('style', 'display:block !important;')
+        });
+    </script>
+{%endblock%}

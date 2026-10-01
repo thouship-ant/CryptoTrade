@@ -1,0 +1,726 @@
+{% extends "_main_layout.html"%}
+{% block title%}Crypto Dashboard{%endblock%}
+{% block content%}
+    <div class="page-content" data-ng-app="cdApp" data-ng-controller="cdCtrl" style="display:none;">
+        <div class="container-fluid">
+
+            <!-- start page title -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                        <h4 class="mb-sm-0">Crypto Dashboard</h4>
+
+                        <div class="page-title-right">
+                            <ol class="breadcrumb m-0">
+                                <li class="breadcrumb-item"><a href="javascript: void(0);">Crypto</a></li>
+                                <li class="breadcrumb-item active">Dashboards</li>
+                            </ol>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- end page title -->
+
+            <div class="row">
+                <div class="col-xxl-12 order-xxl-0 order-first">
+                    <div class="d-flex flex-column h-100">
+                        <div class="row h-100">
+                            <div class="col-lg-3 col-md-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="d-flex align-items-center">
+                                            <div class="avatar-sm flex-shrink-0">
+                                                <span class="avatar-title bg-light text-primary rounded-circle fs-3">
+<!--                                                    <i class="ri-money-dollar-circle-fill align-middle"></i>-->
+                                                    <img src="/assets/images/svg/crypto-icons/BUSD.svg" class="bg-light rounded-circle p-1 avatar-xs img-fluid" alt="">
+                                                </span>
+                                            </div>
+                                            <div class="flex-grow-1 ms-3">
+                                                <p class="text-uppercase fw-semibold fs-12 text-muted mb-1"> Total Invested</p>
+                                                <h4 class=" mb-0"><span class="counter-value" data-ng-model="dashboardData.total_invested" data-target="{{ data['total_invested']}}">0</span> <span class="text-uppercase fw-semibold fs-12 text-muted mb-1">BUSD</span></h4>
+                                            </div>
+                                        </div>
+                                    </div><!-- end card body -->
+                                </div><!-- end card -->
+                            </div><!-- end col -->
+                            <div class="col-lg-3 col-md-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="d-flex align-items-center">
+                                            <div class="avatar-sm flex-shrink-0">
+                                                <span class="avatar-title bg-light text-primary rounded-circle fs-3">
+                                                    <i data-ng-if="dashboardData.total_changes_percent >= 0" class="ri-arrow-up-circle-fill align-middle"></i>
+                                                    <i data-ng-if="dashboardData.total_changes_percent < 0" class="ri-arrow-down-circle-fill align-middle"></i>
+                                                </span>
+                                            </div>
+                                            <div class="flex-grow-1 ms-3">
+                                                <p class="text-uppercase fw-semibold fs-12 text-muted mb-1"> Total Change</p>
+                                                <h4 class=" mb-0"><span class="counter-value" data-ng-model="dashboardData.total_changes" data-target="{{ data['total_changes']}}">0</span> <span class="text-uppercase fw-semibold fs-12 text-muted mb-1">BUSD</span></h4>
+                                            </div>
+                                            <div class="flex-shrink-0 align-self-end">
+                                                <span class="badge badge-soft-success" data-ng-if="dashboardData.total_changes_percent >= 0">
+                                                    <i class="ri-arrow-up-s-fill align-middle me-1"></i>+{{ dashboardData.total_changes_percent|angular}} %
+                                                    <span> </span></span>
+                                                <span class="badge badge-soft-danger" data-ng-if="dashboardData.total_changes_percent < 0">
+                                                    <i class="ri-arrow-down-s-fill align-middle me-1"></i>{{ dashboardData.total_changes_percent|angular}} %
+                                                    <span> </span></span>
+                                            </div>
+                                        </div>
+                                    </div><!-- end card body -->
+                                </div><!-- end card -->
+                            </div><!-- end col -->
+                            <div class="col-lg-3 col-md-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="d-flex align-items-center">
+                                            <div class="avatar-sm flex-shrink-0">
+                                                <span class="avatar-title bg-light text-primary rounded-circle fs-3">
+                                                    <i data-ng-if="dashboardData.month_changes_percent >= 0" class="ri-arrow-up-circle-fill align-middle"></i>
+                                                    <i data-ng-if="dashboardData.month_changes_percent < 0" class="ri-arrow-down-circle-fill align-middle"></i>
+                                                </span>
+                                            </div>
+                                            <div class="flex-grow-1 ms-3">
+                                                <p class="text-uppercase fw-semibold fs-12 text-muted mb-1">Month Change</p>
+                                                <h4 class=" mb-0"><span class="counter-value" data-ng-model="dashboardData.month_changes" data-target="{{ data['month_changes']}}">0</span> <span class="text-uppercase fw-semibold fs-12 text-muted mb-1">BUSD</span></h4>
+                                            </div>
+                                            <div class="flex-shrink-0 align-self-end">
+                                                <span class="badge badge-soft-success" data-ng-if="dashboardData.month_changes_percent >= 0">
+                                                    <i class="ri-arrow-up-s-fill align-middle me-1"></i>+{{ dashboardData.month_changes_percent|angular}} %
+                                                    <span> </span></span>
+                                                <span class="badge badge-soft-danger" data-ng-if="dashboardData.month_changes_percent < 0">
+                                                    <i class="ri-arrow-down-s-fill align-middle me-1"></i>{{ dashboardData.month_changes_percent|angular}} %
+                                                    <span> </span></span>
+                                            </div>
+                                        </div>
+                                    </div><!-- end card body -->
+                                </div><!-- end card -->
+                            </div><!-- end col -->
+                            <div class="col-lg-3 col-md-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="d-flex align-items-center">
+                                            <div class="avatar-sm flex-shrink-0">
+                                                <span class="avatar-title bg-light text-primary rounded-circle fs-3">
+                                                    <i data-ng-if="dashboardData.today_changes_percent >= 0" class="ri-arrow-up-circle-fill align-middle"></i>
+                                                    <i data-ng-if="dashboardData.today_changes_percent < 0" class="ri-arrow-down-circle-fill align-middle"></i>
+                                                </span>
+                                            </div>
+                                            <div class="flex-grow-1 ms-3">
+                                                <p class="text-uppercase fw-semibold fs-12 text-muted mb-1">Day Change</p>
+                                                <h4 class=" mb-0"><span class="counter-value" data-ng-model="dashboardData.today_changes" data-target="{{ data['today_changes']}}">0</span> <span class="text-uppercase fw-semibold fs-12 text-muted mb-1">BUSD</span></h4>
+                                            </div>
+                                            <div class="flex-shrink-0 align-self-end">
+                                                <span class="badge badge-soft-success" data-ng-if="dashboardData.today_changes_percent >= 0">
+                                                    <i class="ri-arrow-up-s-fill align-middle me-1"></i>+{{ dashboardData.today_changes_percent|angular}} %
+                                                    <span> </span></span>
+                                                <span class="badge badge-soft-danger" data-ng-if="dashboardData.today_changes_percent < 0">
+                                                    <i class="ri-arrow-down-s-fill align-middle me-1"></i>{{ dashboardData.today_changes_percent|angular}} %
+                                                    <span> </span></span>
+                                            </div>
+                                        </div>
+                                    </div><!-- end card body -->
+                                </div><!-- end card -->
+                            </div><!-- end col -->
+                        </div><!-- end row -->
+
+                        <div class="row" data-ng-if="user_status == 'register'">
+                            <div class="col-xxl-12">
+                                <div class="card" id="configPending">
+                                    <div class="card-header border-bottom-dashed d-flex align-items-center">
+                                        <h4 class="card-title mb-0 flex-grow-1">Configuration Pending</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="mt-1 text-center">
+                                            <p class="mb-0">Please <a href="configuration" class="fw-semibold text-primary text-decoration-underline"> Click here </a> to configure robo trade set-up with your Binance exchange. </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" data-ng-if="user_status == 'configured'">
+                            <div class="col-xxl-12">
+                                <div class="card" id="depositPending">
+                                    <div class="card-header border-bottom-dashed d-flex align-items-center">
+                                        <h4 class="card-title mb-0 flex-grow-1">Deposit and Activation Pending</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="mt-1 text-center">
+                                            <p class="mb-0">Please <a href="crypto-wallet" class="fw-semibold text-primary text-decoration-underline"> Click here </a> and 'Deposit' button to add activation wallet balance for <a href="plan-pricing" class="fw-semibold text-primary text-decoration-underline">purchase</a> cryptoBot and Power package which you like to start robo trade with your Binance exchange. </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" data-ng-if="user_status == 'valid'">
+                            <div class="col-xxl-12">
+                                <div class="card" id="openOrders">
+                                    <div class="card-header border-bottom-dashed d-flex align-items-center">
+                                        <h4 class="card-title mb-0 flex-grow-1">Open Orders</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="table-responsive table-card">
+                                            <table class="table align-middle table-nowrap" id="openOrdersTable" data-ng-show="lstCurrentPosition.length > 0">
+                                                <thead class="table-light text-muted">
+                                                    <tr>
+                                                        <th data-ng-class="{'sort':cp_sort != 'symbol_pair'}" data-ng-click="cp_sort = 'symbol_pair'; cp_sortType = !cp_sortType" scope="col">Name&nbsp;&nbsp;&nbsp;&nbsp;
+                                                        <button data-ng-if="cp_sort == 'symbol_pair'" aria-label="Name ascending" title="Name ascending" class="gridjs-sort float-right" data-ng-class="{'gridjs-sort-asc':cp_sortType==false,'gridjs-sort-desc':cp_sortType}"></button></th>
+                                                        <th data-ng-class="{'sort':cp_sort != 'order_quantity'}" data-ng-click="cp_sort = 'order_quantity'; cp_sortType = !cp_sortType" scope="col">Quantity&nbsp;&nbsp;&nbsp;&nbsp;
+                                                        <button data-ng-if="cp_sort == 'order_quantity'" aria-label="Quantity ascending" title="Quantity ascending" class="gridjs-sort float-right" data-ng-class="{'gridjs-sort-asc':cp_sortType==false,'gridjs-sort-desc':cp_sortType}"></button></th>
+                                                        <th data-ng-class="{'sort':cp_sort != 'current_price'}" data-ng-click="cp_sort = 'current_price'; cp_sortType = !cp_sortType" scope="col">Current Price&nbsp;&nbsp;&nbsp;&nbsp;
+                                                        <button data-ng-if="cp_sort == 'current_price'" aria-label="Current Price ascending" title="Current Price ascending" class="gridjs-sort float-right" data-ng-class="{'gridjs-sort-asc':cp_sortType==false,'gridjs-sort-desc':cp_sortType}"></button></th>
+                                                        <th data-ng-class="{'sort':cp_sort != 'current_percent'}" data-ng-click="cp_sort = 'current_percent'; cp_sortType = !cp_sortType" scope="col">Returns %&nbsp;&nbsp;&nbsp;&nbsp;
+                                                        <button data-ng-if="cp_sort == 'current_percent'" aria-label="Returns % ascending" title="Returns % ascending" class="gridjs-sort float-right" data-ng-class="{'gridjs-sort-asc':cp_sortType==false,'gridjs-sort-desc':cp_sortType}"></button></th>
+                                                        <th data-ng-class="{'sort':cp_sort != 'final_amount'}" data-ng-click="cp_sort = 'final_amount'; cp_sortType = !cp_sortType" scope="col">Current Value&nbsp;&nbsp;&nbsp;&nbsp;
+                                                        <button data-ng-if="cp_sort == 'final_amount'" aria-label="Current Value ascending" title="Current Value ascending" class="gridjs-sort float-right" data-ng-class="{'gridjs-sort-asc':cp_sortType==false,'gridjs-sort-desc':cp_sortType}"></button></th>
+                                                        <th data-ng-class="{'sort':cp_sort != 'buy_price'}" data-ng-click="cp_sort = 'buy_price'; cp_sortType = !cp_sortType" scope="col">Buy Price&nbsp;&nbsp;&nbsp;&nbsp;
+                                                        <button data-ng-if="cp_sort == 'buy_price'" aria-label="Buy Price ascending" title="Buy Price ascending" class="gridjs-sort float-right" data-ng-class="{'gridjs-sort-asc':cp_sortType==false,'gridjs-sort-desc':cp_sortType}"></button></th>
+                                                        <th data-ng-class="{'sort':cp_sort != 'target_price'}" data-ng-click="cp_sort = 'target_price'; cp_sortType = !cp_sortType" scope="col">Target&nbsp;&nbsp;&nbsp;&nbsp;
+                                                        <button data-ng-if="cp_sort == 'target_price'" aria-label="Target ascending" title="Target ascending" class="gridjs-sort float-right" data-ng-class="{'gridjs-sort-asc':cp_sortType==false,'gridjs-sort-desc':cp_sortType}"></button></th>
+                                                        <th data-ng-class="{'sort':cp_sort != 'stoploss_price'}" data-ng-click="cp_sort = 'stoploss_price'; cp_sortType = !cp_sortType" scope="col">Re-Purchase&nbsp;&nbsp;&nbsp;&nbsp;
+                                                        <button data-ng-if="cp_sort == 'stoploss_price'" aria-label="Re-Purchase ascending" title="Re-Purchase ascending" class="gridjs-sort float-right" data-ng-class="{'gridjs-sort-asc':cp_sortType==false,'gridjs-sort-desc':cp_sortType}"></button></th>
+                                                    </tr>
+                                                </thead>
+                                                <!--end thead-->
+                                                <tbody class="list form-check-all">
+                                                    <tr data-ng-repeat="CurrentPosition in lstCurrentPosition | orderBy: cp_sort:cp_sortType | displayPageData:cp_currentPage*cp_limit | limitTo:cp_limit">
+                                                        <td>
+                                                            <div class="d-flex align-items-center fw-medium">
+                                                                <img data-ng-src="assets/images/svg/crypto-icons/{{CurrentPosition.symbolname|angular}}.svg" alt="" class="avatar-xxs me-2"  onerror="this.onerror=null; this.src='/assets/images/svg/crypto-icons/Default.svg'"/>
+                                                                <a href="" data-bs-toggle="modal" data-bs-target="#ChartDataOpenOrder" data-ng-click="is_crnt_pos_chart = false;displayChart(CurrentPosition)" class="currency_name">{{CurrentPosition.symbol_pair|angular}}</a>
+                                                            </div>
+                                                        </td>
+                                                        <td class="quantity_value">{{CurrentPosition.order_quantity|angular}}</td>
+                                                        <td class="current_price">{{CurrentPosition.current_price|angular}}</td>
+                                                        <td class="returns_per">
+                                                            <h6 data-ng-if="CurrentPosition.current_percent >= 0" class="text-success fs-13 mb-0"><i class="mdi mdi-trending-up align-middle me-1"></i>{{CurrentPosition.current_percent|angular}}%</h6>
+                                                            <h6 data-ng-if="CurrentPosition.current_percent < 0" class="text-danger fs-13 mb-0"><i class="mdi mdi-trending-down align-middle me-1"></i>{{-1*CurrentPosition.current_percent|angular}}%</h6>
+                                                        </td>
+                                                        <td class="current_value">{{CurrentPosition.final_amount|angular}}</td>
+                                                        <td class="buy_price">{{CurrentPosition.buy_price|angular}}</td>
+                                                        <td class="current_value">{{CurrentPosition.target_price|angular}}</td>
+                                                        <td class="returns">{{CurrentPosition.stoploss_price|angular}}</td>
+                                                    </tr>
+                                                    <!--end tr-->
+                                                </tbody>
+                                            </table>
+                                            <!--end table-->
+                                            <div class="noresult" data-ng-show="lstCurrentPosition.length == 0 && !(lstCurrentPosition === undefined)">
+                                                <div class="text-center">
+                                                    <lord-icon src="https://cdn.lordicon.com/dxjqoygy.json" trigger="loop" colors="primary:#405189,secondary:#0ab39c" style="width:75px;height:75px"></lord-icon>
+                                                    <h5 class="mt-2">Waiting for new Orders....</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex justify-content-end mt-3" data-ng-show="lstCurrentPosition.length > 0">
+                                            <div class="gridjs-footer">
+                                                <div class="gridjs-pagination" data-ng-show="(cp_numberOfItems()/cp_limit) > 1">
+                                                    <div role="status" aria-live="polite" class="gridjs-summary" title="Page 1 of {{cp_total_pages|angular}}">Showing <b><span data-ng-bind="cp_currentPage*cp_limit+1"></span></b> to <b><span data-ng-if="(cp_numberOfItems() - ((cp_numberOfItems()/cp_limit-1)*cp_limit)) + (cp_currentPage*cp_limit) <= cp_numberOfItems()" data-ng-bind="(cp_numberOfItems() - ((cp_numberOfItems()/cp_limit-1)*cp_limit)) + (cp_currentPage*cp_limit)"></span><span data-ng-if="(cp_numberOfItems() - ((cp_numberOfItems()/cp_limit-1)*cp_limit)) + (cp_currentPage*cp_limit) > cp_numberOfItems()" data-ng-bind="cp_numberOfItems()"></span></b> of <b><span data-ng-bind="cp_numberOfItems()"></span></b> results</div>
+                                                </div>
+                                            </div>
+                                            <div class="pagination-wrap hstack gap-2" data-ng-show="lstCurrentPosition.length > cp_limit">
+                                                <button  class="page-item pagination-prev" data-ng-disabled="cp_currentPage == 0" data-ng-click="cp_currentPage=cp_currentPage-1">
+                                                    Previous
+                                                </button >
+                                                <ul class="pagination listjs-pagination mb-0"></ul>
+                                                <button  class="page-item pagination-next" data-ng-disabled="cp_currentPage >= cp_numberOfItems()/cp_limit-1" data-ng-click="cp_currentPage=cp_currentPage+1">
+                                                    Next
+                                                </button >
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal fade" id="ChartDataOpenOrder" data-bs-backdrop="static" tabindex="-1" aria-hidden="true">
+                        <div class="modal-dialog modal-xl">
+                            <div class="modal-content" data-ng-show="is_crnt_pos_chart">
+                                <div class="modal-header">
+                                    <img data-ng-src="/assets/images/svg/crypto-icons/{{currentSelection.symbolname|angular}}.svg"  onerror="this.onerror=null; this.src='/assets/images/svg/crypto-icons/Default.svg'" class="bg-light rounded-circle p-1 avatar-xs img-fluid" alt="">
+                                    <h4 class="modal-title mb-0 flex-grow-1">{{currentSelection.symbol_pair|angular}} - Live Chart &mdash; Open Order(s)</h4>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" data-ng-click="is_crnt_pos_chart = false"></button>
+                                </div>
+                            <div class="modal-body">
+                            <div class="row">
+                                <div class="col-xl-12">
+                                    <div class="card">
+                                        <div class="card-header border-0 align-items-center d-flex">
+                                            <div>
+    <!--                                                    <button type="button" class="btn btn-soft-secondary btn-sm">-->
+    <!--                                                        1H-->
+    <!--                                                    </button>-->
+    <!--                                                    <button type="button" class="btn btn-soft-secondary btn-sm">-->
+    <!--                                                        7D-->
+    <!--                                                    </button>-->
+    <!--                                                    <button type="button" class="btn btn-soft-secondary btn-sm">-->
+    <!--                                                        1M-->
+    <!--                                                    </button>-->
+    <!--                                                    <button type="button" class="btn btn-soft-secondary btn-sm">-->
+    <!--                                                        1Y-->
+    <!--                                                    </button>-->
+                                                <button type="button" class="btn btn-primary btn-sm">
+                                                    15m
+                                                </button>
+                                            </div>
+                                        </div><!-- end card header -->
+                                        <div class="card-body p-0">
+                                            <div class="bg-soft-light border-top-dashed border border-start-0 border-end-0 border-bottom-dashed py-3 px-4">
+                                                <div class="row align-items-center">
+                                                    <div class="col-6">
+                                                        <div class="d-flex flex-wrap gap-4 align-items-center">
+                                                            <h5 class="fs-19 mb-0">{{currentSelection.current_price|angular}}</h5>
+                                                            <p class="fw-medium text-muted mb-0">${{currentSelection.final_amount|angular}}
+                                                                <span data-ng-if="currentSelection.current_percent >= 0" class="text-success fs-11 ms-1">+{{currentSelection.current_percent|angular}}%</span>
+                                                                <span data-ng-if="currentSelection.current_percent < 0" class="text-danger fs-11 ms-1">{{currentSelection.current_percent|angular}}%</span>
+                                                            </p>
+                                                            <p class="fw-medium text-muted mb-0">Buy Price <span class="text-dark fs-11 ms-1">{{currentSelection.buy_price|angular}}</span></p>
+                                                            <p class="fw-medium text-muted mb-0">Sell Price <span class="text-dark fs-11 ms-1">{{currentSelection.sell_price|angular}}</span></p>
+                                                        </div>
+                                                    </div><!-- end col -->
+                                                    <div class="col-6">
+                                                        <div class="d-flex">
+                                                            <div class="d-flex justify-content-end text-end flex-wrap gap-4 ms-auto">
+                                                                <div class="pe-3">
+                                                                    <h6 class="mb-2 text-truncate text-muted">Order Quantity</h6>
+                                                                    <h5 class="mb-0">{{currentSelection.order_quantity|angular}}</h5>
+
+                                                                </div>
+                                                                <div class="pe-3">
+                                                                    <h6 class="mb-2 text-muted">Target</h6>
+                                                                    <h5 class="text-success mb-0">{{currentSelection.target_price|angular}}</h5>
+                                                                </div>
+                                                                <div class="pe-3">
+                                                                    <h6 class="mb-2 text-muted">Re-Purchase</h6>
+                                                                    <h5 class="text-danger mb-0">{{currentSelection.stoploss_price|angular}}</h5>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div><!-- end col -->
+                                                </div><!-- end row -->
+                                            </div>
+                                        </div><!-- end cardbody -->
+                                        <div class="card-body p-0 pb-3">
+                                            <div id="Market_chart_modal" data-colors='["--vz-success", "--vz-danger"]' class="apex-charts" dir="ltr"></div>
+                                        </div><!-- end cardbody -->
+                                    </div><!-- end card -->
+                                </div><!-- end col -->
+                            </div><!-- end row -->
+                        </div>
+                        </div>
+                    </div><!-- end col -->
+                </div><!-- end row -->
+
+                        <div class="modal fade" id="ChartData" data-bs-backdrop="static" tabindex="-1" aria-hidden="true">
+                        <div class="modal-dialog modal-xl">
+                            <div class="modal-content" data-ng-show="is_crnt_pos_chart">
+                                <div class="modal-header">
+                                    <img data-ng-src="/assets/images/svg/crypto-icons/{{currentANTSelection.symbol|angular}}.svg"  onerror="this.onerror=null; this.src='/assets/images/svg/crypto-icons/Default.svg'" class="bg-light rounded-circle p-1 avatar-xs img-fluid" alt="">
+                                    <h4 class="modal-title mb-0 flex-grow-1">{{currentANTSelection.symbol|angular}} / BUSD - Live Chart</h4>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" data-ng-click="is_crnt_pos_chart = false"></button>
+                                </div>
+                            <div class="modal-body">
+                            <div class="row">
+                                <div class="col-xl-12">
+                                    <div class="card">
+                                        <div class="card-header border-0 align-items-center d-flex">
+                                            <div>
+    <!--                                                    <button type="button" class="btn btn-soft-secondary btn-sm">-->
+    <!--                                                        1H-->
+    <!--                                                    </button>-->
+    <!--                                                    <button type="button" class="btn btn-soft-secondary btn-sm">-->
+    <!--                                                        7D-->
+    <!--                                                    </button>-->
+    <!--                                                    <button type="button" class="btn btn-soft-secondary btn-sm">-->
+    <!--                                                        1M-->
+    <!--                                                    </button>-->
+    <!--                                                    <button type="button" class="btn btn-soft-secondary btn-sm">-->
+    <!--                                                        1Y-->
+    <!--                                                    </button>-->
+                                                <button type="button" class="btn btn-primary btn-sm">
+                                                    15m
+                                                </button>
+                                            </div>
+                                        </div><!-- end card header -->
+                                        <div class="card-body p-0">
+                                            <div class="bg-soft-light border-top-dashed border border-start-0 border-end-0 border-bottom-dashed py-3 px-4">
+                                                <div class="row align-items-center">
+                                                    <div class="col-12">
+                                                        <div class="d-flex flex-wrap gap-4 align-items-center">
+                                                            <h5 class="fs-19 mb-0">{{currentANTSelection.current_askPrice|angular}}</h5>
+                                                            <p class="fw-medium text-muted mb-0">
+                                                                <span data-ng-if="currentANTSelection.changes >= 0" class="text-success fs-11 ms-1">+{{currentANTSelection.price_change|angular}} (+{{currentANTSelection.changes|angular}}%)</span>
+                                                                <span data-ng-if="currentANTSelection.changes < 0" class="text-danger fs-11 ms-1">{{currentANTSelection.price_change|angular}} ({{currentANTSelection.changes|angular}}%)</span>
+                                                            </p>
+                                                        </div>
+                                                    </div><!-- end col -->
+                                                </div><!-- end row -->
+                                            </div>
+                                        </div><!-- end cardbody -->
+                                        <div class="card-body p-0 pb-3">
+                                            <div id="Market_chart_modal_ant" data-colors='["--vz-success", "--vz-danger"]' class="apex-charts" dir="ltr"></div>
+                                        </div><!-- end cardbody -->
+                                    </div><!-- end card -->
+                                </div><!-- end col -->
+                            </div><!-- end row -->
+                        </div>
+                        </div>
+                    </div><!-- end col -->
+                </div><!-- end row -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xxl-4 col-lg-6">
+                    <div class="card card-height-100" data-ng-show="is_ra_data">
+                        <div class="card-header align-items-center d-flex">
+                            <h4 class="card-title mb-0 flex-grow-1">Recent Activity</h4>
+                            <div class="flex-shrink-0">
+                                <div class="dropdown card-header-dropdown">
+                                    <a class="text-reset dropdown-btn" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span class="fw-semibold text-uppercase fs-12">Sort by: </span><span class="text-muted"><span data-ng-bind="current_ra_type"></span><i class="mdi mdi-chevron-down ms-1"></i></span>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-end">
+                                        <a class="dropdown-item" href="" data-ng-click="get_recent_activity('today')">Today</a>
+                                        <a class="dropdown-item" href="" data-ng-click="get_recent_activity('currentweek')">Current Week</a>
+                                        <a class="dropdown-item" href="" data-ng-click="get_recent_activity('currentmonth')">Current Month</a>
+                                        <a class="dropdown-item" href="" data-ng-click="get_recent_activity('currentyear')">Current Year</a>
+                                        <a class="dropdown-item" href="" data-ng-click="get_recent_activity('yesterday')">Yesterday</a>
+                                        <a class="dropdown-item" href="" data-ng-click="get_recent_activity('lastweek')">Last Week</a>
+                                        <a class="dropdown-item" href="" data-ng-click="get_recent_activity('lastmonth')">Last Month</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- end card header -->
+                        <div class="card-body p-0">
+                            <div data-simplebar style="height: 390px;">
+                                <div class="p-3">
+                                    <h6 data-ng-if="recent_activity[0].date == ''" class="text-muted text-uppercase text-center mb-3 mt-3 fs-11">No data found</h6>
+                                    <div data-ng-repeat="ra in recent_activity">
+                                    <h6 class="text-muted text-uppercase mb-3 fs-11" data-ng-class="{'mt-2' : $index == 0, 'mt-4': $index > 0}">{{ra.date|angular}}</h6>
+                                    <div data-ng-repeat="data_result in ra.result">
+                                    <div class="d-flex align-items-center mt-3">
+                                        <div class="avatar-xs flex-shrink-0">
+                                            <span class="avatar-title bg-light rounded-circle">
+                                                <i data-ng-if="data_result[0] == 'Buy'" data-feather="arrow-down-circle" class="icon-dual-success icon-sm"></i>
+                                                <i data-ng-if="data_result[0] == 'Sell'"  data-feather="arrow-up-circle" class="icon-dual-danger icon-sm"></i>
+                                                <i data-ng-if="data_result[0] == 'Send'"  data-feather="send" class="icon-dual-warning icon-sm"></i>
+                                            </span>
+                                        </div>
+                                        <div class="flex-grow-1 ms-3">
+                                            <h6 class="fs-14 mb-1"><span data-ng-bind="data_result[1]"></span></h6>
+                                            <p class="text-muted fs-12 mb-0">
+                                                <i data-ng-if="data_result[0] == 'Buy'" class="mdi mdi-circle-medium text-success fs-15 align-middle"></i>
+                                                <i data-ng-if="data_result[0] == 'Sell'" class="mdi mdi-circle-medium text-danger fs-15 align-middle"></i>
+                                                <i data-ng-if="data_result[0] == 'Send'" class="mdi mdi-circle-medium text-warning fs-15 align-middle"></i>
+                                                <span data-ng-bind="data_result[2]"></span>
+                                            </p>
+                                        </div>
+                                        <div class="flex-shrink-0 text-end">
+                                            <h6  data-ng-if="data_result[0] == 'Buy'" class="mb-1 text-success"><span data-ng-bind="data_result[3]"></span><span class="text-uppercase ms-1"><span data-ng-bind="data_result[4]"></span></span></h6>
+                                            <h6  data-ng-if="data_result[0] == 'Sell'" class="mb-1 text-danger"><span data-ng-bind="data_result[3]"></span><span class="text-uppercase ms-1"><span data-ng-bind="data_result[4]"></span></span></h6>
+                                            <h6  data-ng-if="data_result[0] == 'Send'" class="mb-1 text-muted"><span data-ng-bind="data_result[3]"></span><span class="text-uppercase ms-1"><span data-ng-bind="data_result[4]"></span></span></h6>
+                                            <p class="text-muted fs-13 mb-0"><span data-ng-bind="data_result[5]"></span></p>
+                                        </div>
+                                    </div><!-- end -->
+                                    </div>
+                                    </div>
+<!--                                    <div class="mt-3 text-center">-->
+<!--                                        <a href="javascript:void(0);" class="text-muted text-decoration-underline">Load More</a>-->
+<!--                                    </div>-->
+
+                                </div>
+
+                            </div>
+                        </div><!-- end cardbody -->
+                    </div><!-- end card -->
+                </div><!-- end col -->
+
+                <div class="col-xl-8">
+                    <div class="card" data-ng-show="is_ant_coin_data">
+                        <div class="card-header align-items-center d-flex">
+                            <h4 class="card-title mb-0 flex-grow-1">ANT - Trade Currency</h4>
+                            <div class="flex-shrink-0">
+                                <button class="btn btn-primary btn-sm">24H</button>
+                            </div>
+                            <div class="flex-shrink-0 ms-2">
+                                <div class="dropdown card-header-dropdown">
+                                    <a class="btn btn-soft-primary btn-sm" role="button" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Get Report<i class="mdi mdi-chevron-down align-middle ms-1"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-end">
+                                        <a class="dropdown-item" href="#">Download Report</a>
+                                        <a class="dropdown-item" href="#">Export</a>
+                                        <a class="dropdown-item" href="#">Import</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- end card header -->
+                        <div class="card-body">
+                            <div class="table-responsive table-card">
+                                <div class="gridjs-head"><div class="gridjs-search"><input type="search" data-ng-change="at_currentPage = 0" data-ng-model="at_searchText" placeholder="Type a keyword..." aria-label="Type a keyword..." class="gridjs-input gridjs-search-input"></div></div>
+                                <table class="table align-middle table-nowrap" id="antCurrencyTable" data-ng-show="lstANTCurrencyTable.length > 0">
+                                    <thead class="table-light text-muted">
+                                        <tr>
+                                            <th data-ng-class="{'sort':at_sort != 'symbolname'}" data-ng-click="at_sort = 'symbolname'; at_sortType = !at_sortType" scope="col">Name&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <button data-ng-if="at_sort == 'symbolname'" aria-label="Name ascending" title="Name ascending" class="gridjs-sort float-right" data-ng-class="{'gridjs-sort-asc':at_sortType==false,'gridjs-sort-desc':at_sortType}"></button></th>
+                                            <th data-ng-class="{'sort':at_sort != 'current_askPrice'}" data-ng-click="at_sort = 'current_askPrice'; at_sortType = !at_sortType" scope="col">Price (BUSD)&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <button data-ng-if="at_sort == 'current_askPrice'" aria-label="Current Price ascending" title="Current Price ascending" class="gridjs-sort float-right" data-ng-class="{'gridjs-sort-asc':at_sortType==false,'gridjs-sort-desc':at_sortType}"></button></th>
+                                            <th data-ng-class="{'sort':at_sort != 'price_change'}" data-ng-click="at_sort = 'price_change'; at_sortType = !at_sortType" scope="col">24hrs Price Change&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <button data-ng-if="at_sort == 'price_change'" aria-label="Quantity ascending" title="Quantity ascending" class="gridjs-sort float-right" data-ng-class="{'gridjs-sort-asc':at_sortType==false,'gridjs-sort-desc':at_sortType}"></button></th>
+                                            <th data-ng-class="{'sort':at_sort != 'changes'}" data-ng-click="at_sort = 'changes'; at_sortType = !at_sortType" scope="col">24hrs Change %&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <button data-ng-if="at_sort == 'changes'" aria-label="Returns % ascending" title="Returns % ascending" class="gridjs-sort float-right" data-ng-class="{'gridjs-sort-asc':at_sortType==false,'gridjs-sort-desc':at_sortType}"></button></th>
+                                            <th data-ng-class="{'sort':at_sort != 'Volumes'}" data-ng-click="at_sort = 'Volumes'; at_sortType = !at_sortType" scope="col">Volumes&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <button data-ng-if="at_sort == 'Volumes'" aria-label="Current Value ascending" title="Current Value ascending" class="gridjs-sort float-right" data-ng-class="{'gridjs-sort-asc':at_sortType==false,'gridjs-sort-desc':at_sortType}"></button></th>
+                                        </tr>
+                                    </thead>
+                                    <!--end thead-->
+                                    <tbody class="list form-check-all">
+                                        <tr data-ng-repeat="antCurrencyTable in lstANTCurrencyTable | filter:at_searchText | orderBy: at_sort:at_sortType | displayPageData:at_currentPage*at_limit | limitTo:at_limit">
+                                            <td>
+                                                <div class="d-flex align-items-center fw-medium">
+                                                    <img data-ng-src="assets/images/svg/crypto-icons/{{antCurrencyTable.symbol|angular}}.svg" alt="" class="avatar-xxs me-2"  onerror="this.onerror=null; this.src='/assets/images/svg/crypto-icons/Default.svg'"/>
+                                                    <h6 class="fs-14 mb-0"><a href="" data-bs-toggle="modal" data-bs-target="#ChartData" data-ng-click="is_crnt_pos_chart = false;displayChartANT(antCurrencyTable)" class="symbolname">{{antCurrencyTable.symbolname|angular}}</a></h6>
+                                                </div>
+                                            </td>
+                                            <td class="current_askPrice">{{antCurrencyTable.current_askPrice|angular}}</td>
+                                            <td class="quantity_value">{{antCurrencyTable.price_change|angular}}</td>
+                                            <td class="returns_per">
+                                                <h6 data-ng-if="antCurrencyTable.changes >= 0" class="text-success fs-13 mb-0"><i class="mdi mdi-trending-up align-middle me-1"></i>{{antCurrencyTable.changes|angular}}%</h6>
+                                                <h6 data-ng-if="antCurrencyTable.changes < 0" class="text-danger fs-13 mb-0"><i class="mdi mdi-trending-down align-middle me-1"></i>{{-1*antCurrencyTable.changes|angular}}%</h6>
+                                            </td>
+                                            <td class="current_value">{{antCurrencyTable.Volumes|angular}}</td>
+                                        </tr>
+                                        <!--end tr-->
+                                    </tbody>
+                                </table>
+                                <!--end table-->
+                                <div class="noresult" data-ng-show="(lstANTCurrencyTable | filter:at_searchText).length == 0 && !(lstANTCurrencyTable === undefined)">
+                                    <div class="text-center">
+                                        <lord-icon src="https://cdn.lordicon.com/msoeawqm.json" trigger="loop" colors="primary:#405189,secondary:#0ab39c" style="width:75px;height:75px"></lord-icon>
+                                        <h5 class="mt-2">No Results Found</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-end mt-3" data-ng-show="(lstANTCurrencyTable | filter:at_searchText).length > 0">
+                                <div class="gridjs-footer">
+                                    <div class="gridjs-pagination" data-ng-show="(at_numberOfItems()/at_limit) > 1">
+                                        <div role="status" aria-live="polite" class="gridjs-summary" title="Page 1 of {{at_total_pages|angular}}">Showing <b><span data-ng-bind="at_currentPage*at_limit+1"></span></b> to <b><span data-ng-if="(at_numberOfItems() - ((at_numberOfItems()/at_limit-1)*at_limit)) + (at_currentPage*at_limit) <= at_numberOfItems()" data-ng-bind="(at_numberOfItems() - ((at_numberOfItems()/at_limit-1)*at_limit)) + (at_currentPage*at_limit)"></span><span data-ng-if="(at_numberOfItems() - ((at_numberOfItems()/at_limit-1)*at_limit)) + (at_currentPage*at_limit) > at_numberOfItems()" data-ng-bind="at_numberOfItems()"></span></b> of <b><span data-ng-bind="at_numberOfItems()"></span></b> results</div>
+                                    </div>
+                                </div>
+                                <div class="pagination-wrap hstack gap-2" data-ng-show="(lstANTCurrencyTable | filter:at_searchText).length > at_limit">
+                                    <button  class="page-item pagination-prev" data-ng-disabled="at_currentPage == 0" data-ng-click="at_currentPage=at_currentPage-1">
+                                        Previous
+                                    </button >
+                                    <ul class="pagination listjs-pagination mb-0"></ul>
+                                    <button  class="page-item pagination-next" data-ng-disabled="at_currentPage >= at_numberOfItems()/at_limit-1" data-ng-click="at_currentPage=at_currentPage+1">
+                                        Next
+                                    </button >
+                                </div>
+                            </div>
+                        </div><!-- end card-body -->
+                    </div><!-- end card -->
+                </div><!-- end col -->
+            </div><!-- end row -->
+
+        </div>
+        <!-- container-fluid -->
+    </div>
+    <!-- End Page-content -->
+{%endblock%}
+
+{% block script%}
+    <script>
+        var app = angular.module('cdApp', []);
+        app.filter('displayPageData', function() {
+            return function(input, start) {
+            start = +start; //parse to int
+            return input?.slice(start);
+            }
+         });
+        app.controller('cdCtrl', function($scope, $filter, $http, $interval, $timeout) {
+            $scope.user_status = '{{session['user_status']}}';
+            $scope.dashboardData = {
+                total_invested: 0,
+                initial_invested: 0,
+                total_changes: 0,
+                total_changes_percent: 0,
+                month_changes: 0,
+                month_changes_percent: 0,
+                today_changes: 0,
+                today_changes_percent: 0
+            };
+            $scope.dashboardData.total_invested = 0;
+
+            /* Current Position */
+            $scope.is_crnt_pos_chart = false;
+            $scope.cp_currentPage = 0;
+            $scope.cp_searchText = '';
+            $scope.cp_sort = 'symbol_pair';
+            $scope.cp_sortType = false;
+            $scope.cp_limit = 5;
+            $scope.lstCurrentPosition = [];
+            $scope.currentSelection = {};
+            $scope.currentANTSelection = {};
+            /* ANT-Trade Currency */
+            $scope.at_currentPage = 0;
+            $scope.at_searchText = '';
+            $scope.at_sort = 'symbolname';
+            $scope.at_sortType = false;
+            $scope.at_limit = 5;
+            $scope.lstANTCurrencyTable = [];
+
+            /* Recent Activity */
+            $scope.ra_type = 'currentweek';
+            $scope.current_ra_type = 'Current Week';
+
+            $scope.cp_numberOfPages=function(){
+                var pageno=($filter('filter')($scope.lstCurrentPosition, $scope.cp_searchText)).length/$scope.cp_limit;
+                if(pageno==0){
+                    pageno++;
+                }
+                return pageno;
+            }
+           $scope.cp_numberOfItems=function(){ return ($filter('filter')($scope.lstCurrentPosition, $scope.cp_searchText)).length; }
+
+            $scope.at_numberOfPages=function(){
+                var pageno=($filter('filter')($scope.lstANTCurrencyTable, $scope.at_searchText)).length/$scope.at_limit;
+                if(pageno==0){
+                    pageno++;
+                }
+                return pageno;
+            }
+           $scope.at_numberOfItems=function(){ return ($filter('filter')($scope.lstANTCurrencyTable, $scope.at_searchText)).length; }
+
+            $scope.get_dashboard_data = function(){
+                $http({
+                    url: '/dashboard_data',
+                    method: "GET"
+                    }).then(function (response) {
+                        data = response.data;
+                        $scope.is_dashboard_data = true;
+                        $scope.dashboardData = data;
+                    },function (error) {
+                        console.error(`Error ${error}`);
+                    });
+              }
+            $scope.get_current_position = function(){
+                $http({
+                    url: '/current_position',
+                    method: "GET"
+                    }).then(function (response) {
+                        data = response.data;
+                        $scope.lstCurrentPosition = data;
+                        $scope.cp_total_pages = $scope.cp_numberOfPages();
+                    },function (error) {
+                        console.error(`Error ${error}`);
+                    });
+              }
+
+              $scope.get_ant_coin_data = function (){
+                $http({
+                    url: '/ant_coin_data',
+                    method: "GET"
+                    }).then(function (response) {
+                        var resp_data = response.data;
+                        $scope.lstANTCurrencyTable = resp_data;
+                        $scope.at_total_pages = $scope.at_numberOfPages();
+                        $scope.is_ant_coin_data = true;
+                    },function (error) {
+                        console.error(`Error ${error}`);
+                    });
+                }
+
+            $scope.get_chart_data = function(symbol, chart_id){
+                $http({
+                    url: '/chart_data?symbol='+symbol,
+                    method: "GET"
+                    }).then(function (response) {
+                        data = response.data;
+                        function getChartColorsArray(e){if(null!==document.getElementById(e)){var t=document.getElementById(e).getAttribute("data-colors");if(t)return(t=JSON.parse(t)).map(function(e){var t=e.replace(" ","");if(-1===t.indexOf(",")){var a=getComputedStyle(document.documentElement).getPropertyValue(t);return a||t}e=e.split(",");return 2!=e.length?t:"rgba("+getComputedStyle(document.documentElement).getPropertyValue(e[0])+","+e[1]+")"});console.warn("data-colors Attribute not found on:",e)}}
+                        var MarketchartColors=getChartColorsArray(chart_id);
+                        MarketchartColors&&(options={series:[{name:"candle",data: data }],chart:{height:350,type:"candlestick",toolbar:{show:!1}},plotOptions:{candlestick:{colors:{upward:MarketchartColors[0],downward:MarketchartColors[1]}}},tooltip: {enabled: true,theme: "light",style: {fontSize: '12px',fontFamily: undefined},onDatasetHover: {highlightDataSeries: false,},x: {show: true,format: 'dd MMM yyyy HH:mm',formatter: undefined,},marker: {show: true,},fixed: {enabled: false,position: 'topRight',offsetX: 0,offsetY: 0}},xaxis:{labels: {datetimeUTC: false}, type:"datetime"},yaxis:{tooltip:{enabled:!0}}},(chart=new ApexCharts(document.querySelector("#"+chart_id),options)).render());
+                        $scope.is_crnt_pos_chart = true;
+                        return true;
+                    },function (error) {
+                        console.error(`Error ${error}`);
+                        return false;
+                });
+            }
+
+            $scope.get_recent_activity = function(type){
+                $http({
+                    url: '/recent-activity?type='+type,
+                    method: "GET"
+                    }).then(function(response) {
+                        var resp_data = response.data;
+                        if (type == 'currentyear'){$scope.current_ra_type = 'Current Year';$scope.ra_type=type}
+                        else if (type == 'currentweek'){$scope.current_ra_type = 'Current Week';$scope.ra_type=type}
+                        else if (type == 'currentmonth'){$scope.current_ra_type = 'Current Month';$scope.ra_type=type}
+                        else if (type == 'currentyear'){$scope.current_ra_type = 'Current Year';$scope.ra_type=type}
+                        else if (type == 'lastmonth'){$scope.current_ra_type = 'Last Month';$scope.ra_type=type}
+                        else if (type == 'lastweek'){$scope.current_ra_type = 'Last Week';$scope.ra_type=type}
+                        else if (type == 'yesterday'){$scope.current_ra_type = 'Yesterday';$scope.ra_type=type}
+                        else if (type == 'today'){$scope.current_ra_type = 'Today';$scope.ra_type=type}
+                        $scope.recent_activity = resp_data;
+                        $scope.is_ra_data = true;
+                    }, function (error) {
+                        console.error(`Error ${error}`);
+                });
+            }
+
+            $scope.displayChart = function (data){
+                $timeout(function () {
+                    $scope.is_crnt_pos_chart = false;
+                    $scope.currentSelection = angular.copy(data);
+                    $scope.get_chart_data($scope.currentSelection['symbolname']+'USDT', "Market_chart_modal");
+                }, 2000);
+            }
+            $scope.displayChartANT = function (data){
+                $timeout(function () {
+                    $scope.is_crnt_pos_chart = false;
+                    $scope.currentANTSelection = angular.copy(data);
+                    $scope.get_chart_data($scope.currentANTSelection['symbol']+'USDT', "Market_chart_modal_ant");
+                }, 2000);
+            }
+
+           $scope.get_dashboard_data();
+           $scope.get_current_position();
+           $scope.get_ant_coin_data();
+           $scope.get_recent_activity($scope.ra_type);
+
+            /* Time interval*/
+            $interval(function(){
+                $scope.get_dashboard_data();
+                $scope.get_ant_coin_data();
+                $scope.get_recent_activity($scope.ra_type);
+            }, 60000);
+            /* Time interval*/
+            $interval(function(){
+                $scope.get_current_position();
+            }, 1800000);
+        });
+    </script>
+    <script>
+        $(function() {
+            $('.page-content').attr('style', 'display:block !important;')
+        });
+    </script>
+    <!-- CRM js -->
+    <!--    <script src="/assets/js/pages/dashboard-crypto.init.js"></script>-->
+    <script>
+/*        var areachartbitcoinColors=getChartColorsArray("bitcoin_sparkline_charts");areachartbitcoinColors&&(options={series:[{name:"Bitcoin",data:[{{top_coin['bitcoin_sparkline_charts']}}]}],chart:{width:130,height:50,type:"area",sparkline:{enabled:!0},toolbar:{show:!1}},dataLabels:{enabled:!1},stroke:{curve:"smooth",width:1.5},fill:{type:"gradient",gradient:{shadeIntensity:1,inverseColors:!1,opacityFrom:.45,opacityTo:.05,stops:[50,100,100,100]}},colors:areachartbitcoinColors},(chart=new ApexCharts(document.querySelector("#bitcoin_sparkline_charts"),options)).render());
+        var areachartlitecoinColors=getChartColorsArray("litecoin_sparkline_charts");areachartlitecoinColors&&(options={series:[{name:"Litecoin",data:[{{top_coin['litecoin_sparkline_charts']}}]}],chart:{width:130,height:46,type:"area",sparkline:{enabled:!0},toolbar:{show:!1}},dataLabels:{enabled:!1},stroke:{curve:"smooth",width:1.5},fill:{type:"gradient",gradient:{shadeIntensity:1,inverseColors:!1,opacityFrom:.45,opacityTo:.05,stops:[50,100,100,100]}},colors:areachartlitecoinColors},(chart=new ApexCharts(document.querySelector("#litecoin_sparkline_charts"),options)).render());
+        var areacharteathereumColors=getChartColorsArray("eathereum_sparkline_charts");areacharteathereumColors&&(options={series:[{name:"Eathereum",data:[{{top_coin['eathereum_sparkline_charts']}}]}],chart:{width:130,height:46,type:"area",sparkline:{enabled:!0},toolbar:{show:!1}},dataLabels:{enabled:!1},stroke:{curve:"smooth",width:1.5},fill:{type:"gradient",gradient:{shadeIntensity:1,inverseColors:!1,opacityFrom:.45,opacityTo:.05,stops:[50,100,100,100]}},colors:areacharteathereumColors},(chart=new ApexCharts(document.querySelector("#eathereum_sparkline_charts"),options)).render());
+        var areachartbinanceColors=getChartColorsArray("binance_sparkline_charts");areachartbinanceColors&&(options={series:[{name:"Binance",data:[{{top_coin['binance_sparkline_charts']}}]}],chart:{width:130,height:46,type:"area",sparkline:{enabled:!0},toolbar:{show:!1}},dataLabels:{enabled:!1},stroke:{curve:"smooth",width:1.5},fill:{type:"gradient",gradient:{shadeIntensity:1,inverseColors:!1,opacityFrom:.45,opacityTo:.05,stops:[50,100,100,100]}},colors:areachartbinanceColors},(chart=new ApexCharts(document.querySelector("#binance_sparkline_charts"),options)).render());
+        var areachartdashColors=getChartColorsArray("dash_sparkline_charts");areachartdashColors&&(options={series:[{name:"dash",data:[{{top_coin['dash_sparkline_charts']}}]}],chart:{width:130,height:46,type:"area",sparkline:{enabled:!0},toolbar:{show:!1}},dataLabels:{enabled:!1},stroke:{curve:"smooth",width:1.5},fill:{type:"gradient",gradient:{shadeIntensity:1,inverseColors:!1,opacityFrom:.45,opacityTo:.05,stops:[50,100,100,100]}},colors:areachartdashColors},(chart=new ApexCharts(document.querySelector("#dash_sparkline_charts"),options)).render());
+        var areacharttetherColors=getChartColorsArray("tether_sparkline_charts");areacharttetherColors&&(options={series:[{name:"tether",data:[{{top_coin['tether_sparkline_charts']}}]}],chart:{width:130,height:46,type:"area",sparkline:{enabled:!0},toolbar:{show:!1}},dataLabels:{enabled:!1},stroke:{curve:"smooth",width:1.5},fill:{type:"gradient",gradient:{shadeIntensity:1,inverseColors:!1,opacityFrom:.45,opacityTo:.05,stops:[50,100,100,100]}},colors:areacharttetherColors},(chart=new ApexCharts(document.querySelector("#tether_sparkline_charts"),options)).render());
+        var areachartneoColors=getChartColorsArray("neo_sparkline_charts");areachartneoColors&&(options={series:[{name:"neo",data:[{{top_coin['neo_sparkline_charts']}}]}],chart:{width:130,height:46,type:"area",sparkline:{enabled:!0},toolbar:{show:!1}},dataLabels:{enabled:!1},stroke:{curve:"smooth",width:1.5},fill:{type:"gradient",gradient:{shadeIntensity:1,inverseColors:!1,opacityFrom:.45,opacityTo:.05,stops:[50,100,100,100]}},colors:areachartneoColors},(chart=new ApexCharts(document.querySelector("#neo_sparkline_charts"),options)).render());
+        {% for coin_data in top_coin_data %}
+        var areachart{{coin_data['symbol_name']}}Colors=getChartColorsArray("{{coin_data['symbol_name']}}_sparkline_charts");areachart{{coin_data['symbol_name']}}Colors&&(options={series:[{name:"{{coin_data['symbol_name']}}",data:[{{coin_data['sparkline_charts']}}]}],chart:{width:130,height:46,type:"area",sparkline:{enabled:!0},toolbar:{show:!1}},dataLabels:{enabled:!1},stroke:{curve:"smooth",width:1.5},fill:{type:"gradient",gradient:{shadeIntensity:1,inverseColors:!1,opacityFrom:.45,opacityTo:.05,stops:[50,100,100,100]}},colors:areachart{{coin_data['symbol_name']}}Colors},(chart=new ApexCharts(document.querySelector("#{{coin_data['symbol_name']}}_sparkline_charts"),options)).render());
+        {% endfor%}*/
+        var swiper=new Swiper(".cryptoSlider",{slidesPerView:1,loop:!1,spaceBetween:24,navigation:{nextEl:".swiper-button-next",prevEl:".swiper-button-prev"},autoplay:{delay:2500,disableOnInteraction:!1},breakpoints:{640:{slidesPerView:2},768:{slidesPerView:2.5},1024:{slidesPerView:3},1200:{slidesPerView:5}}});
+        var swiper=new Swiper(".cryptoSliderChart",{slidesPerView:1,loop:!1,spaceBetween:24,navigation:{nextEl:".swiper-button-next",prevEl:".swiper-button-prev"},autoplay:{delay:2500,disableOnInteraction:!1},breakpoints:{640:{slidesPerView:2},768:{slidesPerView:2.5},1024:{slidesPerView:3},1200:{slidesPerView:5}}});
+    </script>
+
+{%endblock%}

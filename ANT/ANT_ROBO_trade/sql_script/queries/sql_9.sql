@@ -1,0 +1,10 @@
+(select distinct auw.`initial_investment` as invest_amount, (auw.`binance_exchange_usdt`+(select sum(cbor.`buy_price`*cbor.`order_quantity`) from `ant_cryptotradingbot`.`current_buy_order_report` as cbor inner join `ant_cryptotradingbot`.`order_report` as ort on ort.username=cbor.username and ort.symbol_name=cbor.symbol_name and ort.`buy_price`=cbor.`buy_price` and ort.`order_quantity`=cbor.`order_quantity` and ort.`signal_type`=cbor.`signal_type` and ort.`order_date`=cbor.`order_date` where cbor.username = 'Admin')) as final_amount from `ant_cryptotradingbot`.`order_report` as ort inner join `ant_cryptotradingbot`.`current_buy_order_report` as cort on cort.username = ort.username inner join `ant_cryptotradingbot`.`ant_user_wallet` as auw on auw.username = ort.username where ort.username = 'Admin' and ort.sell_price is null)
+                    union all
+                    (select distinct auw.`initial_investment` as invest_amount, auw.`binance_exchange_usdt` as final_amount from `ant_cryptotradingbot`.`order_report` as ort inner join `ant_cryptotradingbot`.`ant_user_wallet` as auw on auw.username = ort.username where ort.username = 'Admin' and ort.sell_price is not null
+                    and (select count(buy_amount) from `ant_cryptotradingbot`.`order_report` where username = 'Admin' and sell_price is null) = 0)
+                    union all
+                    (select sum(profit_amount - commission_price) as invest_amount, sum(profit_percent) as final_amount from `ant_cryptotradingbot`.`daily_profit_report` where username = 'Admin')
+                    union all
+                    (select sum(profit_amount - commission_price) as invest_amount, sum(profit_percent) as final_amount from `ant_cryptotradingbot`.`daily_profit_report` where username = 'Admin' and `date` >= '2022-08-01')
+                    union all
+                    (select sum(profit_amount - commission_price) as invest_amount, sum(profit_percent) as final_amount from `ant_cryptotradingbot`.`daily_profit_report` where username = 'Admin' and `date` = '2022-08-09')

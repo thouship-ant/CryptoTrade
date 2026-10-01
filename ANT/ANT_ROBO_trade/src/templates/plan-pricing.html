@@ -1,0 +1,534 @@
+{% extends "_main_layout.html"%}
+{% block title%}Crypto Wallet{%endblock%}
+{% block content%}
+    <div class="page-content" data-ng-app="cdApp" data-ng-controller="cdCtrl" style="display:none;">
+        <div class="container-fluid">
+            <!-- start page title -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                        <h4 class="mb-sm-0">Plans &amp; Pricing</h4>
+
+                        <div class="page-title-right">
+                            <ol class="breadcrumb m-0">
+                                <li class="breadcrumb-item"><a href="javascript: void(0);">Crypto</a></li>
+                                <li class="breadcrumb-item active">Plans &amp; Pricing</li>
+                            </ol>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- end page title -->
+
+            <div class="row justify-content-center mt-1">
+                <div class="col-lg-12">
+                    <div class="text-center mb-0">
+                        <h4 class="fw-semibold fs-22">Plans & Pricing</h4>
+                        <!-- Primary Alert -->
+                        <div data-ng-hide="valid_status == 'configured' || currentPlan == 'halfKP'">
+                            <div class="invalid-feedback" style="{{ style_valid['config']}}">
+                                <p class="mb-0">Please <a href="configuration" class="fw-semibold text-primary text-decoration-underline"> Click here </a> to configure robo trade set-up with your Binance exchange. </p>
+                            </div>
+                            <div class="invalid-feedback" style="{{ style_valid['is_enough_balance']}}">
+                                <span class="text-danger" data-ng-if="purchaseDate != '' && currentPlan == 'halfKP' && valid_status == 'Expired'">Free trade {{purchaseDate|angular}}</span><br/>
+                                Not enough balance in "Activation Wallet". Please <a href="crypto-wallet" class="fw-semibold text-primary text-decoration-underline">Click here</a> and 'Deposit' button to add activation wallet balance for purchase plan which you like to activate.
+                            </div>
+                        </div>
+                        <div class="mt-4" data-ng-if="currentPlan == 'CryptoBot' || currentPlan == 'halfKP'">
+                            <a class="btn btn-warning col-lg-4" href="javascript:void(0);" data-ng-if="currentPlan == 'CryptoBot'" data-ng-click="activate_plan('halfKP')" type="button">Claim your '500 Energy Power' free Robot trade&nbsp;<lord-icon src="https://cdn.lordicon.com/lrkpgjtq.json" trigger="morph" style="width:32px;height:32px"></lord-icon></a>
+                            <p class="text-muted fs-12" data-ng-if="currentPlan == 'CryptoBot'">Please be ensure your 'Binance' account have min. 150 BUSD in spot wallet before claim free Robot trade...</p>
+                            <a href="javascript:void(0);" data-ng-if="currentPlan == 'halfKP' && valid_status == 'valid'" class="btn btn-danger disabled w-100">Congrats!! 500 Energy Power free Robot trade claimed successfully!!!</a>
+                            <div class="mt-1 fs-13 align-middle" data-ng-if="purchaseDate != '' && currentPlan == 'halfKP' && valid_status == 'valid'">
+                                <span class="text-info" data-ng-bind="purchaseDate"></span>
+                            </div>
+                        </div>
+                        <div class="d-inline-flex">
+                            <ul class="nav nav-pills arrow-navtabs plan-nav rounded mb-3 p-1" id="bot-pills-tab" role="tablist" data-ng-show="planMethod == 'bot'">
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link fw-semibold active" id="bot-tab" data-bs-toggle="pill" data-bs-target="#bot" data-ng-click="planMethod = 'bot'" type="button" role="tab" aria-selected="true">BOT</button>
+                                </li>
+                            </ul>
+                            <ul class="nav nav-pills arrow-navtabs plan-nav rounded mb-3 p-1" id="pills-tab" role="tablist" data-ng-show="planMethod != 'bot'">
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link fw-semibold active" id="month-tab" data-bs-toggle="pill" data-bs-target="#month" data-ng-click="cng_planmethod('month')" type="button" role="tab" aria-selected="true">Kilo Power</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link fw-semibold" id="annual-tab" data-bs-toggle="pill" data-bs-target="#annual" data-ng-click="cng_planmethod('year')" type="button" role="tab" aria-selected="false">Mega Power <span class="badge bg-success">30% Off</span></button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!--end col-->
+            </div>
+            <!--end row-->
+
+            <div class="row" data-ng-if="planMethod == 'bot'">
+                <div class="col-xxl-3 col-lg-6">
+                    &nbsp;
+                </div>
+                <div class="col-xxl-6 col-lg-6">
+                    <div class="card pricing-box">
+                        <div class="card-body bg-light m-2 p-4">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="flex-grow-1">
+                                    <h5 class="mb-0 fw-semibold">Crypto BOT  <span class="badge bg-success">20% Off</span></h5>
+                                </div>
+                                <div class="ms-auto">
+                                    <h2 class="bot mb-0"><img src="/assets/images/svg/crypto-icons/BUSD.svg" class="bg-light rounded-circle p-1 avatar-xxs img-fluid" alt="BUSD"><small class="fs-16"><del>120</del></small> 100</h2>
+                                </div>
+                            </div>
+
+                            <p class="text-muted">This is one time ANT Crypto ROBOT fees for life-time access.</p>
+                            <ul class="list-unstyled vstack gap-3">
+                                <li>
+                                    <div class="d-flex">
+                                        <div class="flex-shrink-0 text-success me-1">
+                                            <i class="ri-checkbox-circle-fill fs-15 align-middle"></i>
+                                        </div>
+                                        <div class="flex-grow-1">
+                                            Trade via API with your Binance Exchange account
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="d-flex">
+                                        <div class="flex-shrink-0 text-success me-1">
+                                            <i class="ri-checkbox-circle-fill fs-15 align-middle"></i>
+                                        </div>
+                                        <div class="flex-grow-1">
+                                            First Trade will start after one hour after Crypto BOT and Power Purchase (also you can claim free 500 POWER for startup)
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="d-flex">
+                                        <div class="flex-shrink-0 text-success me-1">
+                                            <i class="ri-checkbox-circle-fill fs-15 align-middle"></i>
+                                        </div>
+                                        <div class="flex-grow-1">
+                                            Daily, Monthly and Overall - Profit will display in "Dashboard" and "Report" page.
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="d-flex">
+                                        <div class="flex-shrink-0 text-success me-1">
+                                            <i class="ri-checkbox-circle-fill fs-15 align-middle"></i>
+                                        </div>
+                                        <div class="flex-grow-1">
+                                            You can see your order report in "Orders" page
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                            <div class="mt-3 pt-2">
+                                <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#BotFeeConfirmation" data-ng-click="activate_plan('CryptoBot')" data-ng-if="activationBalance >= 100 && valid_status == 'configured'" class="btn btn-success w-100">Buy Now</a>
+                                <div class="alert alert-danger alert-dismissible alert-label-icon label-arrow fade show" role="alert"  data-ng-show="activationBalance < 100">
+                                    <i class="ri-error-warning-line label-icon"></i><strong>Insufficient Balance</strong> - Current Available is {{activationBalance|angular}} BUSD.<br/><strong>100 BUSD</strong> required for Crypto BOT purchase. Please Deposit in <a class="btn btn-soft-link waves-effect" href="/crypto-wallet">My Wallet</a> page.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--end col-->
+            </div>
+            <!--end row-->
+
+            <div class="row" data-ng-if="planMethod != 'bot'">
+                <div class="col-xxl-4 col-lg-6">
+                    <div class="card pricing-box">
+                        <div class="card-body bg-light m-2 p-4">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="flex-grow-1">
+                                    <h5 class="month mb-0 fw-semibold">2.5 Kilo Power Plan</h5>
+                                    <h5 class="annual mb-0 fw-semibold">1 Mega Power Plan</h5>
+                                </div>
+                                <div class="ms-auto">
+                                    <h2 class="month mb-0"><img src="/assets/images/svg/crypto-icons/BUSD.svg" class="bg-light rounded-circle p-1 avatar-xxs img-fluid" alt="BUSD">25 <small class="fs-12 text-muted">BUSD</small></h2>
+                                    <h2 class="annual mb-0"><img src="/assets/images/svg/crypto-icons/BUSD.svg" class="bg-light rounded-circle p-1 avatar-xxs img-fluid" alt="BUSD"><small class="fs-16"><del>10K</del></small> 7K <small class="fs-12 text-muted">BUSD</small></h2>
+                                </div>
+                            </div>
+
+                            <p class="text-muted" data-ng-show="planMethod == 'month'">The perfect way to get started and get used to our robo trade.</p>
+                            <p class="text-muted" data-ng-show="planMethod == 'year'">Excellent for scaling and continue robo trading without any interrupt.</p>
+                            <ul class="list-unstyled vstack gap-3">
+                                <li>
+                                    <div class="d-flex">
+                                        <div class="flex-shrink-0 text-success me-1">
+                                            <i class="ri-checkbox-circle-fill fs-15 align-middle"></i>
+                                        </div>
+                                        <div class="flex-grow-1" data-ng-show="planMethod == 'month'">
+                                            Min. <b>150</b> BUSD &amp; Max. <b>300</b> BUSD
+                                        </div>
+                                        <div class="flex-grow-1" data-ng-show="planMethod == 'year'">
+                                            Min. <b>150</b> BUSD &amp; Max. <b>1000</b> BUSD
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="d-flex">
+                                        <div class="flex-shrink-0 text-success me-1">
+                                            <i class="ri-checkbox-circle-fill fs-15 align-middle"></i>
+                                        </div>
+                                        <div class="flex-grow-1" data-ng-show="planMethod == 'month'">
+                                            Min. <b>50</b> Trades
+                                        </div>
+                                        <div class="flex-grow-1" data-ng-show="planMethod == 'year'">
+                                            Min. <b>2K</b> Trades
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="d-flex">
+                                        <div class="flex-shrink-0 text-success me-1">
+                                            <i class="ri-checkbox-circle-fill fs-15 align-middle"></i>
+                                        </div>
+                                        <div class="flex-grow-1">
+                                            Min. <b>1 to 2%</b> profit for every trade
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="d-flex">
+                                        <div class="flex-shrink-0 text-success me-1">
+                                            <i class="ri-checkbox-circle-fill fs-15 align-middle"></i>
+                                        </div>
+                                        <div class="flex-grow-1">
+                                            <b>Zero</b> Transaction charges in Binance.
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="d-flex">
+                                        <div class="flex-shrink-0 text-danger me-1" data-ng-show="planMethod == 'month'">
+                                            <i class="ri-close-circle-fill fs-15 align-middle"></i>
+                                        </div>
+                                        <div class="flex-shrink-0 text-success me-1" data-ng-show="planMethod == 'year'">
+                                            <i class="ri-checkbox-circle-fill fs-15 align-middle"></i>
+                                        </div>
+                                        <div class="flex-grow-1">
+                                            <b>24/7</b> Support
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                            <div class="mt-3 pt-2" data-ng-show="planMethod == 'month'">
+                                <a href="javascript:void(0);" data-ng-click="activate_plan('2PhalfKP')" data-ng-if="currentPlan == '2PhalfKP'" data-ng-class="{'disabled': activationBalance < 25}" class="btn btn-danger w-100">Recently Purchased</a>
+                                <a href="javascript:void(0);" data-ng-click="activate_plan('2PhalfKP')" data-ng-if="activationBalance >= 25 && (currentPlan == '5KP' || currentPlan == '10KP' || currentPlan == '1MP' || currentPlan == '2MP' || currentPlan == '5MP' || currentPlan == '' || currentPlan == 'halfKP')" class="btn btn-success w-100 waves-effect waves-light">Purchase</a>
+                                <div class="mt-1 fs-13 align-middle" data-ng-if="purchaseDate != '' && currentPlan == '2PhalfKP'">
+                                    <span class="text-info" data-ng-if="valid_status == 'valid'" data-ng-bind="purchaseDate"></span>
+                                    <span class="text-danger" data-ng-if="valid_status == 'Expired'" data-ng-bind="purchaseDate"></span>
+                                </div>
+                            </div>
+                            <div class="mt-3 pt-2" data-ng-show="planMethod == 'year'">
+                                <a href="javascript:void(0);" data-ng-click="activate_plan('1MP')" data-ng-if="currentPlan == '1MP'" data-ng-class="{'disabled': activationBalance < 7000}" class="btn btn-danger w-100">Recently Purchased</a>
+                                <a href="javascript:void(0);" data-ng-click="activate_plan('1MP')" data-ng-if="activationBalance >= 7000 && (currentPlan == '2MP' || currentPlan == '5MP' || currentPlan == '' || currentPlan == 'halfKP')" class="btn btn-success w-100 waves-effect waves-light">Purchase</a>
+                                <a href="javascript:void(0);" data-ng-click="activate_plan('1MP')" data-ng-if="activationBalance >= 7000 && (currentPlan == '2PhalfKP' || currentPlan == '5KP' || currentPlan == '10KP')" class="btn btn-info w-100">Add-on Purchase</a>
+                                <div class="mt-1 fs-13 align-middle" data-ng-if="purchaseDate != '' && currentPlan == '1MP'">
+                                    <span class="text-info" data-ng-if="valid_status == 'valid'" data-ng-bind="purchaseDate"></span>
+                                    <span class="text-danger" data-ng-if="valid_status == 'Expired'" data-ng-bind="purchaseDate"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--end col-->
+
+                <div class="col-xxl-4 col-lg-6">
+                    <div class="card pricing-box">
+                        <div class="card-body bg-light m-2 p-4">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="flex-grow-1">
+                                    <h5 class="month mb-0 fw-semibold">5 Kilo Power Plan</h5>
+                                    <h5 class="annual mb-0 fw-semibold">2 Mega Power Plan</h5>
+                                </div>
+                                <div class="ms-auto">
+                                    <h2 class="month mb-0"><img src="/assets/images/svg/crypto-icons/BUSD.svg" class="bg-light rounded-circle p-1 avatar-xxs img-fluid" alt="BUSD">50 <small class="fs-12 text-muted">BUSD</small></h2>
+                                    <h2 class="annual mb-0"><img src="/assets/images/svg/crypto-icons/BUSD.svg" class="bg-light rounded-circle p-1 avatar-xxs img-fluid" alt="BUSD"><small class="fs-16"><del>20K</del></small> 14K <small class="fs-12 text-muted">BUSD</small></h2>
+                                </div>
+                            </div>
+                            <p class="text-muted" data-ng-show="planMethod == 'month'">The perfect way to get started and get used to our robo trade.</p>
+                            <p class="text-muted" data-ng-show="planMethod == 'year'">Excellent for scaling and continue robo trading without any interrupt.</p>
+                            <ul class="list-unstyled vstack gap-3">
+                                <li>
+                                    <div class="d-flex">
+                                        <div class="flex-shrink-0 text-success me-1">
+                                            <i class="ri-checkbox-circle-fill fs-15 align-middle"></i>
+                                        </div>
+                                        <div class="flex-grow-1" data-ng-show="planMethod == 'month'">
+                                            Min. <b>150</b> BUSD &amp; Max. <b>500</b> BUSD
+                                        </div>
+                                        <div class="flex-grow-1" data-ng-show="planMethod == 'year'">
+                                            Min. <b>150</b> BUSD &amp; Max. <b>1500</b> BUSD
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="d-flex">
+                                        <div class="flex-shrink-0 text-success me-1">
+                                            <i class="ri-checkbox-circle-fill fs-15 align-middle"></i>
+                                        </div>
+                                        <div class="flex-grow-1" data-ng-show="planMethod == 'month'">
+                                            Min. <b>75</b> Trades
+                                        </div>
+                                        <div class="flex-grow-1" data-ng-show="planMethod == 'year'">
+                                            Min. <b>4K</b> Trades
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="d-flex">
+                                        <div class="flex-shrink-0 text-success me-1">
+                                            <i class="ri-checkbox-circle-fill fs-15 align-middle"></i>
+                                        </div>
+                                        <div class="flex-grow-1">
+                                            Min. <b>1 to 2%</b> profit for every trade
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="d-flex">
+                                        <div class="flex-shrink-0 text-success me-1">
+                                            <i class="ri-checkbox-circle-fill fs-15 align-middle"></i>
+                                        </div>
+                                        <div class="flex-grow-1">
+                                            <b>Zero</b> Transaction charges in Binance.
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="d-flex">
+                                        <div class="flex-shrink-0 text-danger me-1" data-ng-show="planMethod == 'month'">
+                                            <i class="ri-close-circle-fill fs-15 align-middle"></i>
+                                        </div>
+                                        <div class="flex-shrink-0 text-success me-1" data-ng-show="planMethod == 'year'">
+                                            <i class="ri-checkbox-circle-fill fs-15 align-middle"></i>
+                                        </div>
+                                        <div class="flex-grow-1">
+                                            <b>24/7</b> Support
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                            <div class="mt-3 pt-2" data-ng-show="planMethod == 'month'">
+                                <a href="javascript:void(0);" data-ng-click="activate_plan('5KP')" data-ng-if="currentPlan == '5KP'" data-ng-class="{'disabled': activationBalance < 50}" class="btn btn-danger w-100">Recently Purchased</a>
+                                <a href="javascript:void(0);" data-ng-click="activate_plan('5KP')" data-ng-if="activationBalance >= 50 && (currentPlan == '10KP' || currentPlan == '1MP' || currentPlan == '2MP' || currentPlan == '5MP' || currentPlan == '' || currentPlan == 'halfKP')" class="btn btn-success w-100 waves-effect waves-light">Purchase</a>
+                                <a href="javascript:void(0);" data-ng-click="activate_plan('5KP')" data-ng-if="activationBalance >= 50 && currentPlan == '2PhalfKP'" class="btn btn-info w-100">Add-on Purchase</a>
+                                <div class="mt-1 fs-13 align-middle" data-ng-if="purchaseDate != '' && currentPlan == '5KP'">
+                                    <span class="text-info" data-ng-if="valid_status == 'valid'" data-ng-bind="purchaseDate"></span>
+                                    <span class="text-danger" data-ng-if="valid_status == 'Expired'" data-ng-bind="purchaseDate"></span>
+                                </div>
+                            </div>
+                            <div class="mt-3 pt-2" data-ng-show="planMethod == 'year'">
+                                <a href="javascript:void(0);" data-ng-click="activate_plan('2MP')" data-ng-if="currentPlan == '2MP'" data-ng-class="{'disabled': activationBalance < 14000}" class="btn btn-danger w-100">Recently Purchased</a>
+                                <a href="javascript:void(0);" data-ng-click="activate_plan('2MP')" data-ng-if="activationBalance >= 14000 && (currentPlan == '2MP' || currentPlan == '5MP' || currentPlan == '' || currentPlan == 'halfKP')" class="btn btn-success w-100 waves-effect waves-light">Purchase</a>
+                                <a href="javascript:void(0);" data-ng-click="activate_plan('2MP')" data-ng-if="activationBalance >= 14000 && (currentPlan == '2PhalfKP' || currentPlan == '5KP' || currentPlan == '10KP' || currentPlan == '1MP')" class="btn btn-info w-100">Add-on Purchase</a>
+                                <div class="mt-1 fs-13 align-middle" data-ng-if="purchaseDate != '' && currentPlan == '2MP'">
+                                    <span class="text-info" data-ng-if="valid_status == 'valid'" data-ng-bind="purchaseDate"></span>
+                                    <span class="text-danger" data-ng-if="valid_status == 'Expired'" data-ng-bind="purchaseDate"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--end col-->
+
+                <div class="col-xxl-4 col-lg-6">
+                    <div class="card pricing-box ribbon-box right">
+                        <div class="card-body bg-light m-2 p-4">
+                            <div class="ribbon-two ribbon-two-danger"><span>Popular</span></div>
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="flex-grow-1">
+                                    <h5 class="month mb-0 fw-semibold">10 Kilo Power Plan</h5>
+                                    <h5 class="annual mb-0 fw-semibold">5 Mega Power Plan</h5>
+                                </div>
+                                <div class="ms-auto">
+                                    <h2 class="month mb-0"><img src="/assets/images/svg/crypto-icons/BUSD.svg" class="bg-light rounded-circle p-1 avatar-xxs img-fluid" alt="BUSD">100 <small class="fs-12 text-muted">BUSD</small></h2>
+                                    <h2 class="annual mb-0"><img src="/assets/images/svg/crypto-icons/BUSD.svg" class="bg-light rounded-circle p-1 avatar-xxs img-fluid" alt="BUSD"><small class="fs-16"><del>50K</del></small> 35K <small class="fs-12 text-muted">BUSD</small></h2>
+                                </div>
+                            </div>
+                            <p class="text-muted" data-ng-show="planMethod == 'month'">The perfect way to get started and get used to our robo trade.</p>
+                            <p class="text-muted" data-ng-show="planMethod == 'year'">This plan is for those who have a team already and running long-time robo trade.</p>
+                            <ul class="list-unstyled vstack gap-3">
+                                <li>
+                                    <div class="d-flex">
+                                        <div class="flex-shrink-0 text-success me-1">
+                                            <i class="ri-checkbox-circle-fill fs-15 align-middle"></i>
+                                        </div>
+                                        <div class="flex-grow-1" data-ng-show="planMethod == 'month'">
+                                            Min. <b>150</b> BUSD &amp; Max. <b>500</b> BUSD
+                                        </div>
+                                        <div class="flex-grow-1" data-ng-show="planMethod == 'year'">
+                                            Min. <b>150</b> BUSD &amp; Max. <b>2000</b> BUSD
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="d-flex">
+                                        <div class="flex-shrink-0 text-success me-1">
+                                            <i class="ri-checkbox-circle-fill fs-15 align-middle"></i>
+                                        </div>
+                                        <div class="flex-grow-1" data-ng-show="planMethod == 'month'">
+                                            Min. <b>150</b> Trades
+                                        </div>
+                                        <div class="flex-grow-1" data-ng-show="planMethod == 'year'">
+                                            Min. <b>10K</b> Trades
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="d-flex">
+                                        <div class="flex-shrink-0 text-success me-1">
+                                            <i class="ri-checkbox-circle-fill fs-15 align-middle"></i>
+                                        </div>
+                                        <div class="flex-grow-1">
+                                            Min. <b>1 to 2%</b> profit for every trade
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="d-flex">
+                                        <div class="flex-shrink-0 text-success me-1">
+                                            <i class="ri-checkbox-circle-fill fs-15 align-middle"></i>
+                                        </div>
+                                        <div class="flex-grow-1">
+                                            <b>Zero</b> Transaction charges in Binance.
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="d-flex">
+                                        <div class="flex-shrink-0 text-danger me-1" data-ng-show="planMethod == 'month'">
+                                            <i class="ri-close-circle-fill fs-15 align-middle"></i>
+                                        </div>
+                                        <div class="flex-shrink-0 text-success me-1" data-ng-show="planMethod == 'year'">
+                                            <i class="ri-checkbox-circle-fill fs-15 align-middle"></i>
+                                        </div>
+                                        <div class="flex-grow-1">
+                                            <b>24/7</b> Support
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                            <div class="mt-3 pt-2" data-ng-show="planMethod == 'month'">
+                                <a href="javascript:void(0);" data-ng-click="activate_plan('10KP')" data-ng-if="currentPlan == '10KP'" data-ng-class="{'disabled': activationBalance < 100}" class="btn btn-danger w-100">Recently Purchased</a>
+                                <a href="javascript:void(0);" data-ng-click="activate_plan('10KP')" data-ng-if="activationBalance >= 100 && (currentPlan == '1MP' || currentPlan == '2MP' || currentPlan == '5MP' || currentPlan == '' || currentPlan == 'halfKP')" class="btn btn-success w-100 waves-effect waves-light">Purchase</a>
+                                <a href="javascript:void(0);" data-ng-click="activate_plan('10KP')" data-ng-if="activationBalance >= 100 && (currentPlan == '2PhalfKP' || currentPlan == '5KP')" class="btn btn-info w-100">Add-on Purchase</a>
+                                <div class="mt-1 fs-13 align-middle" data-ng-if="purchaseDate != '' && currentPlan == '10KP'">
+                                    <span class="text-info" data-ng-if="valid_status == 'valid'" data-ng-bind="purchaseDate"></span>
+                                    <span class="text-danger" data-ng-if="valid_status == 'Expired'" data-ng-bind="purchaseDate"></span>
+                                </div>
+                            </div>
+                            <div class="mt-3 pt-2" data-ng-show="planMethod == 'year'">
+                                <a href="javascript:void(0);" data-ng-click="activate_plan('5MP')" data-ng-if="currentPlan == '5MP'" data-ng-class="{'disabled': activationBalance < 35000}" class="btn btn-danger w-100">Recently Purchased</a>
+                                <a href="javascript:void(0);" data-ng-click="activate_plan('5MP')" data-ng-if="activationBalance >= 35000 && (currentPlan == '5MP' || currentPlan == '' || currentPlan == 'halfKP')" class="btn btn-success w-100 waves-effect waves-light">Purchase</a>
+                                <a href="javascript:void(0);" data-ng-click="activate_plan('5MP')" data-ng-if="activationBalance >= 35000 && (currentPlan == '2PhalfKP' || currentPlan == '5KP' || currentPlan == '10KP' || currentPlan == '1MP' || currentPlan == '2MP')" class="btn btn-info w-100">Add-on Purchase</a>
+                                <div class="mt-1 fs-13 align-middle" data-ng-if="purchaseDate != '' && currentPlan == '5MP'">
+                                    <span class="text-info" data-ng-if="valid_status == 'valid'" data-ng-bind="purchaseDate"></span>
+                                    <span class="text-danger" data-ng-if="valid_status == 'Expired'" data-ng-bind="purchaseDate"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--end col-->
+
+            </div>
+            <!--end row-->
+
+            <!-- BOT fee modal dialog -->
+            <div class="modal fade" id="BotFeeConfirmation" data-bs-backdrop="static" aria-hidden="true" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-body text-center p-5">
+<!--                            <div class="mt-4 pt-3" data-ng-show="user_status.status == ''">-->
+<!--                                <h4 class="mb-3">Please wait for while....</h4>-->
+<!--                                <lord-icon src="https://cdn.lordicon.com/krmfspeu.json" trigger="loop"-->
+<!--                                    style="width:100px;height:100px">-->
+<!--                                </lord-icon>-->
+<!--                            </div>-->
+<!--                            <div class="mt-4 pt-3" data-ng-show="activationDetails.status != '' && activationDetails.error != ''">-->
+<!--                                <h4 class="mb-3">Error</h4>-->
+<!--                                <div class="alert alert-borderless alert-danger" role="alert">-->
+<!--                                    {{activationDetails.error|angular}}-->
+<!--                                </div>-->
+<!--                                <div class="hstack gap-2 justify-content-center mt-2">-->
+<!--                                    <button type="button" class="btn btn-soft-success" data-ng-click="isAddressCopied = false;" data-bs-dismiss="modal">Close</button>-->
+<!--                                </div>-->
+<!--                            </div>-->
+                            <div class="mt-4 pt-3">
+                                <h4 class="mb-3">Congratulations!!!<br/>  Crypto BOT Purchased successfully </h4>
+                                <lord-icon src="https://cdn.lordicon.com/tqywkdcz.json" trigger="loop" colors="primary:#4bb3fd,secondary:#ffc738,tertiary:#f28ba8,quaternary:#f9c9c0" style="width:100px;height:100px">
+                                </lord-icon>
+                                <div class="hstack gap-2 justify-content-center mt-2">
+                                    <button type="button" class="btn btn-soft-success" data-bs-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- container-fluid -->
+    </div>
+    <!-- End Page-content -->
+{%endblock%}
+{% block script%}
+    <script>
+        var swiper=new Swiper(".default-swiper",{loop:!0,autoplay:{delay:2500,disableOnInteraction:!1}});
+    </script>
+<!--    <script src="https://commerce.coinbase.com/v1/checkout.js?version=201807"></script>-->
+    <script>
+        var app = angular.module('cdApp', ['ngclipboard']);
+        app.filter('displayPageData', function() {
+            return function(input, start) {
+            start = +start; //parse to int
+            return input?.slice(start);
+            }
+         });
+        app.controller('cdCtrl', function($scope, $filter, $http, $interval, $timeout, $location) {
+
+            /* Transaction History */
+            $scope.valid_status = '{{ session["user_status"] }}';
+            $scope.currentPlan = '{{ data["currentPlan"] }}';
+            $scope.planMethod = '{{ data["planMethod"] }}';
+            $scope.purchaseDate = '{{ data["purchaseDate"] }}';
+            $scope.activationBalance = {{data["activation_balance"]}};
+
+            $scope.cng_planmethod = function(planName){
+                $scope.planMethod = planName;
+            }
+
+            $scope.activate_plan = function(planName){
+                $http({
+                    url: '/activate-plan?plan='+planName,
+                    method: "GET"
+                    }).then(function (response) {
+                        data = response.data;
+                        $scope.currentPlan = data["currentPlan"];
+                        $scope.purchaseDate = data["purchaseDate"];
+                        $scope.activationBalance = data["activation_balance"];
+                        $scope.valid_status = data["user_status"];
+                        $scope.planMethod = 'month';
+                        $.apply();
+                        if ($scope.currentPlan != 'CryptoBot') {
+                            window.location.reload();
+                        }
+                    },function (error) {
+                        console.error(`Error ${error}`);
+                });
+            }
+
+         });
+    </script>
+    <script>
+        $(function() {
+            $('.page-content').attr('style', 'display:block !important;');
+            $('#BotFee').click();
+        });
+    </script>
+    <script src="assets/js/pages/pricing.init.js"></script>
+{%endblock%}

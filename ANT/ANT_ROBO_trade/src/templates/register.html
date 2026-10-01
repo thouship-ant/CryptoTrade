@@ -1,0 +1,108 @@
+{% extends "_layout.html"%}
+{% block title%}Register{%endblock%}
+{% block content%}
+    <div class="col-md-8 col-lg-6 col-xl-5">
+        <div class="card mt-4">
+
+            <div class="card-body p-4">
+                <div class="text-center mt-2">
+                    <h5 class="text-primary">Create New ANT ROBO Trade Account</h5>
+                    <p class="text-muted">Get your free 5 days trial period....</p>
+                </div>
+                <div class="p-2 mt-4">
+                    <form class="needs-validation" novalidate autocomplete="off" method="post">
+
+                        <div class="mb-3">
+                            <label for="fullname" class="form-label">Full Name <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="fullname" id="fullname" placeholder="Enter your full name" required  value="{{ data['fullname'] }}">
+                            <div class="invalid-feedback" style="{{ style['fullname']}}">
+                                Please enter Full Name
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="useremail" class="form-label">Email <span class="text-danger">*</span></label>
+                            <input type="email" class="form-control" autocomplete="off" name="useremail" id="useremail" placeholder="Enter email address" required  value="{{ data['useremail'] }}">
+                            <div class="invalid-feedback" style="{{ style['useremail']}}">
+                                Please enter email
+                            </div>
+                            <div class="invalid-feedback" style="{{ style_valid['useremail']}}">
+                                Provided email is incorrect format
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Username <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" autocomplete="off" name="username" id="username" placeholder="Enter username" required  value="{{ data['username'] }}">
+                            <div class="invalid-feedback" style="{{ style['username']}}">
+                                Please enter username
+                            </div>
+                            <div class="invalid-feedback" style="{{ style_valid['username']}}">
+                                Provided username already exists
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label" for="password-input">Password</label>
+                            <div class="position-relative auth-pass-inputgroup">
+                                <input type="password" autocomplete="new-password" name="password" class="form-control pe-5 password-input" onpaste="return false" placeholder="Enter password" id="password-input" aria-describedby="passwordInput" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required  value="{{ data['password'] }}">
+                                <button class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon" type="button" id="password-addon"><i class="ri-eye-fill align-middle"></i></button>
+                                <div class="invalid-feedback" style="{{ style['password']}}">
+                                    Please enter password
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="refcode" class="form-label">Referral Code</label>
+                            {% if data['refcode'] == ''%}
+                            <input type="text" class="form-control" autocomplete="off" name="refcode" id="refcode" placeholder="Enter Referral Code (Optional)" value="{{ data['refcode'] }}">
+                            {% else %}
+                            <input type="text" class="form-control" autocomplete="off" name="refcode" id="refcode" placeholder="Enter Referral Code (Optional)" value="{{ data['refcode'] }}" readonly>
+                            {% endif %}
+                            <div class="invalid-feedback" style="{{ style_valid['refcode']}}">
+                                Please provide valid Referral code or leave it blank
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <p class="mb-0 fs-12 text-muted fst-italic">By registering you agree to the ANT ROBO Trade <a href="#" class="text-primary text-decoration-underline fst-normal fw-medium">Terms of Use</a></p>
+                        </div>
+
+                        <div id="password-contain" class="p-3 bg-light mb-2 rounded" style="{{ style_valid['password']}}">
+                            <h5 class="fs-13">Password must contain:</h5>
+                            <p id="pass-length" class="{{ pass_valid['length'] }} fs-12 mb-2">Minimum <b>8 characters</b></p>
+                            <p id="pass-lower" class="{{ pass_valid['SmallLetter'] }} fs-12 mb-2">At least one <b>lowercase</b> letter (a-z)</p>
+                            <p id="pass-upper" class="{{ pass_valid['CapitalLetter'] }} fs-12 mb-2">At least one <b>uppercase</b> letter (A-Z)</p>
+                            <p id="pass-number" class="{{ pass_valid['Number'] }} fs-12 mb-0">A least one <b>number</b> (0-9)</p>
+                        </div>
+
+                        <div class="mt-4">
+                            <button class="btn btn-success w-100" type="submit">Register</button>
+                        </div>
+
+<!--                        <div class="mt-4 text-center">-->
+<!--                            <div class="signin-other-title">-->
+<!--                                <h5 class="fs-13 mb-4 title text-muted">Create account with</h5>-->
+<!--                            </div>-->
+
+<!--                            <div>-->
+<!--                                <button type="button" class="btn btn-primary btn-icon waves-effect waves-light"><i class="ri-facebook-fill fs-16"></i></button>-->
+<!--                                <button type="button" class="btn btn-danger btn-icon waves-effect waves-light"><i class="ri-google-fill fs-16"></i></button>-->
+<!--                                <button type="button" class="btn btn-dark btn-icon waves-effect waves-light"><i class="ri-github-fill fs-16"></i></button>-->
+<!--                                <button type="button" class="btn btn-info btn-icon waves-effect waves-light"><i class="ri-twitter-fill fs-16"></i></button>-->
+<!--                            </div>-->
+<!--                        </div>-->
+                    </form>
+
+                </div>
+            </div>
+            <!-- end card body -->
+        </div>
+        <!-- end card -->
+
+        <div class="mt-4 text-center">
+            <p class="mb-0">Already have an account ? <a href="login" class="fw-semibold text-primary text-decoration-underline"> Login </a> </p>
+        </div>
+
+    </div>
+{%endblock%}

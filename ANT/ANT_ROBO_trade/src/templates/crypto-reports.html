@@ -1,0 +1,470 @@
+{% extends "_main_layout.html"%}
+{% block title%}Crypto Reports{%endblock%}
+{% block content%}
+    <div class="page-content" data-ng-app="crApp" data-ng-controller="crCtrl" style="display:none;">
+        <div class="container-fluid">
+
+            <!-- start page title -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                        <h4 class="mb-sm-0">Reports</h4>
+
+                        <div class="page-title-right">
+                            <ol class="breadcrumb m-0">
+                                <li class="breadcrumb-item"><a href="javascript: void(0);">Crypto</a></li>
+                                <li class="breadcrumb-item active">Reports</li>
+                            </ol>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- end page title -->
+
+            <div class="row">
+                <div class="col-xxl-3">
+                    <div class="card">
+                        <div class="card-body bg-soft-warning">
+                            <div class="d-flex">
+                                <div class="flex-grow-1">
+                                    <h5 class="fs-13 mb-3">Cumulative Investment Amount</h5>
+                                    <h2>{{ dashboardData.total_invested|angular}} <small class="text-muted fs-14">USDT</small></h2>
+                                    <div class="text-muted mb-0">
+                                        <span class="text-warning fs-13 fw-medium mb-0 bold">{{ dashboardData.initial_invested|angular}}</span>
+                                        &nbsp;<small class="text-muted fs-10">USDT</small>&nbsp;&nbsp;
+                                        <span class="badge badge-soft-success" data-ng-if="dashboardData.total_changes_percent >= 0">
+                                            <i class="ri-arrow-right-up-line fs-13 align-bottom"></i>+{{ dashboardData.total_changes_percent|angular}} %
+                                            <span> </span></span>
+                                        <span class="badge badge-soft-danger" data-ng-if="dashboardData.total_changes_percent < 0">
+                                            <i class="ri-arrow-right-down-line fs-13 align-bottom"></i>{{ dashboardData.total_changes_percent|angular}} %
+                                            <span> </span></span>
+                                    </div>
+                                </div>
+                                <div class="flex-shrink-0">
+                                    <i class="mdi mdi-wallet-outline text-primary h1"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end card-->
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex">
+                                <div class="flex-grow-1">
+                                    <h5 class="fs-13 mb-3">Today's Profit</h5>
+                                    <h2>{{ dashboardData.today_changes|angular}} <small class="text-muted fs-14">USDT</small></h2>
+                                    <div class="text-muted mb-0">
+                                        <span data-ng-if="dashboardData.today_diffs > 0" class="text-success fs-13 fw-medium mb-0"><small class="text-muted fs-10">ADDED</small>&nbsp;{{ dashboardData.today_diffs|angular}}&nbsp;<small class="text-muted fs-10">USDT</small>&nbsp;&nbsp;</span>
+                                        <span data-ng-if="dashboardData.today_diffs < 0" class="text-danger fs-13 fw-medium mb-0"><small class="text-muted fs-10">REDUCED</small>&nbsp;{{ -1*dashboardData.today_diffs|angular}}&nbsp;<small class="text-muted fs-10">USDT</small>&nbsp;&nbsp;</span>
+                                        <span class="badge badge-soft-success" data-ng-if="dashboardData.today_changes_percent >= 0">
+                                            <i class="ri-arrow-up-s-fill align-middle me-1"></i>+{{ dashboardData.today_changes_percent|angular}} %
+                                            <span> </span></span>
+                                        <span class="badge badge-soft-danger" data-ng-if="dashboardData.today_changes_percent < 0">
+                                            <i class="ri-arrow-down-s-fill align-middle me-1"></i>{{ dashboardData.today_changes_percent|angular}} %
+                                            <span> </span></span>
+                                    </div>
+                                </div>
+                                <div class="flex-shrink-0">
+                                    <i class="ri-hand-coin-line text-primary h1"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end card-->
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex">
+                                <div class="flex-grow-1">
+                                    <h5 class="fs-13 mb-3">Overall Profit</h5>
+                                    <h2>{{ dashboardData.total_changes|angular}} <small class="text-muted fs-14">USDT</small></h2>
+                                    <div class="text-muted mb-0">
+                                        <span data-ng-if="dashboardData.total_diffs > 0" class="text-success fs-13 fw-medium mb-0"><small class="text-muted fs-10">ADDED</small>&nbsp;{{ dashboardData.total_diffs|angular}}&nbsp;<small class="text-muted fs-10">USDT</small>&nbsp;&nbsp;</span>
+                                        <span data-ng-if="dashboardData.total_diffs < 0" class="text-danger fs-13 fw-medium mb-0"><small class="text-muted fs-10">REDUCED</small>&nbsp;{{ (dashboardData.total_diffs|angular)}}&nbsp;<small class="text-muted fs-10">USDT</small>&nbsp;&nbsp;</span>
+                                        <span class="badge badge-soft-success" data-ng-if="dashboardData.total_changes_percent >= 0">
+                                            <i class="ri-arrow-up-s-fill align-middle me-1"></i>+{{ dashboardData.total_changes_percent|angular}} %
+                                            <span> </span></span>
+                                        <span class="badge badge-soft-danger" data-ng-if="dashboardData.total_changes_percent < 0">
+                                            <i class="ri-arrow-down-s-fill align-middle me-1"></i>{{ dashboardData.total_changes_percent|angular}} %
+                                            <span> </span></span>
+                                    </div>
+                                </div>
+                                <div class="flex-shrink-0">
+                                    <i class="ri-line-chart-line text-primary h1"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end card-->
+                </div>
+                <!--end col-->
+
+                <div class="col-xxl-9">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="d-flex align-items-center">
+                                <div class="flex-grow-1">
+                                    <h5 class="card-title mb-0">CryptoBot PNL Statistics</h5>
+                                </div>
+                                <div class="toolbar d-flex align-items-start justify-content-center flex-wrap gap-2">
+                                    <button type="button" class="btn btn-soft-primary timeline-btn btn-sm" id="one_month" data-ng-if="!(dailyProfitReport.month_start_date==dailyProfitReport.min_date)">
+                                        1M
+                                    </button>
+                                    <button type="button" class="btn btn-soft-primary timeline-btn btn-sm" id="six_months" data-ng-if="!(dailyProfitReport.six_month_start_date==dailyProfitReport.min_date)">
+                                        6M
+                                    </button>
+                                    <button type="button" class="btn btn-soft-primary timeline-btn btn-sm" id="one_year" data-ng-if="!(dailyProfitReport.year_start_date==dailyProfitReport.min_date)">
+                                        1Y
+                                    </button>
+                                    <button type="button" class="btn btn-soft-primary timeline-btn btn-sm active" id="all" data-ng-if="!(dailyProfitReport.all_start_date==dailyProfitReport.min_date)">
+                                        ALL
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div>
+                                <div id="area_chart_datetime" data-colors='["--vz-info"]' class="apex-charts" dir="ltr"></div>
+                                <div data-ng-if="dailyProfitReport['chart_data'] === undefined"><span class="fs-15 align-middle h100">No chart data found!!!!</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!--end col-->
+            </div>
+
+            <div class="row">
+                <div class="col-xxl-12">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="flex-grow-1">
+                            <h5 class="mb-0">Market Status</h5>
+                        </div>
+<!--                        <div class="flexshrink-0">-->
+<!--                            <button class="btn btn-success btn-sm"><i class="ri-star-line align-bottom"></i> Add Watchlist</button>-->
+<!--                        </div>-->
+                    </div>
+
+                    <div class="swiper cryptoSlider">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide" data-ng-repeat="marketStatus in lstMarketStatus">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="float-end">
+                                            Vol.  {{marketStatus.volume|angular}}
+                                        </div>
+                                        <div class="d-flex align-items-center">
+                                            <img data-ng-src="assets/images/svg/crypto-icons/{{ marketStatus.symbol|angular}}.svg" class="bg-light rounded-circle p-1 avatar-xs img-fluid" alt="" onerror="this.onerror=null; this.src='/assets/images/svg/crypto-icons/Default.svg'">
+                                            <h6 class="ms-2 mb-0 fs-14">{{ marketStatus.symbolname|angular}}</h6>
+                                        </div>
+                                        <div class="row align-items-end g-0">
+                                            <div class="col-6">
+                                                <h5 class="mb-1 mt-4">{{ marketStatus.current_price|angular}} <small class="text-muted fs-14">USDT</small></h5>
+                                                <p data-ng-if="marketStatus.current_percent >= 0" class="text-success fs-13 fw-medium mb-0">{{marketStatus.current_change|angular}}&nbsp;&nbsp;+{{marketStatus.current_percent|angular}}%<span class="text-muted ms-2 fs-10">({{marketStatus.symbol|angular}})</span></p>
+                                                <p data-ng-if="marketStatus.current_percent < 0" class="text-danger fs-13 fw-medium mb-0">{{-1*marketStatus.current_change|angular}}&nbsp;&nbsp;{{marketStatus.current_percent|angular}}%<span class="text-muted ms-2 fs-10">({{marketStatus.symbol|angular}})</span></p>
+                                            </div><!-- end col -->
+                                            <div class="col-6">
+                                                <div data-ng-if="marketStatus.current_percent >= 0" class="apex-charts crypto-widget" data-colors='["--vz-success", "--vz-transparent"]' id="{{ marketStatus.symbol|angular}}_sparkline_charts" dir="ltr"></div>
+                                                <div data-ng-if="marketStatus.current_percent < 0" class="apex-charts crypto-widget" data-colors='["--vz-danger", "--vz-transparent"]' id="{{ marketStatus.symbol|angular}}_sparkline_charts" dir="ltr"></div>
+                                            </div><!-- end col -->
+                                        </div><!-- end row -->
+                                    </div><!-- end card body -->
+                                </div><!-- end card -->
+                            </div><!-- end -->
+                        </div><!-- end swiper wrapper -->
+                    </div><!-- end swiper -->
+                </div>
+                <!--end col-->
+            </div>
+            <!--end row-->
+            <div class="row">
+                <div class="col-xxl-3">
+                    <div class="card">
+    <div class="card-header">
+        <h5 class="card-title mb-0">Recent Profit List</h5>
+    </div>
+    <div class="card-body">
+        <div class="d-flex mb-3" data-ng-repeat="recentProfit in lstRecentProfit">
+            <div class="flex-shrink-0">
+                <img data-ng-src="assets/images/svg/crypto-icons/{{ recentProfit.symbol|angular}}.svg" alt="" class="avatar-xxs"  onerror="this.onerror=null; this.src='/assets/images/svg/crypto-icons/Default.svg'"/>
+            </div>
+            <div class="flex-grow-1 ms-3">
+                <h6 class="mb-1">{{ recentProfit.symbolname|angular}} ({{ recentProfit.symbol|angular}})</h6>
+                <p class="text-muted mb-0">{{ recentProfit.date|angular}}</p>
+            </div>
+            <div>
+                <h6 data-ng-if="recentProfit.profit_amount >= 0" class="text-success mb-0">+{{ recentProfit.profit_amount|angular}} <small class="text-muted fs-12">USDT</small></h6>
+                <h6 data-ng-if="recentProfit.profit_amount < 0" class="text-danger mb-0">{{ recentProfit.profit_amount|angular}} <small class="text-muted fs-12">USDT</small></h6>
+            </div>
+        </div>
+        <div data-ng-if="lstRecentProfit.length > 0">
+            <a href="crypto-orders" class="btn btn-soft-info w-100">View All Orders <i class="ri-arrow-right-line align-bottom"></i></a>
+        </div>
+        <h6 data-ng-if="lstRecentProfit.length == 0" class="text-muted text-uppercase text-center mb-3 mt-3 fs-11">No data found</h6>
+    </div>
+</div>
+                    <!--end card-->
+                </div>
+                <div class="col-xxl-9">
+                    <div class="card" id="marketList">
+                        <div class="card-header border-bottom-dashed d-flex align-items-center">
+                            <h4 class="card-title mb-0 flex-grow-1">Currency - Profit Report</h4>
+                            <div class="flex-shrink-0">
+                                <div class="btn-group" role="group" aria-label="Basic example">
+                                    <button type="button" class="btn btn-sm" data-ng-class="{'btn-primary':cwp_type=='today', 'btn-outline-primary':cwp_type!='today'}" data-ng-click="cwp_type='today';get_coinwise_profit(cwp_type);currentPage=0;lstCoinwiseProfit=[];">Today</button>
+                                    <button type="button" class="btn btn-sm" data-ng-class="{'btn-primary':cwp_type=='thismonth', 'btn-outline-primary':cwp_type!='thismonth'}" data-ng-click="cwp_type='thismonth';get_coinwise_profit(cwp_type);currentPage=0;lstCoinwiseProfit=[];">This Month</button>
+                                    <button type="button" class="btn btn-sm" data-ng-class="{'btn-primary':cwp_type=='all', 'btn-outline-primary':cwp_type!='all'}" data-ng-click="cwp_type='all';get_coinwise_profit(cwp_type);currentPage=0;lstCoinwiseProfit=[];">Over all</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive table-card">
+                                <table class="table align-middle table-nowrap" id="customerTable" data-ng-show="lstCoinwiseProfit.length > 0">
+                                    <thead class="table-light text-muted">
+                                        <tr>
+                                            <th data-ng-class="{'sort':cwp_sort != 'symbol'}" data-ng-click="cwp_sort = 'symbol'; cwp_sortType = !cwp_sortType" scope="col">Name&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <button data-ng-if="cwp_sort == 'symbol'" aria-label="Name ascending" title="Name ascending" class="gridjs-sort float-right" data-ng-class="{'gridjs-sort-asc':cwp_sortType==false,'gridjs-sort-desc':cwp_sortType}"></button></th>
+                                            <th data-ng-class="{'sort':cwp_sort != 'quantity'}" data-ng-click="cwp_sort = 'quantity'; cwp_sortType = !cwp_sortType" scope="col">Quantity&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <button data-ng-if="cwp_sort == 'quantity'" aria-label="Quantity ascending" title="Quantity ascending" class="gridjs-sort float-right" data-ng-class="{'gridjs-sort-asc':cwp_sortType==false,'gridjs-sort-desc':cwp_sortType}"></button></th>
+                                            <th data-ng-class="{'sort':cwp_sort != 'avg_buy'}" data-ng-click="cwp_sort = 'avg_buy'; cwp_sortType = !cwp_sortType" scope="col">Avg. Buy Price&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <button data-ng-if="cwp_sort == 'avg_buy'" aria-label="Buy Price ascending" title="Buy Price ascending" class="gridjs-sort float-right" data-ng-class="{'gridjs-sort-asc':cwp_sortType==false,'gridjs-sort-desc':cwp_sortType}"></button></th>
+                                            <th data-ng-class="{'sort':cwp_sort != 'avg_sell'}" data-ng-click="cwp_sort = 'avg_sell'; cwp_sortType = !cwp_sortType" scope="col">Avg. Sell Price&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <button data-ng-if="cwp_sort == 'avg_sell'" aria-label="Sell Price ascending" title="Sell Price ascending" class="gridjs-sort float-right" data-ng-class="{'gridjs-sort-asc':cwp_sortType==false,'gridjs-sort-desc':cwp_sortType}"></button></th>
+                                            <th data-ng-class="{'sort':cwp_sort != 'profit_amount'}" data-ng-click="cwp_sort = 'profit_amount'; cwp_sortType = !cwp_sortType" scope="col">Returns&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <button data-ng-if="cwp_sort == 'profit_amount'" aria-label="Returns ascending" title="Returns ascending" class="gridjs-sort float-right" data-ng-class="{'gridjs-sort-asc':cwp_sortType==false,'gridjs-sort-desc':cwp_sortType}"></button></th>
+                                            <th data-ng-class="{'sort':cwp_sort != 'profit_percent'}" data-ng-click="cwp_sort = 'profit_percent'; cwp_sortType = !cwp_sortType" scope="col">Returns %&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <button data-ng-if="cwp_sort == 'profit_percent'" aria-label="Returns % ascending" title="Returns % ascending" class="gridjs-sort float-right" data-ng-class="{'gridjs-sort-asc':cwp_sortType==false,'gridjs-sort-desc':cwp_sortType}"></button></th>
+                                        </tr>
+                                    </thead>
+                                    <!--end thead-->
+                                    <tbody class="list form-check-all">
+                                        <tr data-ng-repeat="CoinwiseProfit in lstCoinwiseProfit | orderBy: cwp_sort:cwp_sortType | displayPageData:currentPage*cwp_limit | limitTo:cwp_limit">
+                                            <td>
+                                                <div class="d-flex align-items-center fw-medium">
+                                                    <img data-ng-src="assets/images/svg/crypto-icons/{{CoinwiseProfit.symbol|angular}}.svg" alt="" class="avatar-xxs me-2"  onerror="this.onerror=null; this.src='/assets/images/svg/crypto-icons/Default.svg'"/>
+                                                    <a href="javascript:void(0)" class="currency_name">{{CoinwiseProfit.symbolname|angular}} ({{CoinwiseProfit.symbol|angular}})</a>
+                                                </div>
+                                            </td>
+                                            <td class="quantity_value">{{CoinwiseProfit.quantity|angular}}</td>
+                                            <td class="avg_price">{{CoinwiseProfit.avg_buy|angular}}</td>
+                                            <td class="current_value">{{CoinwiseProfit.avg_sell|angular}}</td>
+                                            <td class="returns">{{CoinwiseProfit.profit_amount|angular}}</td>
+                                            <td class="returns_per">
+                                                <h6 data-ng-if="CoinwiseProfit.profit_percent >= 0" class="text-success fs-13 mb-0"><i class="mdi mdi-trending-up align-middle me-1"></i>{{CoinwiseProfit.profit_percent|angular}}%</h6>
+                                                <h6 data-ng-if="CoinwiseProfit.profit_percent < 0" class="text-danger fs-13 mb-0"><i class="mdi mdi-trending-down align-middle me-1"></i>{{-1*CoinwiseProfit.profit_percent|angular}}%</h6>
+                                            </td>
+                                        </tr>
+                                        <!--end tr-->
+                                    </tbody>
+                                </table>
+                                <!--end table-->
+                                <div class="noresult" data-ng-show="lstCoinwiseProfit.length == 0 && !(lstCoinwiseProfit === undefined)">
+                                    <div class="text-center">
+                                        <lord-icon src="https://cdn.lordicon.com/msoeawqm.json" trigger="loop" colors="primary:#405189,secondary:#0ab39c" style="width:75px;height:75px"></lord-icon>
+                                        <h5 class="mt-2">No Result(s) Found</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-end mt-3" data-ng-show="lstCoinwiseProfit.length > 0">
+                                <div class="gridjs-footer">
+                                    <div class="gridjs-pagination" data-ng-show="(numberOfItems()/limit) > 1">
+                                        <div role="status" aria-live="polite" class="gridjs-summary" title="Page 1 of {{cp_total_pages|angular}}">Showing <b><span data-ng-bind="currentPage*cwp_limit+1"></span></b> to <b><span data-ng-if="(numberOfItems() - ((numberOfItems()/cwp_limit-1)*cwp_limit)) + (currentPage*cwp_limit) <= numberOfItems()" data-ng-bind="(numberOfItems() - ((numberOfItems()/cwp_limit-1)*cwp_limit)) + (currentPage*cwp_limit)"></span><span data-ng-if="(numberOfItems() - ((numberOfItems()/cwp_limit-1)*cwp_limit)) + (currentPage*cwp_limit) > numberOfItems()" data-ng-bind="numberOfItems()"></span></b> of <b><span data-ng-bind="numberOfItems()"></span></b> results</div>
+                                    </div>
+                                </div>
+                                <div class="pagination-wrap hstack gap-2" data-ng-show="lstCoinwiseProfit.length > cwp_limit">
+                                    <button  class="page-item pagination-prev" data-ng-disabled="currentPage == 0" data-ng-click="currentPage=currentPage-1">
+                                        Previous
+                                    </button >
+                                    <ul class="pagination listjs-pagination mb-0"></ul>
+                                    <button  class="page-item pagination-next" data-ng-disabled="currentPage >= numberOfItems()/cwp_limit-1" data-ng-click="currentPage=currentPage+1">
+                                        Next
+                                    </button >
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end card-->
+                </div>
+                <!--end col-->
+            </div>
+            <!--end row-->
+
+        </div>
+        <!-- container-fluid -->
+    </div>
+    <!-- End Page-content -->
+{%endblock%}
+{% block script%}
+    <script>
+        var app = angular.module('crApp', []);
+        app.filter('displayPageData', function() {
+            return function(input, start) {
+            start = +start; //parse to int
+            return input?.slice(start);
+            }
+         });
+        app.controller('crCtrl', function($scope, $filter, $http, $interval) {
+            $scope.dashboardData = {
+                total_invested: 0,
+                total_changes: 0,
+                total_changes_percent: 0,
+                month_changes: 0,
+                month_changes_percent: 0,
+                today_changes: 0,
+                today_changes_percent: 0
+            };
+            $scope.dailyProfitReportCycle = true;
+            $scope.currentPage = 0;
+            $scope.searchText = '';
+            $scope.cwp_sort = 'symbol';
+            $scope.cwp_sortType = false;
+            $scope.cwp_limit = 8;
+            $scope.cwp_offset = 0;
+            $scope.lstCoinwiseProfit = [];
+            $scope.cwp_type = 'today';
+
+            $scope.get_dashboard_data = function(){
+                $http({
+                    url: '/dashboard_data',
+                    method: "GET"
+                    }).then(function (response) {
+                        data = response.data;
+                        $scope.is_dashboard_data = true;
+                        $scope.dashboardData = data;
+                    },function (error) {
+                        console.error(`Error ${error}`);
+                    });
+              }
+
+            $scope.get_daily_profit_report = function(){
+                $http({
+                    url: '/daily_profit_report',
+                    method: "GET"
+                    }).then(function (response) {
+                        data = response.data;
+                        $scope.dailyProfitReport = data;
+                        if ($scope.dailyProfitReportCycle == true) {
+                            function getChartColorsArray(e){if(null!==document.getElementById(e)){e=document.getElementById(e).getAttribute("data-colors");if(e)return(e=JSON.parse(e)).map(function(e){var t=e.replace(" ","");if(-1===t.indexOf(",")){var a=getComputedStyle(document.documentElement).getPropertyValue(t);return a||t}e=e.split(",");return 2!=e.length?t:"rgba("+getComputedStyle(document.documentElement).getPropertyValue(e[0])+","+e[1]+")"})}}
+                            var timelinechart,areachartDatetimeColors=getChartColorsArray("area_chart_datetime");
+                            areachartDatetimeColors&&(timelinechart={series:[{name:"Balance",data: data['chart_data'] }],chart:{id:"area-datetime",type:"area",height:320,zoom:{autoScaleYaxis:!0},toolbar:{show:!1}},yaxis:{title:{text:"USDT ($)"}},colors:areachartDatetimeColors,dataLabels:{enabled:!1},markers:{size:0,style:"hollow"},xaxis:{type:"datetime",min:new Date(data['min_date']).getTime(),tickAmount:6},tooltip:{x:{format:"dd MMM yyyy"},y:{formatter:function(e){return void 0!==e?e.toFixed(2)+" USDT":e}}},fill:{type:"gradient",gradient:{shadeIntensity:1,inverseColors:!1,opacityFrom:.45,opacityTo:.05,stops:[20,100,100,100]}}},(timelinechart=new ApexCharts(document.querySelector("#area_chart_datetime"),timelinechart)).render());
+                            var resetCssClasses,OneMonth,SixMonth,OneYear,All,timLine=document.querySelectorAll(".timeline");timLine&&(resetCssClasses=function(e){var t=document.querySelectorAll(".timeline");Array.prototype.forEach.call(t,function(e){e.classList.remove("active")}),e.target.classList.add("active")},(OneMonth=document.querySelector("#one_month"))&&document.querySelector("#one_month").addEventListener("click",function(e){resetCssClasses(e),timelinechart.zoomX(new Date(data['month_start_date']).getTime(),new Date(data['month_end_date']).getTime())}),(SixMonth=document.querySelector("#six_months"))&&document.querySelector("#six_months").addEventListener("click",function(e){resetCssClasses(e),timelinechart.zoomX(new Date(data['six_month_start_date']).getTime(),new Date(data['six_month_end_date']).getTime())}),(OneYear=document.querySelector("#one_year"))&&document.querySelector("#one_year").addEventListener("click",function(e){resetCssClasses(e),timelinechart.zoomX(new Date(data['year_start_date']).getTime(),new Date(data['year_end_date']).getTime())}),(All=document.querySelector("#all"))&&document.querySelector("#all").addEventListener("click",function(e){resetCssClasses(e),timelinechart.zoomX(new Date(data['all_start_date']).getTime(),new Date(data['all_end_date']).getTime())}));
+                        }
+                        if (data['chart_data'] === undefined) {
+                            $scope.dailyProfitReportCycle = false;
+                        }
+                        return true;
+                    },function (error) {
+                        console.error(`Error ${error}`);
+                        return false;
+                });
+            }
+
+            $scope.get_market_status = function(){
+                $http({
+                    url: '/market_status',
+                    method: "GET"
+                    }).then(function (response) {
+                        data = response.data;
+                        $scope.lstMarketStatus = data;
+                        $.apply();
+                        angular.forEach($scope.lstMarketStatus, function (value) {
+                            $scope.get_sparkline_charts(value.symbol);
+                        });
+                    },function (error) {
+                        console.error(`Error ${error}`);
+                });
+            }
+
+            $scope.get_sparkline_charts = function(symbol){
+                $http({
+                    url: '/sparkline_charts?symbol='+symbol,
+                    method: "GET"
+                    }).then(function (response) {
+                        data = response.data;
+                        if (data.length > 0) {
+                            function getChartColorsArray(e){if(null!==document.getElementById(e)){var t=document.getElementById(e).getAttribute("data-colors");if(t)return(t=JSON.parse(t)).map(function(e){var t=e.replace(" ","");if(-1===t.indexOf(",")){var a=getComputedStyle(document.documentElement).getPropertyValue(t);return a||t}e=e.split(",");return 2!=e.length?t:"rgba("+getComputedStyle(document.documentElement).getPropertyValue(e[0])+","+e[1]+")"});console.warn("data-colors Attribute not found on:",e)}}
+                            var areachartbitcoinColors=getChartColorsArray(symbol+"_sparkline_charts");
+                            areachartbitcoinColors&&(options={series:[{name:symbol,data: data }],chart:{width:"100%",height:50,type:"area",sparkline:{enabled:!0},toolbar:{show:!1}},dataLabels:{enabled:!1},stroke:{curve:"smooth",width:1.5},fill:{type:"gradient",gradient:{shadeIntensity:1,inverseColors:!1,opacityFrom:.45,opacityTo:.05,stops:[50,100,100,100]}},colors:areachartbitcoinColors},(chart=new ApexCharts(document.querySelector("#"+symbol+"_sparkline_charts"),options)).render());
+                        }
+                    },function (error) {
+                        console.error(`Error ${error}`);
+                });
+            }
+
+            $scope.get_recent_profit = function(){
+                $http({
+                    url: '/recent_profit',
+                    method: "GET"
+                    }).then(function (response) {
+                        data = response.data;
+                        $scope.lstRecentProfit = data;
+                        $.apply();
+                    },function (error) {
+                        console.error(`Error ${error}`);
+                });
+            }
+
+            $scope.get_coinwise_profit = function(type){
+                $http({
+                    url: '/coinwise_profit?type='+type,
+                    method: "GET"
+                    }).then(function (response) {
+                        data = response.data;
+                        $scope.lstCoinwiseProfit = data;
+                        $.apply();
+                    },function (error) {
+                        console.error(`Error ${error}`);
+                });
+            }
+
+            $scope.get_chart_data = function(symbol){
+                $http({
+                    url: '/chart_data?symbol='+symbol,
+                    method: "GET"
+                    }).then(function (response) {
+                        data = response.data;
+                        function getChartColorsArray(e){if(null!==document.getElementById(e)){var t=document.getElementById(e).getAttribute("data-colors");if(t)return(t=JSON.parse(t)).map(function(e){var t=e.replace(" ","");if(-1===t.indexOf(",")){var a=getComputedStyle(document.documentElement).getPropertyValue(t);return a||t}e=e.split(",");return 2!=e.length?t:"rgba("+getComputedStyle(document.documentElement).getPropertyValue(e[0])+","+e[1]+")"});console.warn("data-colors Attribute not found on:",e)}}
+                        var MarketchartColors=getChartColorsArray("Market_chart_modal");MarketchartColors&&(options={series:[{name:"candle",data: data }],chart:{height:350,type:"candlestick",toolbar:{show:!1}},plotOptions:{candlestick:{colors:{upward:MarketchartColors[0],downward:MarketchartColors[1]}}},tooltip: {enabled: true,theme: "light",style: {fontSize: '12px',fontFamily: undefined},onDatasetHover: {highlightDataSeries: false,},x: {show: true,format: 'dd MMM yyyy HH:mm',formatter: undefined,},marker: {show: true,},fixed: {enabled: false,position: 'topRight',offsetX: 0,offsetY: 0}},xaxis:{labels: {datetimeUTC: false}, type:"datetime"},yaxis:{tooltip:{enabled:!0}}},(chart=new ApexCharts(document.querySelector("#Market_chart_modal"),options)).render());
+                        return true;
+                    },function (error) {
+                        console.error(`Error ${error}`);
+                        return false;
+                });
+            }
+
+            $scope.numberOfPages=function(){
+                var pageno=($filter('filter')($scope.lstCoinwiseProfit, $scope.searchText)).length/$scope.cwp_limit;
+                if(pageno==0){
+                pageno++;
+                }
+                     return pageno;
+                }
+           $scope.numberOfItems=function(){
+               return ($filter('filter')($scope.lstCoinwiseProfit, $scope.searchText)).length; }
+
+            $scope.get_dashboard_data();
+            $scope.get_daily_profit_report();
+            $scope.get_market_status();
+            $scope.get_recent_profit();
+            $scope.get_coinwise_profit($scope.cwp_type);
+            /* Time interval*/
+            $interval(function(){
+                $scope.get_dashboard_data();
+                $scope.get_recent_profit();
+                $scope.get_coinwise_profit($scope.cwp_type);
+            }, 60000);
+        });
+    </script>
+    <script>
+        $(function() {
+            $('.page-content').attr('style', 'display:block !important;')
+        });
+    </script>
+    <!-- CRM js -->
+    <!--    <script src="/assets/js/pages/dashboard-crypto.init.js"></script>-->
+    <script>
+        var marketList,swiper=new Swiper(".cryptoSlider",{slidesPerView:1,spaceBetween:24,navigation:{nextEl:".swiper-button-next",prevEl:".swiper-button-prev"},autoplay:{delay:2500,disableOnInteraction:!1},breakpoints:{640:{slidesPerView:2},1024:{slidesPerView:3},1600:{slidesPerView:4}}}),perPage=6,options={valueNames:["id","currency_name","quantity_value","avg_price","current_value","returns","returns_per"],page:perPage,pagination:!0,plugins:[ListPagination({left:2,right:2})]},MarketList=document.getElementById("marketList");MarketList&&(marketList=new List("marketList",options).on("updated",function(e){0==e.matchingItems.length?document.getElementsByClassName("noresult")[0].style.display="block":document.getElementsByClassName("noresult")[0].style.display="none";
+        var t=1==e.i,a=e.i>e.matchingItems.length-e.page;document.querySelector(".pagination-prev.disabled")&&document.querySelector(".pagination-prev.disabled").classList.remove("disabled"),document.querySelector(".pagination-next.disabled")&&document.querySelector(".pagination-next.disabled").classList.remove("disabled"),t&&document.querySelector(".pagination-prev").classList.add("disabled"),a&&document.querySelector(".pagination-next").classList.add("disabled"),e.matchingItems.length<=perPage?document.querySelector(".pagination-wrap").style.display="none":document.querySelector(".pagination-wrap").style.display="flex",0<e.matchingItems.length?document.getElementsByClassName("noresult")[0].style.display="none":document.getElementsByClassName("noresult")[0].style.display="block"}),isCount=(new DOMParser).parseFromString(marketList.items.slice(-1)[0]._values.id,"text/html"));
+    </script>
+
+{%endblock%}

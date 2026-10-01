@@ -1,0 +1,269 @@
+{% extends "_main_layout.html"%}
+{% block title%}Crypto Reports{%endblock%}
+{% block content%}
+    <div class="page-content">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card rounded-0 bg-soft-success mx-n4 mt-n4 border-top">
+                        <div class="px-4">
+                            <div class="row">
+                                <div class="col-xxl-5 align-self-center">
+                                    <div class="py-4">
+                                        <h4 class="display-6 coming-soon-text">Frequently asked questions</h4>
+                                        <p class="text-success fs-15 mt-3">If you can not find answer to your question in our FAQ, you can always contact us via email. We will answer you shortly!</p>
+                                        <div class="hstack flex-wrap gap-2">
+                                            <a target="_blank" type="button" class="btn btn-primary btn-label rounded-pill" href="mailto:support@antrobotrade.com"><i class="ri-mail-line label-icon align-middle rounded-pill fs-16 me-2"></i> Email Us</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xxl-3 ms-auto">
+                                    <div class="mb-n5 pb-1 faq-img d-none d-xxl-block">
+                                        <img src="assets/images/faq-img.png" alt="" class="img-fluid">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end card body -->
+                    </div>
+                    <!-- end card -->
+
+                    <div class="row justify-content-evenly">
+                        <div class="col-lg-4">
+                            <div class="mt-3">
+                                <div class="d-flex align-items-center mb-2">
+                                    <div class="flex-shrink-0 me-1">
+                                        <i class="ri-question-line fs-24 align-middle text-success me-1"></i>
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <h5 class="fs-16 mb-0 fw-semibold">General Questions</h5>
+                                    </div>
+                                </div>
+
+                                <div class="accordion custom-accordionwithicon custom-accordion-border accordion-border-box accordion-secondary" id="genques-accordion">
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="genques-headingOne">
+                                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#genques-collapseOne" aria-expanded="true" aria-controls="genques-collapseOne">
+                                                What is ANT ROBO Trade ?
+                                            </button>
+                                        </h2>
+                                        <div id="genques-collapseOne" class="accordion-collapse collapse show" aria-labelledby="genques-headingOne" data-bs-parent="#genques-accordion">
+                                            <div class="accordion-body">
+                                                ANT ROBO Trade is a premium quality crypto trading bots driven by AI, Quant, Signals, Indicators (MACD, SuperTrend, and Support & Resistance), Patterns & Mathematical models
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="genques-headingTwo">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#genques-collapseTwo" aria-expanded="false" aria-controls="genques-collapseTwo">
+                                                Why should I use ANT ROBO Trade?
+                                            </button>
+                                        </h2>
+                                        <div id="genques-collapseTwo" class="accordion-collapse collapse" aria-labelledby="genques-headingTwo" data-bs-parent="#genques-accordion">
+                                            <div class="accordion-body">
+                                                More than 90% of crypto traders or investors lose their money because markets trade 24/7, with high volatility which make it difficult to make a decision to buy or sell. Many significant data, signals and sentiment analysis are hard to interpret by humans.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="genques-headingThree">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#genques-collapseThree" aria-expanded="false" aria-controls="genques-collapseThree">
+                                                Should we have to build our own bots or copy trading?
+                                            </button>
+                                        </h2>
+                                        <div id="genques-collapseThree" class="accordion-collapse collapse" aria-labelledby="genques-headingThree" data-bs-parent="#genques-accordion">
+                                            <div class="accordion-body">
+                                                No. We don't recommend you to build your own bots or copy other traders setting. We already developed the bots using the latest advances in AI Technology, Sentiment Analysis, Indicators, Patterns, Mathematical Models & Quantitative Finance.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="genques-headingFour">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#genques-collapseFour" aria-expanded="false" aria-controls="genques-collapseFour">
+                                                How much can we earn in a day?
+                                            </button>
+                                        </h2>
+                                        <div id="genques-collapseFour" class="accordion-collapse collapse" aria-labelledby="genques-headingFour" data-bs-parent="#genques-accordion">
+                                            <div class="accordion-body">
+                                                Using ANT ROBO Trade is not an assured daily profit. It will simplify your life by automating trades and over a time will perform better than humans and will achieve great returns. It will make profit only and there is no loss guaranteed.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="genques-headingFive">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#genques-collapseFive" aria-expanded="false" aria-controls="genques-collapseFive">
+                                                Can we become rich by using ANT ROBO Trade?
+                                            </button>
+                                        </h2>
+                                        <div id="genques-collapseFive" class="accordion-collapse collapse" aria-labelledby="genques-headingFive" data-bs-parent="#genques-accordion">
+                                            <div class="accordion-body">
+                                                Only the schemer promise investors a return on investment for each day or each month that their money is invested in the firm. We can promise you a steady return over a period of time but as always in cryptocurrencies.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="genques-headingSix">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#genques-collapseSix" aria-expanded="false" aria-controls="genques-collapseSix">
+                                                Is ANT ROBO Trade non-custodial?
+                                            </button>
+                                        </h2>
+                                        <div id="genques-collapseSix" class="accordion-collapse collapse" aria-labelledby="genques-headingSix" data-bs-parent="#genques-accordion">
+                                            <div class="accordion-body">
+                                                Yes, your funds is safe and remain in your own account on your Binance exchange.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="genques-headingSeven">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#genques-collapseSeven" aria-expanded="false" aria-controls="genques-collapseSeven">
+                                                Does BOTS charge fees?
+                                            </button>
+                                        </h2>
+                                        <div id="genques-collapseSeven" class="accordion-collapse collapse" aria-labelledby="genques-headingSeven" data-bs-parent="#genques-accordion">
+                                            <div class="accordion-body">
+                                                Yes, one-time BOT purchases (Price: <small class="fs-13"><del>120</del></small> 100 BUSD) &amp; the profit sharing fees are charged by platform by using "EnergyPower". 100 EnergyPower = 1 BUSD. <br/>
+                                                30 EnergyPower per 1 BUSD profit of BUY &amp; SELL orders (i.e., 30% profit sharing of each and every profit). <br/>
+                                                For new user will get one time giveaway of 500 EnergyPower. It will give approx. 15 BUSD profit in your own account on your Binance exchange.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--end accordion-->
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <div class="mt-3">
+                                <div class="d-flex align-items-center mb-2">
+                                    <div class="flex-shrink-0 me-1">
+                                        <i class="ri-user-settings-line fs-24 align-middle text-success me-1"></i>
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <h5 class="fs-16 mb-0 fw-semibold">Configuration and Activation</h5>
+                                    </div>
+                                </div>
+
+                                <div class="accordion custom-accordionwithicon custom-accordion-border accordion-border-box accordion-secondary" id="manageaccount-accordion">
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="manageaccount-headingOne">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#manageaccount-collapseOne" aria-expanded="false" aria-controls="manageaccount-collapseOne">
+                                                How to set up Binance API ?
+                                            </button>
+                                        </h2>
+                                        <div id="manageaccount-collapseOne" class="accordion-collapse collapse" aria-labelledby="manageaccount-headingOne" data-bs-parent="#manageaccount-accordion">
+                                            <div class="accordion-body">
+                                                <p>Binance provides two kinds of API access: 1) Actual Binance API and 2) Test Binance API. But we need Actual API, It provides direct access to your actual account, and any trades made with this API will be reflected into your actual account. That means we need to be careful while using this API.</p>
+                                                <p>First, you need to sign up with Binance (if you don’t have an account) at <a class="au mr" href="https://accounts.binance.com/en/register-business?ref=LIMIT_JLM7XS6U" rel="noopener ugc nofollow" target="_blank">https://www.binance.com/en/register?ref=JLM7XS6U</a> (This link includes my referral code and will give you a 10% discount on trading fees. More details can be found at <a class="au mr" href="https://www.binance.com/en/activity/referral" rel="noopener ugc nofollow" target="_blank">https://www.binance.com/en/activity/referral</a>)</p>
+                                                <p>After registering, you will be asked (or you can do that from security settings) to set up two-factor authentication for additional security. I will recommend choosing Google Authenticator.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="manageaccount-headingTwo">
+                                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#manageaccount-collapseTwo" aria-expanded="true" aria-controls="manageaccount-collapseTwo">
+                                                How to create API ?
+                                            </button>
+                                        </h2>
+                                        <div id="manageaccount-collapseTwo" class="accordion-collapse collapse show" aria-labelledby="manageaccount-headingTwo" data-bs-parent="#manageaccount-accordion">
+                                            <div class="accordion-body">
+                                                <p>Once 2FA is set up, you can go to the API management tab under settings. You will be asked to provide a label for your API keys (this will be useful when you have multiple keys associated with a single account).</p>
+                                                <p>Click on create API after providing a label for your API keys. You will be asked to authenticate one more time, and then you will be able to see your “API Key” and “Secret Key”. This is the only time you will see it, so copy your keys to some safe place. By default, the keys will be given the following access, which can be changed.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="manageaccount-headingThree">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#manageaccount-collapseThree" aria-expanded="false" aria-controls="manageaccount-collapseThree">
+                                                How to configure API for BOT Trade ?
+                                            </button>
+                                        </h2>
+                                        <div id="manageaccount-collapseThree" class="accordion-collapse collapse" aria-labelledby="manageaccount-headingThree" data-bs-parent="#manageaccount-accordion">
+                                            <div class="accordion-body">
+                                                After API created, provide “API Key” and “Secret Key” in “<a href="/configuration">Trade Configuration</a>“ page. As of now we are only focus on “Binance“ exchange. So, default exchange name is “Binance“. Check “Enable Spot &amp; Margin Trading“ and please add provided “IP Address“ in “Restrict access to trusted IPs only“.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="manageaccount-headingFour">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#manageaccount-collapseFour" aria-expanded="false" aria-controls="manageaccount-collapseFour">
+                                                How to Activate Plans in ANT ROBO trade ?
+                                            </button>
+                                        </h2>
+                                        <div id="manageaccount-collapseFour" class="accordion-collapse collapse" aria-labelledby="manageaccount-headingFour" data-bs-parent="#manageaccount-accordion">
+                                            <div class="accordion-body">
+                                                <p>After “Trade Configuration“, You need to Deposit the appropriate amount in “<a href="/crypto-wallet">My Wallet<a>“ page. It will add in Activation wallet balances. Then goto “<a href="/plan-pricing">Activation Plans</a>“ page. First you need to purchase “CryptoBot“ (worth <small class="fs-13"><del>120</del></small> 100 BUSD) then you can claim your 500 Power (<i class="text-success lab la-superpowers label-icon"></i>) for free and once power is 0 then you can Deposit appropriate amount in Activation wallet balances and purchare following categories plans. There are two different categories are available (i.e.,) Kilo Power and Mega Power plans which you like to activate for further ROBO tradings.</p>
+                                                <p class="text-muted fs-13">Note<sup><span class="text-danger">*</span></sup>: Special giveaway offer &mdash; 500 Power for new users only</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--end accordion-->
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <div class="mt-3">
+                                <div class="d-flex align-items-center mb-2">
+                                    <div class="flex-shrink-0 me-1">
+                                        <i class="ri-bit-coin-line fs-24 align-middle text-success me-1"></i>
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <h5 class="fs-16 mb-0 fw-semibold">Deposit & Withdrawal</h5>
+                                    </div>
+                                </div>
+
+                                <div class="accordion custom-accordionwithicon custom-accordion-border accordion-border-box accordion-secondary" id="privacy-accordion">
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="privacy-headingOne">
+                                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#privacy-collapseOne" aria-expanded="true" aria-controls="privacy-collapseOne">
+                                                How to “Deposit“ BUSD ?
+                                            </button>
+                                        </h2>
+                                        <div id="privacy-collapseOne" class="accordion-collapse collapse show" aria-labelledby="privacy-headingOne" data-bs-parent="#privacy-accordion">
+                                            <div class="accordion-body">
+                                                <p>In “<a href="/crypto-wallet">My Wallet</a>“ page, we have an option to “Deposit“ BUSD from your Binance exchange account, which we have 0 fee for transactions.</p>
+                                                <p>We have provided “QR Code“, “Wallet Address“ and “Network“ details for deposit BUSD purpose.</p>
+                                                <p>Once transaction completed then click “Deposit Done“ button and provide transaction ID in “Transaction ID“ field then click “Submit“ button. AI will check the transaction for some while and then showcase the “Deposit“ details like cryptocurrency name, Amount, etc.,</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="privacy-headingTwo">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#privacy-collapseTwo" aria-expanded="false" aria-controls="privacy-collapseTwo">
+                                                What are the benefits for “Referral“ ?
+                                            </button>
+                                        </h2>
+                                        <div id="privacy-collapseTwo" class="accordion-collapse collapse" aria-labelledby="privacy-headingTwo" data-bs-parent="#privacy-accordion">
+                                            <div class="accordion-body">
+                                                <p>We have three levels of referral income are 15% - Level 1 : Immediate referer, 10% - Level 2 : Immediate Parent referer, 5% - Level 3 : Grand Parent referer.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="privacy-headingThree">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#privacy-collapseThree" aria-expanded="false" aria-controls="privacy-collapseThree">
+                                                How to “Withdraw“ received income ?
+                                            </button>
+                                        </h2>
+                                        <div id="privacy-collapseThree" class="accordion-collapse collapse" aria-labelledby="privacy-headingThree" data-bs-parent="#privacy-accordion">
+                                            <div class="accordion-body">
+                                                In “<a href="/crypto-wallet">My Wallet</a>“, we have an option for “Withdraw“ BUSD to Binance exchange to provide valid BUSD (BEP20 - BSC network) wallet ID and Withdrawal eligible amount (i.e., Round of 10 BUSD). Click “Submit“ button to initiate “Withdrawal“. Processing time will take maximum 24 hours from time of initiate.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--end accordion-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--end col-->.
+            </div>
+            <!--end row-->
+
+        </div>
+        <!-- container-fluid -->
+    </div>
+    <!-- End Page-content -->
+{%endblock%}

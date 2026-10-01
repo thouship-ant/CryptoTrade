@@ -1,0 +1,806 @@
+{% extends "_main_layout.html"%}
+{% block title%}Crypto Wallet{%endblock%}
+{% block content%}
+    <div class="page-content" data-ng-app="cdApp" data-ng-controller="cdCtrl" style="display:none;">
+        <div class="container-fluid">
+
+            <!-- start page title -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                        <h4 class="mb-sm-0">My Wallet</h4>
+
+                        <div class="page-title-right">
+                            <ol class="breadcrumb m-0">
+                                <li class="breadcrumb-item"><a href="javascript: void(0);">Crypto</a></li>
+                                <li class="breadcrumb-item active">My Wallet</li>
+                            </ol>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- end page title -->
+
+            <div class="row">
+                <div class="col-xxl-3 col-md-6">
+                    <div class="card card-animate">
+                        <div class="card-body">
+                            <div class="d-flex mb-3">
+                                <div class="flex-grow-1">
+                                    <lord-icon src="/assets/images/187-suitcase-outline-edited.json" trigger="loop" colors="primary:#405189,secondary:#0ab39c" style="width:55px;height:55px"></lord-icon>
+                                </div>
+                                <div class="flex-shrink-0">
+                                    <a href="javascript:void(0);" class="badge badge-soft-warning badge-border">BUSD</a>
+                                </div>
+                            </div>
+                            <h3 class="mb-2"><span class="counter-value" data-target="{{data['wallet_balance']}}">0.00</span>&nbsp;<small class="text-muted fs-13">BUSD</small></h3>
+                            <h6 class="text-muted mb-0">Available Balance</h6>
+                        </div>
+                    </div>
+                    <!--end card-->
+                </div>
+                <!--end col-->
+                <div class="col-xxl-3 col-md-6">
+                    <div class="card card-animate">
+                        <div class="card-body">
+                            <div class="d-flex mb-3">
+                                <div class="flex-grow-1">
+                                    <lord-icon src="https://cdn.lordicon.com/qhviklyi.json" trigger="loop" colors="primary:#405189,secondary:#0ab39c" style="width:55px;height:55px"></lord-icon>
+<!--                                    <lord-icon src="https://cdn.lordicon.com/qhviklyi.json" trigger="loop"-->
+<!--                                        colors="primary:#0a5c15,secondary:#5c0e0a"-->
+<!--                                        style="width:55px;height:55px">-->
+<!--                                    </lord-icon>-->
+                                </div>
+                                <div class="flex-shrink-0">
+                                    <a href="javascript:void(0);" class="badge badge-soft-warning badge-border">BUSD</a>
+                                </div>
+                            </div>
+                            <h3 class="mb-2"><span class="counter-value" data-target="{{data['total_deposit']}}">0.00</span>&nbsp;<small class="text-muted fs-13">BUSD</small></h3>
+                            <h6 class="text-muted mb-0">Deposit Amount</h6>
+                        </div>
+                    </div>
+                    <!--end card-->
+                </div>
+                <!--end col-->
+                <div class="col-xxl-3 col-md-6">
+                    <div class="card card-animate">
+                        <div class="card-body">
+                            <div class="d-flex mb-3">
+                                <div class="flex-grow-1">
+                                    <lord-icon src="https://cdn.lordicon.com/qhviklyi.json" trigger="loop"
+                                        colors="primary:#5c0e0a,secondary:#0a5c15"
+                                        style="width:55px;height:55px">
+                                    </lord-icon>
+                                </div>
+                                <div class="flex-shrink-0">
+                                    <a href="javascript:void(0);" class="badge badge-soft-warning badge-border">BUSD</a>
+                                </div>
+                            </div>
+                            <h3 class="mb-2"><span class="counter-value" data-target="{{data['total_withdrawal']}}">0.00</span>&nbsp;<small class="text-muted fs-13">BUSD</small></h3>
+                            <h6 class="text-muted mb-0">Withdrawal Amount</h6>
+                        </div>
+                    </div>
+                    <!--end card-->
+                </div>
+                <!--end col-->
+                <div class="col-xxl-3 col-md-6">
+                    <div class="swiper default-swiper rounded">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <div class="card card-animate">
+                                    <div class="card-body bg-soft-warning">
+                                        <div class="d-flex mb-3">
+                                            <div class="flex-grow-1">
+                                                <lord-icon src="https://cdn.lordicon.com/vaeagfzc.json" trigger="loop" colors="primary:#405189,secondary:#0ab39c" style="width:55px;height:55px"></lord-icon>
+                                            </div>
+                                            <div class="flex-shrink-0">
+                                                <a href="javascript:void(0);" class="badge badge-soft-warning badge-border">BUSD</a>
+                                            </div>
+                                        </div>
+                                        <h3 class="mb-2">{{data['activation_balance']}}&nbsp;<small class="text-muted fs-13">BUSD</small></h3>
+                                        <h6 class="text-muted mb-0">Activation Wallet Balance</h6>
+                                    </div>
+                                </div>
+                                <!--end card-->
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="card card-animate">
+                                    <div class="card-body bg-soft-warning">
+                                        <div class="d-flex mb-3">
+                                            <div class="flex-grow-1">
+                                                <lord-icon src="https://cdn.lordicon.com/vaeagfzc.json" trigger="loop" colors="primary:#405189,secondary:#0ab39c" style="width:55px;height:55px"></lord-icon>
+                                            </div>
+                                            <div class="flex-shrink-0">
+                                                <a href="javascript:void(0);" class="badge badge-soft-warning badge-border">BUSD</a>
+                                            </div>
+                                        </div>
+                                        <h3 class="mb-2">{{data['referral_income']}}&nbsp;<small class="text-muted fs-13">BUSD</small></h3>
+                                        <h6 class="text-muted mb-0">Referral Income</h6>
+                                    </div>
+                                </div>
+                                <!--end card-->
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="card card-animate">
+                                    <div class="card-body bg-soft-warning">
+                                        <div class="d-flex mb-3">
+                                            <div class="flex-grow-1">
+                                                <lord-icon src="https://cdn.lordicon.com/vaeagfzc.json" trigger="loop" colors="primary:#405189,secondary:#0ab39c" style="width:55px;height:55px"></lord-icon>
+                                            </div>
+                                            <div class="flex-shrink-0">
+                                                <a href="javascript:void(0);" class="badge badge-soft-warning badge-border">BUSD</a>
+                                            </div>
+                                        </div>
+                                        <h3 class="mb-2">{{data['level_profit_share']}}&nbsp;<small class="text-muted fs-13">BUSD</small></h3>
+                                        <h6 class="text-muted mb-0">Level Income</h6>
+                                    </div>
+                                </div>
+                                <!--end card-->
+                            </div>
+<!--                            <div class="swiper-slide">-->
+<!--                                <div class="card card-animate">-->
+<!--                                    <div class="card-body bg-soft-warning">-->
+<!--                                        <div class="d-flex mb-3">-->
+<!--                                            <div class="flex-grow-1">-->
+<!--                                                <lord-icon src="https://cdn.lordicon.com/vaeagfzc.json" trigger="loop" colors="primary:#405189,secondary:#0ab39c" style="width:55px;height:55px"></lord-icon>-->
+<!--                                            </div>-->
+<!--                                            <div class="flex-shrink-0">-->
+<!--                                                <a href="javascript:void(0);" class="badge badge-soft-warning badge-border">BUSD</a>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                        <h3 class="mb-2">{{data['withdrawal_eligible']}}&nbsp;<small class="text-muted fs-13">BUSD</small></h3>-->
+<!--                                        <h6 class="text-muted mb-0">Withdrawal Eligible Amount</h6>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                &lt;!&ndash;end card&ndash;&gt;-->
+<!--                            </div>-->
+                        </div>
+                    </div>
+                    <!--end swiper-->
+                </div>
+                <!--end col-->
+            </div>
+            <!--end row-->
+
+            <div class="row align-items-center mb-4 g-3">
+                <div class="col-sm-3">
+<!--                    <div class="d-flex align-items-center gap-2">-->
+<!--                        <span class="text-muted flex-shrink-0">Sort by: </span>-->
+<!--                        <select class="form-control mb-0" data-choices data-choices-search-false name="choices-single-default" id="choices-single-default">-->
+<!--                            <option value="All" selected>All</option>-->
+<!--                            <option value="USDT">USDT</option>-->
+<!--                            <option value="DAI">DAI</option>-->
+<!--                        </select>-->
+<!--                    </div>-->
+                </div>
+                <!--end col-->
+                <div class="col-sm-auto ms-auto">
+                    <div class="d-flex gap-2">
+                        <button data-bs-toggle="modal" data-bs-target="#TransferPage" data-ng-class="{'btn-soft-warning disabled' : activationBalance < 1, 'btn-warning' : activationBalance >= 1}" class="btn">Transfer</button>&nbsp;
+                        <button data-bs-toggle="modal" data-bs-target="#DepositPage" class="btn btn-info">Deposit</button>&nbsp;
+                        <button data-bs-toggle="modal" data-bs-target="#WithdrawalPage" data-ng-class="{'btn-soft-danger disabled' : walletBalance < 10, 'btn-danger' : walletBalance >= 10}" class="btn">Withdraw</button>&nbsp;
+                    </div>
+                </div>
+                <!--end col-->
+            </div>
+            <!--end row-->
+
+            <!-- Deposit / Payment modal dialog -->
+            <div class="modal fade" id="DepositPage" data-bs-backdrop="static" aria-hidden="true" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-body text-center p-5">
+                            <div class="mt-4 pt-4">
+                                <h4>Deposit</h4>
+                                <!-- figures Images -->
+                                <figure class="figure">
+                                    <img src="/assets/images/crypto/deposit/BUSD_deposit_QR_code.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="...">
+                                    <figcaption class="figure-caption">Send only BUSD to this deposit address</figcaption>
+                                </figure>
+                                <h6>Wallet Address</h6>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="WalletAddress" data-ng-model="WalletAddress" readonly aria-describedby="basic-addon2">
+                                    <button class="input-group-text" ngclipboard data-clipboard-target="#WalletAddress" data-ng-click="isAddressCopied = true;" id="basic-addon2"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" id="footer-icon-name" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 1024 1024"><path fill="currentColor" d="M832 64H296c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h496v688c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8V96c0-17.7-14.3-32-32-32zM704 192H192c-17.7 0-32 14.3-32 32v530.7c0 8.5 3.4 16.6 9.4 22.6l173.3 173.3c2.2 2.2 4.7 4 7.4 5.5v1.9h4.2c3.5 1.3 7.2 2 11 2H704c17.7 0 32-14.3 32-32V224c0-17.7-14.3-32-32-32zM350 856.2L263.9 770H350v86.2zM664 888H414V746c0-22.1-17.9-40-40-40H232V264h432v624z"></path></svg></button>
+                                </div>
+                                <div data-ng-show="isAddressCopied" class="alert alert-borderless alert-success" role="alert">
+                                    Wallet address copied successfully !!!
+                                </div>
+                                <p class="text-muted fs-16 mt-2">Network BNB Smart Chain (BEP20)</p>
+                                <!-- Toogle to second dialog -->
+                                <button class="btn btn-success" data-bs-target="#PaymentConfirmation" data-bs-toggle="modal" data-bs-dismiss="modal">
+                                    Deposit Done
+                                </button>
+                                <button type="button" class="btn btn-danger" data-ng-click="isAddressCopied = false;" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Second modal dialog -->
+            <div class="modal fade" id="PaymentConfirmation" data-bs-backdrop="static" aria-hidden="true" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-body text-center p-5">
+                            <div class="mt-4 pt-3">
+                                <h4 class="mb-3">Provide below detail(s) for validation</h4>
+                                <img class="img-thumbnail rounded-circle avatar-xl" alt="200x200" src="/assets/images/svg/crypto-icons/BUSD.svg">
+                                <div>
+                                    <label for="transactionID" class="form-label">Transaction ID :</label>
+                                    <input type="text" class="form-control border-dashed" data-ng-model="transactionID" id="transactionID" minlength="30" placeholder="e.g. f078bf0....2d2 or Internal transfer 11xxxxxxxx78">
+                                </div>
+                                <div class="hstack gap-2 justify-content-center mt-2" data-ng-show="transactionID.length >= 30 || transactionID == ''">
+                                    <button class="btn btn-success" data-ng-disabled="transactionID == '' || transactionID.length < 30" data-bs-target="#PaymentDetails" data-ng-click="check_transaction();" data-bs-toggle="modal" data-bs-dismiss="modal">
+                                        Submit
+                                    </button>
+                                </div>
+                                <div class="alert alert-warning alert-dismissible alert-label-icon label-arrow fade show mt-2" role="alert" data-ng-hide="transactionID.length >= 30 || transactionID == ''">
+                                    <i class="ri-alert-line label-icon"></i>&nbsp;Transaction ID should be 30 or more characters!!!
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Third modal dialog -->
+            <div class="modal fade" id="PaymentDetails" data-bs-backdrop="static" aria-hidden="true" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-body text-center p-5">
+                            <div class="mt-4 pt-3" data-ng-show="transactionDetails.status == ''">
+                                <h4 class="mb-3">Please wait for while....</h4>
+                                <lord-icon src="https://cdn.lordicon.com/krmfspeu.json" trigger="loop"
+                                    style="width:100px;height:100px">
+                                </lord-icon>
+                            </div>
+                            <div class="mt-4 pt-3" data-ng-show="transactionDetails.status != '' && transactionDetails.error != ''">
+                                <h4 class="mb-3">Error</h4>
+                                <div class="alert alert-borderless alert-danger" role="alert">
+                                    {{transactionDetails.error|angular}}
+                                </div>
+                                <div class="hstack gap-2 justify-content-center mt-2">
+                                    <button type="button" class="btn btn-soft-success" data-ng-click="isAddressCopied = false;" data-bs-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                            <div class="mt-4 pt-3" data-ng-show="transactionDetails.status != '' && transactionDetails.error == ''">
+                                <h4 class="mb-3">Transaction details:</h4>
+                                <img class="img-thumbnail rounded-circle avatar-xl" alt="200x200" src="/assets/images/svg/crypto-icons/BUSD.svg">
+                                <div>
+                                    <label for="recCoin" class="form-label">Currency (Network)</label>
+                                    <input type="text" class="form-control border-dashed" id="recCoin" data-ng-model="transactionDetails.coin" disabled>
+                                </div>
+                                <div class="mt-2">
+                                    <label for="recTransactionID" class="form-label">Transaction ID</label>
+                                    <input type="text" class="form-control border-dashed" id="recTransactionID" data-ng-model="transactionDetails.txId" disabled>
+                                </div>
+                                <div class="mt-2">
+                                    <label for="recAddress" class="form-label">Receiver Address</label>
+                                    <input type="text" class="form-control border-dashed" id="recAddress" data-ng-model="transactionDetails.address" disabled>
+                                </div>
+                                <div class="mt-2">
+                                    <label for="recAmount" class="form-label">Received Amount</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control border-dashed mt-2" id="recAmount" data-ng-model="transactionDetails.amount" disabled>
+                                        <span class="input-group-text mt-2" id="ing_recAmount">BUSD</span>
+                                    </div>
+                                </div>
+                                <div class="hstack gap-2 justify-content-center mt-2">
+                                    <button type="button" class="btn btn-danger" data-ng-click="isAddressCopied = false;win_reload();" data-bs-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Withdrawal modal dialog -->
+            <div class="modal fade" id="WithdrawalPage" data-bs-backdrop="static" aria-hidden="true" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-body text-left p-5">
+                            <div class="mt-4 pt-4">
+                                <h4>Withdraw</h4>
+                                <br/>
+                                <!-- figures Images -->
+                                <h6>Wallet Address</h6>
+                                <input type="text" class="form-control mt-2" id="WithdrawalWalletAddress" data-ng-model="WithdrawalWalletAddress" aria-describedby="basic-addon2" autocomplete="off" >
+                                <p class="text-muted fs-16 mt-2">Network BNB Smart Chain (BEP20)</p>
+                                <!-- Toogle to second dialog -->
+                                <h6 class="mt-2">Amount</h6>
+                                <div class="input-group">
+                                    <input type="text" class="form-control mt-2" id="WithdrawalAmount" data-ng-model="WithdrawalAmount" numbers-only aria-describedby="basic-addon2" autocomplete="off" >
+                                    <span class="input-group-text mt-2" id="ing_WithdrawalAmount">BUSD</span>
+                                </div>
+                                <div class="alert alert-danger alert-dismissible alert-label-icon label-arrow mt-2 fade show" role="alert" data-ng-show="WithdrawalAmount > {{data['wallet_balance']}}">
+                                    <i class="ri-error-warning-line label-icon"></i><strong>Insufficient Balance</strong> - Current Available is {{data['wallet_balance']}} BUSD.
+                                </div>
+                                <div class="alert alert-danger alert-dismissible alert-label-icon label-arrow mt-2 fade show" role="alert" data-ng-show="WithdrawalAmount < 10">
+                                    <i class="ri-error-warning-line label-icon"></i><strong>Min. 10 BUSD</strong> - is eligible for withdrawal
+                                </div>
+                                <button type="button" data-ng-disabled="WithdrawalAmount === undefined || WithdrawalAmount == 0 || WithdrawalAmount < 10 || WithdrawalAmount > {{data['wallet_balance']}}" class="btn mt-2" data-ng-class="{'btn-soft-success': (WithdrawalAmount === undefined || WithdrawalAmount == 0 || WithdrawalAmount < 10 || WithdrawalAmount > {{data['wallet_balance']}}), 'btn-success': (WithdrawalAmount !== undefined && WithdrawalAmount != 0 && WithdrawalAmount >= 10 && WithdrawalAmount <= {{data['wallet_balance']}})}" data-bs-target="#WithdrawalConfirmation" data-ng-click="initiate_withdrawal();" data-bs-toggle="modal" data-bs-dismiss="modal">
+                                    Submit
+                                </button>
+                                <button type="button" class="btn btn-danger mt-2" data-ng-click="WithdrawalWalletAddress = ''; WithdrawalAmount = '';" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Second modal dialog -->
+            <div class="modal fade" id="WithdrawalConfirmation" data-bs-backdrop="static" aria-hidden="true" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-body text-center p-5">
+                            <div class="mt-4 pt-3" data-ng-show="withdrawalDetails.status == ''">
+                                <h4 class="mb-3">Please wait for while....</h4>
+                                <lord-icon src="https://cdn.lordicon.com/krmfspeu.json" trigger="loop"
+                                    style="width:100px;height:100px">
+                                </lord-icon>
+                            </div>
+                            <div class="mt-4 pt-3" data-ng-show="withdrawalDetails.status != '' && withdrawalDetails.error != ''">
+                                <h4 class="mb-3">Error</h4>
+                                <div class="alert alert-borderless alert-danger" role="alert">
+                                    {{withdrawalDetails.error|angular}}
+                                </div>
+                                <div class="hstack gap-2 justify-content-center mt-2">
+                                    <button type="button" class="btn btn-soft-success" data-ng-click="isAddressCopied = false;" data-bs-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                            <div class="mt-4 pt-3" data-ng-show="withdrawalDetails.status != '' && withdrawalDetails.error == ''">
+                                <h4 class="mb-3">Transaction details:</h4>
+                                <img class="img-thumbnail rounded-circle avatar-xl" alt="200x200" src="/assets/images/svg/crypto-icons/BUSD.svg">
+                                <div>
+                                    <label for="sendCoin" class="form-label">Currency (Network)</label>
+                                    <input type="text" class="form-control border-dashed" id="sendCoin" data-ng-model="withdrawalDetails.coin" disabled>
+                                </div>
+                                <div class="mt-2">
+                                    <label for="sendAddress" class="form-label">Sending Address</label>
+                                    <input type="text" class="form-control border-dashed" id="sendAddress" data-ng-model="withdrawalDetails.address" disabled>
+                                </div>
+                                <div class="mt-2">
+                                    <label for="sendAmount" class="form-label">Amount Send</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control border-dashed mt-2" id="sendAmount" data-ng-model="withdrawalDetails.amount" disabled>
+                                        <span class="input-group-text mt-2" id="ing_sendAmount">BUSD</span>
+                                    </div>
+                                </div>
+                                <div class="mt-2">
+                                    <label for="sendStatus" class="form-label">Status</label>
+                                    <input type="text" class="form-control border-dashed mt-2" id="sendStatus" value="Pending" disabled>
+                                </div>
+                                <div class="hstack gap-2 justify-content-center mt-2">
+                                    <button type="button" class="btn btn-danger" data-ng-click="WithdrawalWalletAddress = ''; WithdrawalAmount = '';win_reload();" data-bs-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Transfer modal dialog -->
+            <div class="modal fade" id="TransferPage" data-bs-backdrop="static" aria-hidden="true" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-body text-left p-5">
+                            <div class="mt-4 pt-4">
+                                <h4>Transfer</h4>
+                                <br/>
+                                <!-- figures Images -->
+                                <div data-ng-show="transferDetails.status == '' && transferDetails.error == ''">
+                                    <h6>Username</h6>
+                                    <input type="text" class="form-control" id="TransferUsername" data-ng-model="TransferUsername" data-ng-change="check_username(TransferUsername);" aria-describedby="basic-addon2" autocomplete="off" >
+                                    <div class="alert alert-secondary alert-dismissible alert-label-icon label-arrow fade show" role="alert" data-ng-show="TransferUsername != '' && isValidUser == true && UserDetails.full_name != '{{session['full_name']}}'">
+                                        <i class="ri-check-double-line label-icon"></i>&nbsp;<strong><span data-ng-bind="UserDetails.full_name"></span></strong>
+                                    </div>
+                                    <div class="alert alert-warning alert-dismissible alert-label-icon label-arrow fade show" role="alert" data-ng-show="TransferUsername != '' && isValidUser == false">
+                                        <i class="ri-alert-line label-icon"></i>&nbsp;Provided username <strong><span data-ng-bind="TransferUsername"></span></strong> not found
+                                    </div>
+                                    <div class="alert alert-info alert-dismissible alert-label-icon label-arrow fade show" role="alert" data-ng-show="UserDetails.full_name == '{{session['full_name']}}'">
+                                        <i class="ri-airplay-line label-icon"></i>&nbsp;Unable to transfer same user account!!!
+                                    </div>
+                                    <!-- Toogle to second dialog -->
+                                    <h6 class="mt-4">Amount</h6>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control mt-2" id="TransferAmount" data-ng-model="TransferAmount" numbers-only aria-describedby="basic-addon2" autocomplete="off" data-ng-disabled="isValidUser == false || (TransferUsername != '' && isValidUser == false) || UserDetails.full_name == '{{session['full_name']}}'">
+                                        <span class="input-group-text mt-2" id="ing_TransferAmount">BUSD</span>
+                                    </div>
+                                    <div class="alert alert-danger alert-dismissible alert-label-icon label-arrow mt-2 fade show" role="alert" data-ng-show="TransferAmount > {{data['activation_balance']}}">
+                                        <i class="ri-error-warning-line label-icon"></i><strong>Insufficient Balance</strong> - Current Activation wallet balance is {{data['activation_balance']}} BUSD.
+                                    </div>
+                                    <div class="alert alert-danger alert-dismissible alert-label-icon label-arrow mt-2 fade show" role="alert" data-ng-show="(TransferAmount < 1 && isValidUser) && UserDetails.full_name != '{{session['full_name']}}'">
+                                        <i class="ri-error-warning-line label-icon"></i><strong>Min. 1 BUSD</strong> - is eligible for transfer
+                                    </div>
+                                    <button type="button" class="btn btn-success mt-2" data-ng-disabled="UserDetails.full_name == '{{session['full_name']}}' || TransferUsername == '' || isValidUser == false || TransferAmount === undefined  || TransferAmount == 0 || TransferAmount > {{data['activation_balance']}}" data-ng-click="initiate_transfer();">
+                                        Submit
+                                    </button>
+                                    <button type="button" class="btn btn-danger mt-2" data-ng-click="TransferUsername = ''; TransferAmount = ''; UserDetails.full_name = '';isValidUser = false;" data-bs-dismiss="modal">Close</button>
+                                </div>
+                                <div class="alert alert-success alert-dismissible alert-label-icon label-arrow mt-2 fade show" role="alert" data-ng-show="transferDetails.status != ''">
+                                    <i class="ri-check-line label-icon"></i>Amount <strong><span data-ng-bind="TransferAmount"></span></strong>&nbsp;BUSD transferred to <strong><span data-ng-bind="TransferUsername"></span></strong> successfully!!!
+                                </div>
+                                <div class="mt-4 pt-3" data-ng-show="transferDetails.error != ''">
+                                    <h4 class="mb-3">Error</h4>
+                                    <div class="alert alert-borderless alert-danger" role="alert">
+                                        {{transferDetails.error|angular}}
+                                    </div>
+                                </div>
+                                <button type="button" class="btn btn-danger mt-2" data-ng-click="win_reload();" data-bs-dismiss="modal" data-ng-show="transferDetails.status != '' || transferDetails.error != ''">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xxl-12 d-none d-md-block">
+                <div class="card" id="contactList">
+                    <div class="card-header">
+                        <div class="row align-items-center g-3">
+                            <div class="col-md-3">
+                                <h5 class="card-title mb-0">All Transactions</h5>
+                            </div>
+                            <!--end col-->
+                            <div class="col-md-auto ms-auto">
+                                <div class="d-flex gap-2">
+                                    <div class="search-box">
+                                        <input type="text" class="form-control search" data-ng-model="searchText" placeholder="Search for transactions...">
+                                        <i class="ri-search-line search-icon"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end col-->
+                        </div>
+                        <!--end row-->
+                    </div>
+                    <!--end card-header-->
+                    <div class="card-body">
+                        <div class="table-responsive table-card">
+                            <table class="table align-middle table-nowrap" id="transactionHistory" data-ng-show="lstTransactionHistory.length > 0">
+                                <thead class="table-light text-muted">
+                                    <tr>
+                                        <th style="width: 60px;"></th>
+                                        <th data-ng-class="{'sort':sort != 'date'}" data-ng-click="sort = 'date'; sortType = !sortType" scope="col">Timestamp&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <button data-ng-if="sort == 'date'" aria-label="Date ascending" title="Date ascending" class="gridjs-sort float-right" data-ng-class="{'gridjs-sort-asc':sortType==false,'gridjs-sort-desc':sortType}"></button></th>
+                                        <th data-ng-class="{'sort':sort != 'coin'}" data-ng-click="sort = 'coin'; sortType = !sortType" scope="col">Currency&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <button data-ng-if="sort == 'coin'" aria-label="Name ascending" title="Name ascending" class="gridjs-sort float-right" data-ng-class="{'gridjs-sort-asc':sortType==false,'gridjs-sort-desc':sortType}"></button></th>
+                                        <th data-ng-class="{'sort':sort != 'from'}" data-ng-click="sort = 'from'; sortType = !sortType" scope="col">From&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <button data-ng-if="sort == 'from'" aria-label="Current Price ascending" title="Current Price ascending" class="gridjs-sort float-right" data-ng-class="{'gridjs-sort-asc':sortType==false,'gridjs-sort-desc':sortType}"></button></th>
+                                        <th data-ng-class="{'sort':sort != 'to'}" data-ng-click="sort = 'to'; sortType = !sortType" scope="col">To&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <button data-ng-if="sort == 'to'" aria-label="Current Price ascending" title="Current Price ascending" class="gridjs-sort float-right" data-ng-class="{'gridjs-sort-asc':sortType==false,'gridjs-sort-desc':sortType}"></button></th>
+                                        <th data-ng-class="{'sort':sort != 'details'}" data-ng-click="sort = 'details'; sortType = !sortType" scope="col">Details&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <button data-ng-if="sort == 'details'" aria-label="Current Price ascending" title="Current Price ascending" class="gridjs-sort float-right" data-ng-class="{'gridjs-sort-asc':sortType==false,'gridjs-sort-desc':sortType}"></button></th>
+    <!--                                    <th data-ng-class="{'sort':sort != 'txId'}" data-ng-click="sort = 'txId'; sortType = !sortType" scope="col">Transaction ID-->
+    <!--                                    <button data-ng-if="sort == 'txId'" aria-label="Current Price ascending" title="Current Price ascending" class="gridjs-sort float-right" data-ng-class="{'gridjs-sort-asc':sortType==false,'gridjs-sort-desc':sortType}"></button></th>-->
+                                        <th data-ng-class="{'sort':sort != 'type'}" data-ng-click="sort = 'type'; sortType = !sortType" scope="col">Type&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <button data-ng-if="sort == 'type'" aria-label="Quantity ascending" title="Quantity ascending" class="gridjs-sort float-right" data-ng-class="{'gridjs-sort-asc':sortType==false,'gridjs-sort-desc':sortType}"></button></th>
+                                        <th data-ng-class="{'sort':sort != 'amount'}" data-ng-click="sort = 'amount'; sortType = !sortType" scope="col">Amount&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <button data-ng-if="sort == 'amount'" aria-label="Quantity ascending" title="Quantity ascending" class="gridjs-sort float-right" data-ng-class="{'gridjs-sort-asc':sortType==false,'gridjs-sort-desc':sortType}"></button></th>
+                                        <th data-ng-class="{'sort':sort != 'status'}" data-ng-click="sort = 'status'; sortType = !sortType" scope="col">Status&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <button data-ng-if="sort == 'status'" aria-label="Status ascending" title="Status ascending" class="gridjs-sort float-right" data-ng-class="{'gridjs-sort-asc':sortType==false,'gridjs-sort-desc':sortType}"></button></th>
+                                    </tr>
+                                </thead>
+                                <!--end thead-->
+                                <tbody class="list form-check-all">
+                                    <tr data-ng-repeat="transactionHistory in lstTransactionHistory | filter:searchText | orderBy: sort:sortType | displayPageData:currentPage*limit | limitTo:limit">
+                                        <td>
+                                            <div class="avatar-xs">
+                                                <div data-ng-if="transactionHistory.type == 'Deposit'" class="avatar-title bg-soft-success text-success rounded-circle fs-16"><i class="ri-arrow-right-down-fill"></i></div>
+                                                <div data-ng-if="transactionHistory.type == 'Purchase' || transactionHistory.type == 'CryptoBot Income' || transactionHistory.type == 'Power Income'" class="avatar-title bg-soft-info text-info rounded-circle fs-16"><i class="ri-robot-line"></i></div>
+                                                <div data-ng-if="transactionHistory.type == 'Transfer'" class="avatar-title bg-soft-warning text-warning rounded-circle fs-16"><i data-ng-class="{'ri-arrow-left-circle-line': transactionHistory.amount > 0, 'ri-arrow-right-circle-line': transactionHistory.amount < 0}"></i></div>
+                                                <div data-ng-if="transactionHistory.type == 'Referral Income'" class="avatar-title bg-soft-primary text-primary rounded-circle fs-16"><i class="ri-share-forward-2-fill"></i></div>
+                                                <div data-ng-if="transactionHistory.type == 'Level Income'" class="avatar-title bg-soft-secondary text-secondary rounded-circle fs-16"><i class="ri-inbox-archive-line"></i></div>
+                                                <div data-ng-if="transactionHistory.type == 'Withdrawal'" class="avatar-title bg-soft-danger text-danger rounded-circle fs-16"><i class="ri-arrow-right-up-fill"></i></div>
+                                            </div>
+                                        </td>
+                                        <td class="order_date"><span data-ng-bind="transactionHistory.date_text"></span>&nbsp;<small class="text-muted"><span data-ng-bind="transactionHistory.time_text"></span></small></td>
+                                        <td>
+                                            <div class="d-flex align-items-center fw-medium">
+                                                <img data-ng-src="assets/images/svg/crypto-icons/{{transactionHistory.coin|angular}}.svg" alt="" class="avatar-xxs me-2"  onerror="this.onerror=null; this.src='/assets/images/svg/crypto-icons/Default.svg'"/>
+                                                <h6 class="fs-14 mb-0"><span data-ng-bind="transactionHistory.coin"></span></h6>
+                                            </div>
+                                        </td>
+                                        <td class="from_name"><span data-ng-bind="transactionHistory.from"></span></td>
+                                        <td class="to_name"><span data-ng-bind="transactionHistory.to"></span></td>
+                                        <td class="details"><span data-ng-bind="transactionHistory.details"></span></td>
+    <!--                                    <td class="txId">{{transactionHistory.txId|angular}}</td>-->
+                                        <td class="type"><span class="badge text-uppercase" data-ng-class="{'text-success':transactionHistory.type == 'Deposit',
+												'text-info':transactionHistory.type == 'Purchase' || transactionHistory.type == 'CryptoBot Income' || transactionHistory.type == 'Power Income',
+												'text-warning':transactionHistory.type == 'Transfer',
+												'text-primary':transactionHistory.type == 'Referral Income',
+												'text-secondary':transactionHistory.type == 'Level Income',
+												'text-danger':transactionHistory.type == 'Withdrawal'}"><span data-ng-bind="transactionHistory.type"></span></span></td>
+                                        <td class="amount" data-ng-class="{'text-success': transactionHistory.amount > 0,'text-danger': transactionHistory.amount < 0}"><span data-ng-if="transactionHistory.amount > 0">+</span><span data-ng-bind="transactionHistory.amount"></span> (<span data-ng-bind="transactionHistory.coin"></span>)</td>
+                                        <td class="status">
+                                            <span class="badge text-uppercase" data-ng-class="{'badge-soft-success':transactionHistory.status=='Successful','badge-soft-warning':transactionHistory.status=='Pending','badge-soft-primary':transactionHistory.status=='Received'}"><span data-ng-bind="transactionHistory.status"></span></span>
+                                        </td>
+                                    </tr>
+                                    <!--end tr-->
+                                </tbody>
+                            </table>
+                            <!--end table-->
+                            <div class="noresult" data-ng-show="(lstTransactionHistory | filter:searchText).length == 0 && !(lstTransactionHistory === undefined)">
+                                <div class="text-center">
+                                    <lord-icon src="https://cdn.lordicon.com/msoeawqm.json" trigger="loop" colors="primary:#405189,secondary:#0ab39c" style="width:75px;height:75px"></lord-icon>
+                                    <h5 class="mt-2">No Results Found</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-end mt-3" data-ng-show="(lstTransactionHistory | filter:searchText).length > 0">
+                            <div class="gridjs-footer">
+                                <div class="gridjs-pagination" data-ng-show="(numberOfItems()/limit) > 1">
+                                    <div role="status" aria-live="polite" class="gridjs-summary" title="Page 1 of {{total_pages|angular}}">Showing <b><span data-ng-bind="currentPage*limit+1"></span></b> to <b><span data-ng-if="(numberOfItems() - ((numberOfItems()/limit-1)*limit)) + (currentPage*limit) <= numberOfItems()" data-ng-bind="(numberOfItems() - ((numberOfItems()/limit-1)*limit)) + (currentPage*limit)"></span><span data-ng-if="(numberOfItems() - ((numberOfItems()/limit-1)*limit)) + (currentPage*limit) > numberOfItems()" data-ng-bind="numberOfItems()"></span></b> of <b><span data-ng-bind="numberOfItems()"></span></b> results</div>
+                                </div>
+                            </div>
+                            <div class="pagination-wrap hstack gap-2" data-ng-show="(lstTransactionHistory | filter:searchText).length > limit">
+                                <button class="page-item pagination-prev" data-ng-disabled="currentPage == 0" data-ng-click="currentPage=currentPage-1">
+                                    Previous
+                                </button>
+                                <ul class="pagination listjs-pagination mb-0"></ul>
+                                <button class="page-item pagination-next" data-ng-disabled="currentPage >= numberOfItems()/limit-1" data-ng-click="currentPage=currentPage+1">
+                                    Next
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end card-body-->
+                </div>
+                <!--end card-->
+            </div>
+            <div class="col-xs-12 d-block d-md-none">
+                <div class="card card-height-100">
+                    <div class="card-header align-items-center d-flex">
+                        <div class="row align-items-center g-3">
+							<h5 class="card-title mt-2 mb-0 flex-grow-1">All Transactions</h5>
+<!--										<div class="flex-shrink-0">-->
+<!--											<div class="dropdown card-header-dropdown">-->
+<!--												<a class="text-reset dropdown-btn" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+<!--													<span class="fw-semibold text-uppercase fs-12">Sort by: </span><span class="text-muted"><span data-ng-bind="current_ra_type"></span><i class="mdi mdi-chevron-down ms-1"></i></span>-->
+<!--												</a>-->
+<!--												<div class="dropdown-menu dropdown-menu-end">-->
+<!--													<a class="dropdown-item" href="" data-ng-click="get_recent_activity('today')">Today</a>-->
+<!--													<a class="dropdown-item" href="" data-ng-click="get_recent_activity('currentweek')">Current Week</a>-->
+<!--													<a class="dropdown-item" href="" data-ng-click="get_recent_activity('currentmonth')">Current Month</a>-->
+<!--													<a class="dropdown-item" href="" data-ng-click="get_recent_activity('currentyear')">Current Year</a>-->
+<!--													<a class="dropdown-item" href="" data-ng-click="get_recent_activity('yesterday')">Yesterday</a>-->
+<!--													<a class="dropdown-item" href="" data-ng-click="get_recent_activity('lastweek')">Last Week</a>-->
+<!--													<a class="dropdown-item" href="" data-ng-click="get_recent_activity('lastmonth')">Last Month</a>-->
+<!--												</div>-->
+<!--											</div>-->
+<!--										</div>-->
+                            <div class="col-md-auto ms-auto">
+                                <div class="d-flex gap-2">
+                                    <div class="search-box">
+                                        <input type="text" class="form-control search" data-ng-model="searchText" placeholder="Search for transactions...">
+                                        <i class="ri-search-line search-icon"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end col-->
+                        </div>
+                        <!--end row-->
+                    </div><!-- end card header -->
+                    <div class="card-body p-0">
+                        <div data-simplebar style="height: 420px;">
+                            <div class="p-3">
+                                <div data-ng-if="lstTransactionHistory.length == 0">
+									<div class="text-center">
+										<lord-icon src="https://cdn.lordicon.com/msoeawqm.json" trigger="loop" colors="primary:#405189,secondary:#0ab39c" style="width:75px;height:75px"></lord-icon>
+										<h5 class="mt-2">No Results Found</h5>
+									</div>
+                                </div>
+                                <div data-ng-show="lstTransactionHistory.length > 0">
+                                    <ul class="list-group list-group-flush border-dashed mb-0">
+                                        <li class="list-group-item d-flex align-items-center" data-ng-repeat="transactionHistory in lstTransactionHistory | filter:searchText | orderBy: sort:sortType | displayPageData:currentPage*limit | limitTo:limit">
+                                            <div class="flex-shrink-0">
+												<div class="avatar-xs">
+													<div data-ng-if="transactionHistory.type == 'Deposit'" class="avatar-title bg-soft-success text-success rounded-circle fs-16"><i class="ri-arrow-right-down-fill"></i></div>
+													<div data-ng-if="transactionHistory.type == 'Purchase' || transactionHistory.type == 'CryptoBot Income' || transactionHistory.type == 'Power Income'" class="avatar-title bg-soft-info text-info rounded-circle fs-16"><i class="ri-robot-line"></i></div>
+													<div data-ng-if="transactionHistory.type == 'Transfer'" class="avatar-title bg-soft-warning text-warning rounded-circle fs-16"><i data-ng-class="{'ri-arrow-left-circle-line': transactionHistory.amount > 0, 'ri-arrow-right-circle-line': transactionHistory.amount < 0}"></i></div>
+													<div data-ng-if="transactionHistory.type == 'Referral Income'" class="avatar-title bg-soft-primary text-primary rounded-circle fs-16"><i class="ri-share-forward-2-fill"></i></div>
+													<div data-ng-if="transactionHistory.type == 'Level Income'" class="avatar-title bg-soft-secondary text-secondary rounded-circle fs-16"><i class="ri-inbox-archive-line"></i></div>
+													<div data-ng-if="transactionHistory.type == 'Withdrawal'" class="avatar-title bg-soft-danger text-danger rounded-circle fs-16"><i class="ri-arrow-right-up-fill"></i></div>
+												</div>
+                                            </div>
+                                            <div class="flex-grow-1 ms-3">
+												<h6 class="fs-14 mb-0"><span class="text-uppercase" data-ng-class="{'text-success':transactionHistory.type == 'Deposit',
+												'text-info':transactionHistory.type == 'Purchase' || transactionHistory.type == 'CryptoBot Income' || transactionHistory.type == 'Power Income',
+												'text-warning':transactionHistory.type == 'Transfer',
+												'text-primary':transactionHistory.type == 'Referral Income',
+												'text-secondary':transactionHistory.type == 'Level Income',
+												'text-danger':transactionHistory.type == 'Withdrawal'}"><span data-ng-bind="transactionHistory.type"></span></span></h6>
+												<p class="fs-12 mb-1" data-ng-class="{'text-success': transactionHistory.amount > 0,'text-danger': transactionHistory.amount < 0}"><span data-ng-if="transactionHistory.amount > 0">+</span><span data-ng-bind="transactionHistory.amount"></span>&nbsp;<small class="text-muted"><span data-ng-bind="transactionHistory.coin"></span></small></p>
+                                                <p class="fs-11 text-muted mb-0"><strong>From<span class="text-uppercase ms-1"></span></strong></p>
+                                                <p class="fs-11 text-muted mb-0"><strong>To<span class="text-uppercase ms-1"></span></strong></p>
+                                                <p class="fs-11 text-muted mb-0"><strong>Details<span class="text-uppercase ms-1"></span></strong></p>
+                                            </div>
+                                            <div class="flex-shrink-0 text-end">
+												<h6 class="text-muted text-uppercase mb-0 fs-10"><span data-ng-bind="transactionHistory.date_text"></span>&nbsp;<small class="text-muted"><span data-ng-bind="transactionHistory.time_text"></span></small></h6>
+												<p class="fs-12 mb-1"><span class="badge text-uppercase" data-ng-class="{'badge-soft-success':transactionHistory.status=='Successful','badge-soft-warning':transactionHistory.status=='Pending','badge-soft-primary':transactionHistory.status=='Received'}"><span data-ng-bind="transactionHistory.status"></span></span></p>
+                                                <p class="fs-11 mb-0 claimedRight"><span data-ng-bind="transactionHistory.from"></span></p>
+                                                <p class="fs-11 mb-0 claimedRight"><span data-ng-bind="transactionHistory.to"></span></p>
+                                                <p class="fs-11 mb-0 claimedRight"><span data-ng-bind="transactionHistory.details"></span></p>
+                                            </div>
+                                        </li><!-- end -->
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-end mt-3" data-ng-show="(lstTransactionHistory | filter:searchText).length > 0">
+                            <div class="gridjs-footer">
+                                <div class="gridjs-pagination" data-ng-show="(numberOfItems()/limit) > 1">
+                                    <div role="status" aria-live="polite" class="gridjs-summary" title="Page 1 of {{total_pages|angular}}">Showing <b><span data-ng-bind="currentPage*limit+1"></span></b> to <b><span data-ng-if="(numberOfItems() - ((numberOfItems()/limit-1)*limit)) + (currentPage*limit) <= numberOfItems()" data-ng-bind="(numberOfItems() - ((numberOfItems()/limit-1)*limit)) + (currentPage*limit)"></span><span data-ng-if="(numberOfItems() - ((numberOfItems()/limit-1)*limit)) + (currentPage*limit) > numberOfItems()" data-ng-bind="numberOfItems()"></span></b> of <b><span data-ng-bind="numberOfItems()"></span></b> results</div>
+                                </div>
+                            </div>
+                            <div class="pagination-wrap hstack gap-2" data-ng-show="(lstTransactionHistory | filter:searchText).length > limit">
+                                <button class="page-item pagination-prev" data-ng-disabled="currentPage == 0" data-ng-click="currentPage=currentPage-1">
+                                    Previous
+                                </button>
+                                <ul class="pagination listjs-pagination mb-0"></ul>
+                                <button class="page-item pagination-next" data-ng-disabled="currentPage >= numberOfItems()/limit-1" data-ng-click="currentPage=currentPage+1">
+                                    Next
+                                </button>
+                            </div>
+                        </div>
+                    </div><!-- end cardbody -->
+                </div><!-- end card -->
+            </div><!-- end col -->
+
+        </div>
+        <!-- container-fluid -->
+    </div>
+    <!-- End Page-content -->
+{%endblock%}
+{% block script%}
+    <script>
+        var swiper=new Swiper(".default-swiper",{loop:!0,autoplay:{delay:2500,disableOnInteraction:!1}});
+    </script>
+    <script src="https://commerce.coinbase.com/v1/checkout.js?version=201807"></script>
+    <script>
+        var app = angular.module('cdApp', ['ngclipboard']);
+        app.directive('numbersOnly', function () {
+            return {
+                require: 'ngModel',
+                link: function (scope, element, attr, ngModelCtrl) {
+                    function fromUser(text) {
+                        if (text) {
+                            var transformedInput = text.replace(/[^0-9]/g, '');
+
+                            if (transformedInput !== text) {
+                                ngModelCtrl.$setViewValue(transformedInput);
+                                ngModelCtrl.$render();
+                            }
+                            return transformedInput;
+                        }
+                        return undefined;
+                    }
+                    ngModelCtrl.$parsers.push(fromUser);
+                }
+            };
+        });
+        app.filter('displayPageData', function() {
+            return function(input, start) {
+            start = +start; //parse to int
+            return input?.slice(start);
+            }
+         });
+        app.controller('cdCtrl', function($scope, $filter, $http, $interval, $timeout) {
+
+            /* Transaction History */
+            $scope.is_crnt_pos_chart = false;
+            $scope.currentPage = 0;
+            $scope.searchText = '';
+            $scope.sort = 'date';
+            $scope.sortType = false;
+            $scope.limit = 10;
+            $scope.lstTransactionHistory = [];
+            $scope.transactionDetails = {'status': ''};
+            $scope.WalletAddress = '0xc412b103907d9cbce6036d91d9ba549200ce5d88';
+            $scope.isAddressCopied = false;
+            $scope.transactionID = '';
+            $scope.withdrawalEligible = {{data['withdrawal_eligible']}};
+            $scope.walletBalance = {{data['wallet_balance']}};
+            $scope.activationBalance = {{data['activation_balance']}};
+            $scope.withdrawalDetails = {"status": "", "error": ""};
+            $scope.transactionDetails = {"status": "", "error": ""};
+            $scope.TransferUsername = '';
+            $scope.isValidUser = false;
+            $scope.transferDetails = {"status": "", "error": ""};
+
+            $scope.numberOfPages=function(){
+                var pageno=($filter('filter')($scope.lstTransactionHistory, $scope.searchText)).length/$scope.cp_limit;
+                if(pageno==0){
+                    pageno++;
+                }
+                return pageno;
+            }
+            $scope.numberOfItems=function(){ return ($filter('filter')($scope.lstTransactionHistory, $scope.searchText)).length; }
+
+            $scope.get_transaction_history = function(){
+                $http({
+                    url: '/transaction_history',
+                    method: "GET"
+                    }).then(function (response) {
+                        data = response.data;
+                        $scope.lstTransactionHistory = data;
+                    },function (error) {
+                        console.error(`Error ${error}`);
+                });
+            }
+
+            $scope.check_transaction = function(){
+                txid = $('#transactionID').val();
+                $http({
+                    url: '/check_transaction?txId='+txid,
+                    method: "GET"
+                    }).then(function (response) {
+                        data = response.data;
+                        $scope.transactionDetails = data;
+                        $.apply();
+                    },function (error) {
+                        console.error(`Error ${error}`);
+                });
+            }
+
+            $scope.initiate_withdrawal = function(){
+                addr = $('#WithdrawalWalletAddress').val();
+                amt = $('#WithdrawalAmount').val();
+                $http({
+                    url: '/initiate_withdrawal?addr='+addr+'&amt='+amt,
+                    method: "GET"
+                    }).then(function (response) {
+                        data = response.data;
+                        $scope.withdrawalDetails = data;
+                        $.apply();
+                    },function (error) {
+                        console.error(`Error ${error}`);
+                });
+            }
+
+            $scope.check_username = function(TransferUsername){
+                $http({
+                    url: '/validate_username?username='+TransferUsername,
+                    method: "GET"
+                    }).then(function (response) {
+                        data = response.data;
+                        $scope.UserDetails = data;
+                        $scope.isValidUser = $scope.UserDetails.status;
+                        $.apply();
+                    },function (error) {
+                        $scope.isValidUser = false;
+                        console.error(`Error ${error}`);
+                });
+            }
+
+            $scope.initiate_transfer = function(){
+                username = $('#TransferUsername').val();
+                amt = $('#TransferAmount').val();
+                $http({
+                    url: '/initiate_transfer?username='+username+'&amt='+amt,
+                    method: "GET"
+                    }).then(function (response) {
+                        data = response.data;
+                        $scope.transferDetails = data;
+                        $.apply();
+                    },function (error) {
+                        console.error(`Error ${error}`);
+                });
+            }
+
+            $scope.win_reload = function() {
+                window.location.reload();
+            }
+
+
+            $scope.get_transaction_history();
+
+            /* Time interval*/
+            $interval(function(){
+                $scope.get_transaction_history();
+            }, 300000);
+         });
+    </script>
+    <script>
+        $(function() {
+            $('.page-content').attr('style', 'display:block !important;')
+        });
+    </script>
+{%endblock%}

@@ -1,0 +1,214 @@
+{% extends "_main_layout.html"%}
+{% block title%}Crypto Orders{%endblock%}
+{% block content%}
+    <div class="page-content" data-ng-app="cdApp" data-ng-controller="cdCtrl" style="display:none;">
+        <div class="container-fluid">
+
+            <!-- start page title -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                        <h4 class="mb-sm-0">Orders</h4>
+
+                        <div class="page-title-right">
+                            <ol class="breadcrumb m-0">
+                                <li class="breadcrumb-item"><a href="javascript: void(0);">Crypto</a></li>
+                                <li class="breadcrumb-item active">Orders</li>
+                            </ol>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- end page title -->
+
+            <div class="row" id="contactList" data-ng-show="is_order_report_data">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-header d-flex align-items-center border-0">
+                            <h5 class="card-title mb-0 flex-grow-1">Orders</h5>
+                            <div class="flex-shrink-0">
+                                <div class="btn-group" role="group" aria-label="Basic example">
+                                    <button class="btn" data-ng-click="todayOrPast = 'today';get_order_report(todayOrPast);currentPage=0;" data-ng-class="{'btn-primary': todayOrPast == 'today', 'btn-soft-info': todayOrPast == 'all'}">Today</button>
+                                    <button class="btn" data-ng-click="todayOrPast = 'all';get_order_report(todayOrPast);currentPage=0;" data-ng-class="{'btn-primary': todayOrPast == 'all', 'btn-soft-info': todayOrPast == 'today'}">Over all</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body border border-dashed border-end-0 border-start-0">
+                            <div class="row g-2">
+                                <div class="col-xl-4 col-md-6">
+                                    <div class="search-box">
+                                        <input type="text" class="form-control search" data-ng-change="currentPage = 0" data-ng-model="searchText" placeholder="Search to orders...">
+                                        <i class="ri-search-line search-icon"></i>
+                                    </div>
+                                </div>
+                                <!--end col-->
+                                <div class="col-xl-3 col-md-6 hide">
+                                    <div class="input-group">
+                                        <span class="input-group-text" id="basic-addon1"><i class="ri-calendar-2-line"></i></span>
+                                        <input type="text" data-ng-disabled="todayOrPast == 'today'" data-ng-class="{'cursor_default':todayOrPast == 'today'}" class="form-control" data-ng-model="fromToDate" data-provider="flatpickr" data-date-format="d M, Y" data-range-date="true" data-max-date="25 Jul, 2022" placeholder="Select date" aria-describedby="basic-addon1">
+                                    </div>
+                                </div>
+                                <!--end col-->
+                                <div class="col-xl-2 col-md-4 hide">
+                                    <select class="form-control" data-ng-model="bs_type" data-choices data-choices-search-false name="choices-single-default" id="choices-single-default">
+                                        <option value="">Select Type</option>
+                                        <option value="Buy">Sell</option>
+                                        <option value="Sell">Buy</option>
+                                    </select>
+                                </div>
+                                <!--end col-->
+                                <div class="col-xl-2 col-md-4 hide">
+                                    <select class="form-control" data-ng-model="or_status" data-choices data-choices-search-false name="choices-single-default2" id="choices-single-default2">
+                                        <option value="">Select Status</option>
+                                        <option value="Successful">Successful</option>
+                                        <option value="Pending">Pending</option>
+                                    </select>
+                                </div>
+                                <!--end col-->
+                                <div class="col-xl-1 col-md-4 hide">
+                                    <button class="btn btn-success w-100">Filters</button>
+                                </div>
+                            </div>
+                            <!--end row-->
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive table-card">
+                                <table class="table align-middle table-nowrap" id="orderReport" data-ng-show="lstOrderReport.length > 0">
+                                    <thead class="table-light text-muted">
+                                        <tr>
+                                            <th data-ng-class="{'sort':sort != 'date'}" data-ng-click="sort = 'date'; sortType = !sortType" scope="col">Date&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <button data-ng-if="sort == 'date'" aria-label="Date ascending" title="Date ascending" class="gridjs-sort float-right" data-ng-class="{'gridjs-sort-asc':sortType==false,'gridjs-sort-desc':sortType}"></button></th>
+                                            <th data-ng-class="{'sort':sort != 'symbolname'}" data-ng-click="sort = 'symbolname'; sortType = !sortType" scope="col">Name&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <button data-ng-if="sort == 'symbolname'" aria-label="Name ascending" title="Name ascending" class="gridjs-sort float-right" data-ng-class="{'gridjs-sort-asc':sortType==false,'gridjs-sort-desc':sortType}"></button></th>
+                                            <th data-ng-class="{'sort':sort != 'bs_type'}" data-ng-click="sort = 'bs_type'; sortType = !sortType" scope="col">Type&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <button data-ng-if="sort == 'bs_type'" aria-label="Current Price ascending" title="Current Price ascending" class="gridjs-sort float-right" data-ng-class="{'gridjs-sort-asc':sortType==false,'gridjs-sort-desc':sortType}"></button></th>
+                                            <th data-ng-class="{'sort':sort != 'ordered_quantity'}" data-ng-click="sort = 'ordered_quantity'; sortType = !sortType" scope="col">Quantity&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <button data-ng-if="sort == 'ordered_quantity'" aria-label="Current Price ascending" title="Current Price ascending" class="gridjs-sort float-right" data-ng-class="{'gridjs-sort-asc':sortType==false,'gridjs-sort-desc':sortType}"></button></th>
+                                            <th data-ng-class="{'sort':sort != 'avg_price'}" data-ng-click="sort = 'avg_price'; sortType = !sortType" scope="col">Avg. Price&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <button data-ng-if="sort == 'avg_price'" aria-label="Current Price ascending" title="Current Price ascending" class="gridjs-sort float-right" data-ng-class="{'gridjs-sort-asc':sortType==false,'gridjs-sort-desc':sortType}"></button></th>
+                                            <th data-ng-class="{'sort':sort != 'order_value'}" data-ng-click="sort = 'order_value'; sortType = !sortType" scope="col">Order Value&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <button data-ng-if="sort == 'order_value'" aria-label="Quantity ascending" title="Quantity ascending" class="gridjs-sort float-right" data-ng-class="{'gridjs-sort-asc':sortType==false,'gridjs-sort-desc':sortType}"></button></th>
+                                            <th data-ng-class="{'sort':sort != 'status'}" data-ng-click="sort = 'status'; sortType = !sortType" scope="col">Status&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <button data-ng-if="sort == 'status'" aria-label="Returns % ascending" title="Returns % ascending" class="gridjs-sort float-right" data-ng-class="{'gridjs-sort-asc':sortType==false,'gridjs-sort-desc':sortType}"></button></th>
+                                        </tr>
+                                    </thead>
+                                    <!--end thead-->
+                                    <tbody class="list form-check-all">
+                                        <tr data-ng-repeat="orderReport in lstOrderReport | filter:searchText | orderBy: sort:sortType | displayPageData:currentPage*limit | limitTo:limit">
+                                            <td class="order_date">{{orderReport.date_text|angular }}&nbsp;<small class="text-muted">{{orderReport.time_text|angular }}</small></td>
+                                            <td>
+                                                <div class="d-flex align-items-center fw-medium">
+                                                    <img data-ng-src="assets/images/svg/crypto-icons/{{orderReport.symbol|angular}}.svg" alt="" class="avatar-xxs me-2"  onerror="this.onerror=null; this.src='/assets/images/svg/crypto-icons/Default.svg'"/>
+                                                    <h6 class="fs-14 mb-0">{{orderReport.symbolname|angular}} ({{orderReport.symbol|angular}})</h6>
+                                                </div>
+                                            </td>
+                                            <td class="bs_type" data-ng-class="{'text-success': orderReport.bs_type == 'Buy','text-danger': orderReport.bs_type == 'Sell'}">{{orderReport.bs_type|angular}}</td>
+                                            <td class="quantity_value">{{orderReport.order_quantity|angular}}</td>
+                                            <td class="avg_price">{{orderReport.avg_price|angular}}</td>
+                                            <td class="order_value">{{orderReport.order_value|angular}}</td>
+                                            <td class="status">
+												<span class="badge text-uppercase" data-ng-class="{'badge-soft-success':orderReport.status=='Successful','badge-soft-warning':orderReport.status=='Pending'}">{{orderReport.status|angular}}</span>
+                                            </td>
+                                        </tr>
+                                        <!--end tr-->
+                                    </tbody>
+                                </table>
+                                <!--end table-->
+                                <div class="noresult" data-ng-show="(lstOrderReport | filter:searchText).length == 0 && !(lstOrderReport === undefined)">
+                                    <div class="text-center">
+                                        <lord-icon src="https://cdn.lordicon.com/msoeawqm.json" trigger="loop" colors="primary:#405189,secondary:#0ab39c" style="width:75px;height:75px"></lord-icon>
+                                        <h5 class="mt-2">No Results Found</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-end mt-3" data-ng-show="(lstOrderReport | filter:searchText).length > 0">
+                                <div class="gridjs-footer">
+                                    <div class="gridjs-pagination" data-ng-show="(numberOfItems()/limit) > 1">
+                                        <div role="status" aria-live="polite" class="gridjs-summary" title="Page 1 of {{total_pages|angular}}">Showing <b><span data-ng-bind="currentPage*limit+1"></span></b> to <b><span data-ng-if="(numberOfItems() - ((numberOfItems()/limit-1)*limit)) + (currentPage*limit) <= numberOfItems()" data-ng-bind="(numberOfItems() - ((numberOfItems()/limit-1)*limit)) + (currentPage*limit)"></span><span data-ng-if="(numberOfItems() - ((numberOfItems()/limit-1)*limit)) + (currentPage*limit) > numberOfItems()" data-ng-bind="numberOfItems()"></span></b> of <b><span data-ng-bind="numberOfItems()"></span></b> results</div>
+                                    </div>
+                                </div>
+                                <div class="pagination-wrap hstack gap-2" data-ng-show="(lstOrderReport | filter:searchText).length > limit">
+                                    <button  class="page-item pagination-prev" data-ng-disabled="currentPage == 0" data-ng-click="currentPage=currentPage-1">
+                                        Previous
+                                    </button >
+                                    <ul class="pagination listjs-pagination mb-0"></ul>
+                                    <button  class="page-item pagination-next" data-ng-disabled="currentPage >= numberOfItems()/limit-1" data-ng-click="currentPage=currentPage+1">
+                                        Next
+                                    </button >
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end card-->
+                </div>
+                <!--end col-->
+            </div>
+            <!--end row-->
+
+        </div>
+        <!-- container-fluid -->
+    </div>
+    <!-- End Page-content -->
+{%endblock%}
+
+{% block script%}
+    <script>
+        var app = angular.module('cdApp', []);
+        app.filter('displayPageData', function() {
+            return function(input, start) {
+            start = +start; //parse to int
+            return input?.slice(start);
+            }
+         });
+        app.controller('cdCtrl', function($scope, $filter, $http, $interval, $timeout) {
+
+            /* Order Report */
+            $scope.is_order_report_data = false;
+            $scope.todayOrPast = 'today';
+            $scope.fromToDate = '';
+            $scope.bs_type = '';
+            $scope.or_status = '';
+            $scope.currentPage = 0;
+            $scope.searchText = '';
+            $scope.sort = 'date';
+            $scope.sortType = true;
+            $scope.limit = 10;
+            $scope.lstOrderReport = [];
+
+            $scope.numberOfPages=function(){
+                var pageno=($filter('filter')($scope.lstOrderReport, $scope.searchText)).length/$scope.limit;
+                if(pageno==0){
+                    pageno++;
+                }
+                return pageno;
+            }
+           $scope.numberOfItems=function(){ return ($filter('filter')($scope.lstOrderReport, $scope.searchText)).length; }
+
+            $scope.get_order_report = function(todayOrPast){
+                $http({
+                    url: '/order_report?type='+todayOrPast,
+                    method: "GET"
+                    }).then(function (response) {
+                        data = response.data;
+                        $scope.lstOrderReport = data;
+                        $scope.is_order_report_data = true;
+                    },function (error) {
+                        console.error(`Error ${error}`);
+                    });
+              }
+
+            $scope.get_order_report($scope.todayOrPast);
+
+            /* Time interval*/
+            $interval(function(){
+                $scope.get_order_report($scope.todayOrPast);
+            }, 60000);
+        });
+    </script>
+    <script>
+        $(function() {
+            $('.page-content').attr('style', 'display:block !important;')
+        });
+    </script>
+{%endblock%}

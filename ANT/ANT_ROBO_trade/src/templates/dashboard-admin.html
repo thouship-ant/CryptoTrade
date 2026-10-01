@@ -1,0 +1,186 @@
+{% extends "_main_layout.html"%}
+{% block title%}Admin Dashboard{%endblock%}
+{% block content%}
+    <div class="page-content" data-ng-app="cdApp" data-ng-controller="cdCtrl" style="display:none;">
+        <div class="container-fluid">
+
+            <!-- start page title -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                        <h4 class="mb-sm-0">Admin Dashboard</h4>
+
+                        <div class="page-title-right">
+                            <ol class="breadcrumb m-0">
+                                <li class="breadcrumb-item"><a href="javascript: void(0);">Admin</a></li>
+                                <li class="breadcrumb-item active">Dashboard</li>
+                            </ol>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- end page title -->
+
+            <div class="row" id="contactList" data-ng-show="is_user_list_data">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-header d-flex align-items-center border-0">
+                            <h5 class="card-title mb-0 flex-grow-1">User List</h5>
+                        </div>
+                        <div class="card-body border border-dashed border-end-0 border-start-0">
+                            <div class="row g-2">
+                                <div class="col-xl-4 col-md-6">
+                                    <div class="search-box">
+                                        <input type="text" class="form-control search" data-ng-change="currentPage = 0" data-ng-model="searchText" placeholder="Search users...">
+                                        <i class="ri-search-line search-icon"></i>
+                                    </div>
+                                </div>
+                                <!--end col-->
+                                <div class="col-xl-1 col-md-4">
+                                    <button class="btn btn-info w-100" data-ng-click="get_user_list()">Reset</button>
+                                </div>
+                            </div>
+                            <!--end row-->
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive table-card">
+                                <table class="table align-middle table-nowrap" id="userList" data-ng-show="lstUserList.length > 0">
+                                    <thead class="table-light text-muted">
+                                        <tr>
+                                            <th data-ng-class="{'sort':sort != 'user_id'}" data-ng-click="sort = 'user_id'; sortType = !sortType" scope="col">User ID&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <button data-ng-if="sort == 'user_id'" aria-label="Date ascending" title="Date ascending" class="gridjs-sort float-right" data-ng-class="{'gridjs-sort-asc':sortType==false,'gridjs-sort-desc':sortType}"></button></th>
+                                            <th data-ng-class="{'sort':sort != 'username'}" data-ng-click="sort = 'username'; sortType = !sortType" scope="col">Username&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <button data-ng-if="sort == 'username'" aria-label="Name ascending" title="Name ascending" class="gridjs-sort float-right" data-ng-class="{'gridjs-sort-asc':sortType==false,'gridjs-sort-desc':sortType}"></button></th>
+                                            <th data-ng-class="{'sort':sort != 'full_name'}" data-ng-click="sort = 'full_name'; sortType = !sortType" scope="col">Name&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <button data-ng-if="sort == 'full_name'" aria-label="Current Price ascending" title="Current Price ascending" class="gridjs-sort float-right" data-ng-class="{'gridjs-sort-asc':sortType==false,'gridjs-sort-desc':sortType}"></button></th>
+                                            <th data-ng-class="{'sort':sort != 'validity'}" data-ng-click="sort = 'validity'; sortType = !sortType" scope="col">Last Purchase&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <button data-ng-if="sort == 'validity'" aria-label="Current Price ascending" title="Current Price ascending" class="gridjs-sort float-right" data-ng-class="{'gridjs-sort-asc':sortType==false,'gridjs-sort-desc':sortType}"></button></th>
+                                            <th data-ng-class="{'sort':sort != 'validity_status'}" data-ng-click="sort = 'validity_status'; sortType = !sortType" scope="col">Validity Status&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <button data-ng-if="sort == 'validity_status'" aria-label="Current Price ascending" title="Current Price ascending" class="gridjs-sort float-right" data-ng-class="{'gridjs-sort-asc':sortType==false,'gridjs-sort-desc':sortType}"></button></th>
+                                            <th scope="col">Tool Status</th>
+                                            <th data-ng-class="{'sort':sort != 'current_plan'}" data-ng-click="sort = 'current_plan'; sortType = !sortType" scope="col">Current Plan&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <button data-ng-if="sort == 'current_plan'" aria-label="Returns % ascending" title="Returns % ascending" class="gridjs-sort float-right" data-ng-class="{'gridjs-sort-asc':sortType==false,'gridjs-sort-desc':sortType}"></button></th>
+                                            <th data-ng-class="{'sort':sort != 'status'}" data-ng-click="sort = 'status'; sortType = !sortType" scope="col">User Status&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <button data-ng-if="sort == 'status'" aria-label="Returns % ascending" title="Returns % ascending" class="gridjs-sort float-right" data-ng-class="{'gridjs-sort-asc':sortType==false,'gridjs-sort-desc':sortType}"></button></th>
+                                        </tr>
+                                    </thead>
+                                    <!--end thead-->
+                                    <tbody class="list form-check-all">
+                                        <tr data-ng-repeat="userList in lstUserList | filter:searchText | orderBy: sort:sortType | displayPageData:currentPage*limit | limitTo:limit">
+                                            <td class="user_id">{{userList.user_id|angular }}</td>
+                                            <td class="username">{{userList.username|angular }}</td>
+                                            <td>
+                                                <div class="d-flex align-items-center fw-medium">
+                                                    <img data-ng-src="/assets/images/users/{{userList.username|angular }}.jpg" alt="" class="avatar-xxs me-2"  onerror="this.onerror=null; this.src='/assets/images/users/user-dummy-img.jpg'"/>
+                                                    <h6 class="fs-14 mb-0">{{userList.full_name|angular}}</h6>
+                                                </div>
+                                            </td>
+                                            <td class="validity">{{userList.validity|angular}}</td>
+                                            <td class="validity_status" data-ng-class="{'text-warning': userList.validity_status == 'configured','text-info': userList.validity_status == 'register','text-success': userList.validity_status == 'valid','text-danger': userList.validity_status == 'Expired'}">{{userList.validity_status|angular}}</td>
+                                            <td class="is_tool_running">
+                                                <lord-icon data-ng-if="userList.is_tool_running == 1" src="https://cdn.lordicon.com/sgodrdhn.json" trigger="loop" style="width:32px;height:32px"></lord-icon>
+                                                <lord-icon data-ng-if="userList.is_tool_running == 0" src="https://cdn.lordicon.com/cnnejsre.json" trigger="hover" colors="primary:#fad3d1,secondary:#ee6d66,tertiary:#f24c00,quaternary:#911710" style="width:32px;height:32px"></lord-icon>
+                                            </td>
+                                            <td class="current_plan">{{userList.current_plan|angular}}</td>
+                                            <td class="status">
+												<span class="badge text-uppercase" data-ng-class="{'badge-soft-success':userList.status=='Active','badge-soft-danger':userList.status=='In Active'}">{{userList.status|angular}}</span>
+                                            </td>
+                                        </tr>
+                                        <!--end tr-->
+                                    </tbody>
+                                </table>
+                                <!--end table-->
+                                <div class="noresult" data-ng-show="(lstUserList | filter:searchText).length == 0 && !(lstUserList === undefined)">
+                                    <div class="text-center">
+                                        <lord-icon src="https://cdn.lordicon.com/msoeawqm.json" trigger="loop" colors="primary:#405189,secondary:#0ab39c" style="width:75px;height:75px"></lord-icon>
+                                        <h5 class="mt-2">No Results Found</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-end mt-3" data-ng-show="(lstUserList | filter:searchText).length > 0">
+                                <div class="gridjs-footer">
+                                    <div class="gridjs-pagination" data-ng-show="(numberOfItems()/limit) > 1">
+                                        <div role="status" aria-live="polite" class="gridjs-summary" title="Page 1 of {{total_pages|angular}}">Showing <b><span data-ng-bind="currentPage*limit+1"></span></b> to <b><span data-ng-if="(numberOfItems() - ((numberOfItems()/limit-1)*limit)) + (currentPage*limit) <= numberOfItems()" data-ng-bind="(numberOfItems() - ((numberOfItems()/limit-1)*limit)) + (currentPage*limit)"></span><span data-ng-if="(numberOfItems() - ((numberOfItems()/limit-1)*limit)) + (currentPage*limit) > numberOfItems()" data-ng-bind="numberOfItems()"></span></b> of <b><span data-ng-bind="numberOfItems()"></span></b> results</div>
+                                    </div>
+                                </div>
+                                <div class="pagination-wrap hstack gap-2" data-ng-show="(lstUserList | filter:searchText).length > limit">
+                                    <button  class="page-item pagination-prev" data-ng-disabled="currentPage == 0" data-ng-click="currentPage=currentPage-1">
+                                        Previous
+                                    </button >
+                                    <ul class="pagination listjs-pagination mb-0"></ul>
+                                    <button  class="page-item pagination-next" data-ng-disabled="currentPage >= numberOfItems()/limit-1" data-ng-click="currentPage=currentPage+1">
+                                        Next
+                                    </button >
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end card-->
+                </div>
+                <!--end col-->
+            </div>
+            <!--end row-->
+
+        </div>
+        <!-- container-fluid -->
+    </div>
+    <!-- End Page-content -->
+{%endblock%}
+
+{% block script%}
+    <script>
+        var app = angular.module('cdApp', []);
+        app.filter('displayPageData', function() {
+            return function(input, start) {
+            start = +start; //parse to int
+            return input?.slice(start);
+            }
+         });
+        app.controller('cdCtrl', function($scope, $filter, $http, $interval, $timeout) {
+
+            /* Order Report */
+            $scope.is_user_list_data = false;
+            $scope.currentPage = 0;
+            $scope.searchText = '';
+            $scope.sort = 'user_id';
+            $scope.sortType = true;
+            $scope.limit = 5;
+            $scope.lstUserList = [];
+
+            $scope.numberOfPages=function(){
+                var pageno=($filter('filter')($scope.lstUserList, $scope.searchText)).length/$scope.limit;
+                if(pageno==0){
+                    pageno++;
+                }
+                return pageno;
+            }
+           $scope.numberOfItems=function(){ return ($filter('filter')($scope.lstUserList, $scope.searchText)).length; }
+
+            $scope.get_user_list = function(){
+                $http({
+                    url: '/user_list',
+                    method: "GET"
+                    }).then(function (response) {
+                        data = response.data;
+                        $scope.lstUserList = data;
+                        $scope.is_user_list_data = true;
+                    },function (error) {
+                        console.error(`Error ${error}`);
+                    });
+              }
+
+            $scope.get_user_list();
+
+            /* Time interval*/
+            $interval(function(){
+                $scope.get_user_list();
+            }, 300000);
+        });
+    </script>
+    <script>
+        $(function() {
+            $('.page-content').attr('style', 'display:block !important;')
+        });
+    </script>
+{%endblock%}

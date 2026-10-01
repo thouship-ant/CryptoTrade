@@ -1,0 +1,194 @@
+@import "tailwindcss";
+@config "../tailwind.config.js";
+
+/* Tailwind v4's CSS-first way to make `dark:` utilities key off a .dark class on an
+   ancestor (set by ThemeProvider) instead of the OS prefers-color-scheme media query. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Gold & black theme. Light = warm ivory with amber/gold accent; dark (default,
+   toggled by ThemeProvider via a class on <html>) = near-black charcoal with the
+   same gold accent. Only the neutral scale differs between them. Hues: gold ~42,
+   neutrals ~40 (warm) so black never reads blue/purple. */
+:root {
+  color-scheme: light;
+  --background: 40 33% 98%;
+  --foreground: 40 10% 10%;
+  --card: 0 0% 100%;
+  --card-foreground: 40 10% 10%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 40 10% 10%;
+  --muted: 40 25% 95%;
+  --muted-foreground: 40 8% 38%;
+  --accent: 43 90% 92%;
+  --accent-foreground: 38 85% 25%;
+  --destructive: 0 84% 55%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 40 20% 86%;
+  --input: 40 20% 86%;
+  --primary: 42 96% 48%;
+  --primary-foreground: 40 20% 8%;
+  --secondary: 40 25% 94%;
+  --secondary-foreground: 40 10% 10%;
+  --ring: 42 96% 48%;
+
+  --sidebar-background: 40 30% 96%;
+  --sidebar-foreground: 40 10% 25%;
+  --sidebar-primary: 42 96% 48%;
+  --sidebar-primary-foreground: 40 20% 8%;
+  --sidebar-accent: 43 90% 92%;
+  --sidebar-accent-foreground: 38 85% 25%;
+  --sidebar-border: 40 20% 86%;
+  --sidebar-ring: 42 96% 48%;
+
+  --bg-pattern-url: none;
+
+  --radius: 0.5rem;
+}
+
+.dark {
+  color-scheme: dark;
+  --background: 40 8% 5%;
+  --foreground: 42 25% 94%;
+  --card: 40 8% 9%;
+  --card-foreground: 42 25% 94%;
+  --popover: 40 8% 9%;
+  --popover-foreground: 42 25% 94%;
+  --muted: 40 6% 14%;
+  --muted-foreground: 40 8% 64%;
+  --accent: 42 50% 16%;
+  --accent-foreground: 43 95% 70%;
+  --destructive: 0 72% 55%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 40 8% 18%;
+  --input: 40 8% 18%;
+  --primary: 43 96% 56%;
+  --primary-foreground: 40 20% 8%;
+  --secondary: 40 6% 13%;
+  --secondary-foreground: 42 25% 94%;
+  --ring: 43 96% 56%;
+
+  --sidebar-background: 40 8% 7%;
+  --sidebar-foreground: 42 15% 82%;
+  --sidebar-primary: 43 96% 56%;
+  --sidebar-primary-foreground: 40 20% 8%;
+  --sidebar-accent: 42 50% 16%;
+  --sidebar-accent-foreground: 43 95% 70%;
+  --sidebar-border: 40 8% 18%;
+  --sidebar-ring: 43 96% 56%;
+
+  --bg-pattern-url: none;
+}
+* {
+  border-color: hsl(var(--border));
+}
+
+/* Tailwind v4's Preflight deliberately sets buttons to cursor: default (a change
+   from v3, which used the browser's native pointer) - restore the hand cursor for
+   every clickable button/button-role element across the app, but only while it's
+   actually enabled: a disabled one already blocks pointer-events, so it's excluded
+   here rather than shown a misleading hand cursor it can't act on. */
+button:not(:disabled),
+[role="button"]:not([aria-disabled="true"]) {
+  cursor: pointer;
+}
+
+body {
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+}
+
+/* Applied to Navigation, MobileSidebar, UserDropdown, and the Add Money / Withdraw /
+   Order Details modals - the pattern image itself swaps per theme via --bg-pattern-url
+   above, so callers never need to branch on theme. */
+.themed-bg-pattern {
+  background-image: var(--bg-pattern-url);
+  background-size: 100px 100px;
+}
+
+
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+        "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+        "Helvetica Neue", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+        monospace;
+}
+
+.App {
+    text-align: center;
+}
+
+.App-logo {
+    height: 40vmin;
+    pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .App-logo {
+        animation: App-logo-spin infinite 20s linear;
+    }
+}
+
+.App-header {
+    background-color: #0f0f10;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+}
+
+.App-link {
+    color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Settings page - scrolling notice above the Stock Broker field explaining the
+   shared IP pool/waitlist rules (app/settings/page.js). */
+.ip-marquee {
+    overflow: hidden;
+    white-space: nowrap;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.ip-marquee-text {
+    display: inline-block;
+    padding-left: 100%;
+    animation: ip-marquee-scroll 22s linear infinite;
+}
+
+@keyframes ip-marquee-scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .ip-marquee-text {
+        animation: none;
+        padding-left: 0;
+        white-space: normal;
+    }
+}
+
