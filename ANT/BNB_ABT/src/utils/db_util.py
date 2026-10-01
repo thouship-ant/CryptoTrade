@@ -26,7 +26,7 @@ def queryExecution(cnxn, query, type):
 def connect_database():
     try:
         # cnxn = pyodbc.connect("DRIVER={SQL Server};SERVER=localhost\SQLEXPRESS;DATABASE=ant_cryptotradingbot;") ANT_Web_Admin
-        cnxn = mysql.connector.connect(host='127.0.0.1', database='ant_cryptotradingbot', user='ahsanahamad', password='Ahsan@1912')
+        cnxn = mysql.connector.connect(host='187.127.154.130', database='ant_cryptotradingbot_v2', user='ahyan', password='Ahyan@1811')
         # cursor = cnxn.cursor()
         # print("Database Connection Established..!")
         return cnxn

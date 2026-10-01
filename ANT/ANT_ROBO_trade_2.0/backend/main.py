@@ -487,8 +487,8 @@ def _load_schema_statements():
         if not stmt:
             continue
         upper = stmt.upper()
-        if upper.startswith('CREATE DATABASE') or upper.startswith('USE '):
-            continue  # the connection already targets DB_NAME
+        if upper.startswith(('CREATE DATABASE', 'USE ', 'CREATE USER', 'GRANT ', 'FLUSH ')):
+            continue  # DB/user administration is a DBA task; the app user lacks those privileges
         statements.append(stmt)
     return statements
 

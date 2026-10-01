@@ -9,7 +9,10 @@ USE ant_cryptotradingbot_v2;
 
 CREATE USER 'ahyan'@'106.192.70.43' IDENTIFIED BY 'Ahyan@1811';
 GRANT ALL PRIVILEGES ON ant_cryptotradingbot_v2.* TO 'ahyan'@'187.127.154.130';
+GRANT SELECT, INSERT, UPDATE, DELETE ON ant_cryptotradingbot_v2.* TO 'ahyan'@'187.127.154.130';
+FLUSH PRIVILEGES;
 GRANT ALL PRIVILEGES ON `ant_cryptotradingbot_v2`.* TO 'ahyan'@'106.192.70.43';
+GRANT SELECT, INSERT, UPDATE, DELETE ON ant_cryptotradingbot_v2.* TO 'ahyan'@'106.192.70.43';
 -- Apply the changes
 FLUSH PRIVILEGES;
 
@@ -51,7 +54,7 @@ CREATE TABLE IF NOT EXISTS ant_user_data (
 
 LOCK TABLES `ant_user_data` WRITE;
 /*!40000 ALTER TABLE `ant_user_data` DISABLE KEYS */;
-INSERT INTO `ant_user_data` VALUES ('053378d6-348b-11f1-845c-bcfce7480294','ANT Admin','Admin','$2b$12$v0Mk6jJtcy1skxqeabialOOY.2YqXt9PRA.vGoc/xzFK/3rTTa3AS','+918807069691','mdthouship1988@gmail.com','Admin','binance','mock','mock','','admin_ant_1','admin_ant_1','5MP',4991566,1000,20,50,20,20,20,1,1,1,0,1,1,0,NULL,'2022-04-02 10:15:00',NULL),('fa8736e9-2281-4cd9-80e1-5f4d4c546630','Mohamed Thouship','thouship','$2b$12$v0Mk6jJtcy1skxqeabialOOY.2YqXt9PRA.vGoc/xzFK/3rTTa3AS','+919600249294','thouship@gmail.com','User','binance','nFkI0vXIipJcEfvBTO6gdaDNpB7QdQozi961siYY3Mnuga5dPpcXZx8UZhfPFO4W','xPVDaPsJ8wH2G732UWYL2CaegmfUpn5XEOhGJY987BxOQEi3J5keEXKSruWC5kLu','','thouship_ant_2','admin_ant_1','1MP',995200,500,5,25,20,20,20,1,1,0,0,1,1,0,NULL,'2022-04-05 15:10:20',NULL); /*nFkI0vXIip$*/ /**/
+INSERT IGNORE INTO `ant_user_data` VALUES ('053378d6-348b-11f1-845c-bcfce7480294','ANT Admin','Admin','$2b$12$v0Mk6jJtcy1skxqeabialOOY.2YqXt9PRA.vGoc/xzFK/3rTTa3AS','+918807069691','mdthouship1988@gmail.com','Admin','binance','mock','mock','','admin_ant_1','admin_ant_1','5MP',4991566,1000,20,50,20,20,20,1,1,1,0,1,1,0,NULL,'2022-04-02 10:15:00',NULL),('fa8736e9-2281-4cd9-80e1-5f4d4c546630','Mohamed Thouship','thouship','$2b$12$v0Mk6jJtcy1skxqeabialOOY.2YqXt9PRA.vGoc/xzFK/3rTTa3AS','+919600249294','thouship@gmail.com','User','binance','nFkI0vXIipJcEfvBTO6gdaDNpB7QdQozi961siYY3Mnuga5dPpcXZx8UZhfPFO4W','xPVDaPsJ8wH2G732UWYL2CaegmfUpn5XEOhGJY987BxOQEi3J5keEXKSruWC5kLu','','thouship_ant_2','admin_ant_1','1MP',995200,500,5,25,20,20,20,1,1,0,0,1,1,0,NULL,'2022-04-05 15:10:20',NULL); /*nFkI0vXIip$*/ /**/
 /*!40000 ALTER TABLE `ant_user_data` ENABLE KEYS */;
 UNLOCK TABLES;
 
