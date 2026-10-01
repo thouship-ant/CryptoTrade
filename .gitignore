@@ -222,4 +222,4 @@ ANT/TA_Lib-0.4.24-cp310-cp310-win_amd64.whl
 ANT/BNB_ABT/.idea/*
 ANT/ANT_ROBO_trade/venv/*
 ANT/ANT_ROBO_trade_2.0/backend/venv/*
-ANT/BNB_ABT/*
+ANT/BNB_ABT/venv/*

@@ -1,0 +1,5 @@
+Date: 5/4/2022
+Time: 8:49
+Phone Number: +919600249294
+Message: Buy Order==========Order Id: 4236851022Symbol: XRPUSDTQuantity: 242.00000000Price: 0.8254Amount: 199.74680000Order Status: FILLED
+--------------------

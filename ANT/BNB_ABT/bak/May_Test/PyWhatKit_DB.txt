@@ -1,0 +1,155 @@
+Date: 16/4/2022
+Time: 11:36
+Phone Number: +919600249294
+Message: Buy Order ==========Order Id: 2486851282 Symbol: DOGEUSDT Quantity: 1356 Price: 0.1453 Amount: 197.02680000 Order Status: FILLED
+--------------------
+Date: 16/4/2022
+Time: 12:34
+Phone Number: +919600249294
+Message: Dummy - Bought SLPUSDT at 0.0174 == qty : 28737
+--------------------
+Date: 16/4/2022
+Time: 16:0
+Phone Number: +919600249294
+Message: Sell Order ==========Order Id: 2487239829 Symbol: DOGEUSDT Quantity: 1356 Price: 0.1419 Amount: 192.41640000 Order Status: FILLED
+--------------------
+Date: 16/4/2022
+Time: 16:8
+Phone Number: +919600249294
+Message: Buy Order ==========Order Id: 215393322 Symbol: PNTUSDT Quantity: 169 Price: 0.56837337 Amount: 96.05510000 Order Status: FILLED
+--------------------
+Date: 18/4/2022
+Time: 0:0
+Phone Number: +919600249294
+Message: Sell Order ==========Order Id: 215519073 Symbol: PNTUSDT Quantity: 169 Price: 0.5524 Amount: 93.35560000 Order Status: FILLED
+--------------------
+Date: 20/4/2022
+Time: 12:2
+Phone Number: +919600249294
+Message: Bought BETAUSDT at 0.4138 == qty : 362
+--------------------
+Date: 20/4/2022
+Time: 12:50
+Phone Number: +919600249294
+Message: Buy Order ==========Order Id: 146680864 Symbol: IDEXUSDT Quantity: 976 Price: 0.15414 Amount: 150.44064000 Order Status: FILLED
+--------------------
+Date: 20/4/2022
+Time: 16:0
+Phone Number: +919600249294
+Message: Sell Order ==========Order Id: 146730317 Symbol: IDEXUSDT Quantity: 976 Price: 0.14837 Amount: 144.80912000 Order Status: FILLED
+--------------------
+Date: 21/4/2022
+Time: 13:20
+Phone Number: +919600249294
+Message: Buy Order ==========Order Id: 61889863 Symbol: AUDUSDT Quantity: 200 Price: 0.7426 Amount: 148.52000000 Order Status: FILLED
+--------------------
+Date: 21/4/2022
+Time: 16:0
+Phone Number: +919600249294
+Message: Sell Order ==========Order Id: 61902149 Symbol: AUDUSDT Quantity: 200 Price: 0.737 Amount: 147.40000000 Order Status: FILLED
+--------------------
+Date: 21/4/2022
+Time: 17:32
+Phone Number: +919600249294
+Message: Buy Order ==========Order Id: 45247642 Symbol: RAREUSDT Quantity: 236 Price: 0.626 Amount: 147.73600000 Order Status: FILLED
+--------------------
+Date: 21/4/2022
+Time: 22:9
+Phone Number: +919600249294
+Message: Sold BETAUSDT at 0.38616 == qty : 362
+--------------------
+Date: 22/4/2022
+Time: 0:0
+Phone Number: +919600249294
+Message: Sell Order ==========Order Id: 45288188 Symbol: RAREUSDT Quantity: 236 Price: 0.585 Amount: 138.06000000 Order Status: FILLED
+--------------------
+Date: 22/4/2022
+Time: 0:16
+Phone Number: +919600249294
+Message: Buy Order ==========Order Id: 625723281 Symbol: BATUSDT Quantity: 91 Price: 0.7532 Amount: 68.54120000 Order Status: FILLED
+--------------------
+Date: 22/4/2022
+Time: 2:19
+Phone Number: +919600249294
+Message: Sell Order ==========Order Id: 625806779 Symbol: BATUSDT Quantity: 91 Price: 0.7655 Amount: 69.66050000 Order Status: FILLED
+--------------------
+Date: 22/4/2022
+Time: 4:57
+Phone Number: +919600249294
+Message: Buy Order ==========Order Id: 35377399 Symbol: ADXUSDT Quantity: 180 Price: 0.3853 Amount: 69.35400000 Order Status: FILLED
+--------------------
+Date: 22/4/2022
+Time: 6:40
+Phone Number: +919600249294
+Message: Sell Order ==========Order Id: 35396454 Symbol: ADXUSDT Quantity: 180 Price: 0.3962 Amount: 71.31600000 Order Status: FILLED
+--------------------
+Date: 2/5/2022
+Time: 12:48
+Phone Number: +919600249294
+Message: Bought DREPUSDT at 0.8795 == qty : 284 === amount : 249.778
+--------------------
+Date: 5/5/2022
+Time: 16:7
+Phone Number: +919600249294
+Message: Sold DREPUSDT at 0.782 == qty : 284 === amount : 222.08800000000002
+--------------------
+Date: 9/5/2022
+Time: 2:10
+Phone Number: +919600249294
+Message: Bought LOKAUSDT at 2.7442 == qty : 88 === amount : 241.48960000000002
+--------------------
+Date: 9/5/2022
+Time: 14:13
+Phone Number: +919600249294
+Message: Sold LOKAUSDT at 2.81 == qty : 88 === amount : 247.28
+--------------------
+Date: 10/5/2022
+Time: 14:7
+Phone Number: +919600249294
+Message: Bought INJUSDT at 3.414 == qty : 65 === amount : 221.91
+--------------------
+Date: 11/5/2022
+Time: 8:9
+Phone Number: +919600249294
+Message: Sold INJUSDT at 2.63 == qty : 65 === amount : 170.95
+--------------------
+Date: 12/5/2022
+Time: 18:3
+Phone Number: +919600249294
+Message: Bought DREPUSDT at 0.432 == qty : 437 === amount : 188.784
+--------------------
+Date: 13/5/2022
+Time: 2:6
+Phone Number: +919600249294
+Message: Sold DREPUSDT at 0.4793 == qty : 437 === amount : 209.4541
+--------------------
+Date: 13/5/2022
+Time: 4:4
+Phone Number: +919600249294
+Message: Bought GALAUSDT at 0.08853 == qty : 2367 === amount : 209.55051
+--------------------
+Date: 13/5/2022
+Time: 6:10
+Phone Number: +919600249294
+Message: Sold GALAUSDT at 0.09951 == qty : 2367 === amount : 235.54017
+--------------------
+Date: 13/5/2022
+Time: 6:14
+Phone Number: +919600249294
+Message: Bought FTMUSDT at 0.3783 == qty : 622 === amount : 235.3026
+--------------------
+Date: 13/5/2022
+Time: 10:3
+Phone Number: +919600249294
+Message: Sold FTMUSDT at 0.3875 == qty : 622 === amount : 241.025
+--------------------
+Date: 13/5/2022
+Time: 10:7
+Phone Number: +919600249294
+Message: Bought INJUSDT at 2.232 == qty : 108 === amount : 241.056
+--------------------
+Date: 17/5/2022
+Time: 8:14
+Phone Number: +919600249294
+Message: Sold INJUSDT at 2.333 == qty : 108 === amount : 251.96400000000003
+--------------------

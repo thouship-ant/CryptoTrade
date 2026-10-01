@@ -1,0 +1,130 @@
+Date: 12/4/2022
+Time: 10:14
+Phone Number: +919600249294
+Message: Buy Order ==========Order Id: 90361672 Symbol: FIOUSDT Quantity: 2195 Price: 0.0916 Amount: 201.06200000 Order Status: FILLED
+--------------------
+Date: 12/4/2022
+Time: 10:46
+Phone Number: +919600249294
+Message: Sell Order ==========Order Id: 90362914 Symbol: FIOUSDT Quantity: 2195 Price: 0.0928 Amount: 203.69600000 Order Status: FILLED
+--------------------
+Date: 12/4/2022
+Time: 11:25
+Phone Number: +919600249294
+Message: Buy Order ==========Order Id: 39595445 Symbol: TRIBEUSDT Quantity: 395 Price: 0.5150843 Amount: 203.45830000 Order Status: FILLED
+--------------------
+Date: 12/4/2022
+Time: 12:57
+Phone Number: +919600249294
+Message: Sell Order ==========Order Id: 39602682 Symbol: TRIBEUSDT Quantity: 395 Price: 0.5205 Amount: 205.59750000 Order Status: FILLED
+--------------------
+Date: 13/4/2022
+Time: 1:4
+Phone Number: +919600249294
+Message: Sell Order ==========Order Id: 19369932 Symbol: DFUSDT Quantity: 2880 Price: 0.07237535 Amount: 208.44100000 Order Status: FILLED
+--------------------
+Date: 13/4/2022
+Time: 1:53
+Phone Number: +919600249294
+Message: Buy Order ==========Order Id: 247569242 Symbol: DOCKUSDT Quantity: 5658 Price: 0.03687 Amount: 208.61046000 Order Status: FILLED
+--------------------
+Date: 13/4/2022
+Time: 3:22
+Phone Number: +919600249294
+Message: Sell Order ==========Order Id: 247574553 Symbol: DOCKUSDT Quantity: 5658 Price: 0.03728381 Amount: 210.95180000 Order Status: FILLED
+--------------------
+Date: 13/4/2022
+Time: 3:26
+Phone Number: +919600249294
+Message: Buy Order ==========Order Id: 274862469 Symbol: JSTUSDT Quantity: 2846 Price: 0.07408 Amount: 210.83168000 Order Status: FILLED
+--------------------
+Date: 13/4/2022
+Time: 22:34
+Phone Number: +919600249294
+Message: Sell Order ==========Order Id: 275219530 Symbol: JSTUSDT Quantity: 2846 Price: 0.07550058 Amount: 214.87463800 Order Status: FILLED
+--------------------
+Date: 13/4/2022
+Time: 22:43
+Phone Number: +919600249294
+Message: Buy Order ==========Order Id: 85090976 Symbol: CFXUSDT Quantity: 2436 Price: 0.1702 Amount: 414.60720000 Order Status: FILLED
+--------------------
+Date: 14/4/2022
+Time: 13:9
+Phone Number: +919600249294
+Message: Dummy - Bought TVKUSDT at 0.1098
+--------------------
+Date: 14/4/2022
+Time: 16:0
+Phone Number: +919600249294
+Message: Sell Order ==========Order Id: 85192059 Symbol: CFXUSDT Quantity: 2436 Price: 0.16229639 Amount: 395.35400000 Order Status: FILLED
+--------------------
+Date: 14/4/2022
+Time: 16:49
+Phone Number: +919600249294
+Message: Buy Order ==========Order Id: 64699723 Symbol: TVKUSDT Quantity: 1782 Price: 0.1108 Amount: 197.44560000 Order Status: FILLED
+--------------------
+Date: 14/4/2022
+Time: 16:53
+Phone Number: +919600249294
+Message: Sell Order ==========Order Id: 64705277 Symbol: TVKUSDT Quantity: 1782 Price: 0.11376341 Amount: 202.72640000 Order Status: FILLED
+--------------------
+Date: 14/4/2022
+Time: 18:15
+Phone Number: +919600249294
+Message: Buy Order ==========Order Id: 39960217 Symbol: TRIBEUSDT Quantity: 358 Price: 0.5589 Amount: 200.08620000 Order Status: FILLED
+--------------------
+Date: 15/4/2022
+Time: 2:0
+Phone Number: +919600249294
+Message: Dummy - Bought API3USDT at 4.314
+--------------------
+Date: 15/4/2022
+Time: 5:30
+Phone Number: +919600249294
+Message: Sell Order ==========Order Id: 40034554 Symbol: TRIBEUSDT Quantity: 358 Price: 0.5466243 Amount: 195.69150000 Order Status: FILLED
+--------------------
+Date: 15/4/2022
+Time: 5:49
+Phone Number: +919600249294
+Message: Buy Order ==========Order Id: 188950262 Symbol: TCTUSDT Quantity: 11026 Price: 0.01795951 Amount: 198.02154000 Order Status: FILLED
+--------------------
+Date: 15/4/2022
+Time: 8:36
+Phone Number: +919600249294
+Message: Sell Order ==========Order Id: 188959318 Symbol: TCTUSDT Quantity: 11026 Price: 0.01822 Amount: 200.89372000 Order Status: FILLED
+--------------------
+Date: 15/4/2022
+Time: 8:43
+Phone Number: +919600249294
+Message: Buy Order ==========Order Id: 238618753 Symbol: XEMUSDT Quantity: 1983 Price: 0.1006 Amount: 199.48980000 Order Status: FILLED
+--------------------
+Date: 15/4/2022
+Time: 14:0
+Phone Number: +919600249294
+Message: Sell Order ==========Order Id: 238662442 Symbol: XEMUSDT Quantity: 1983 Price: 0.0993 Amount: 196.91190000 Order Status: FILLED
+--------------------
+Date: 15/4/2022
+Time: 15:2
+Phone Number: +919600249294
+Message: Buy Order ==========Order Id: 201618783 Symbol: ARDRUSDT Quantity: 915 Price: 0.21744951 Amount: 198.96630000 Order Status: FILLED
+--------------------
+Date: 15/4/2022
+Time: 19:15
+Phone Number: +919600249294
+Message: Sell Order ==========Order Id: 201627325 Symbol: ARDRUSDT Quantity: 915 Price: 0.2164 Amount: 198.00600000 Order Status: FILLED
+--------------------
+Date: 15/4/2022
+Time: 20:15
+Phone Number: +919600249294
+Message: Buy Order ==========Order Id: 636221052 Symbol: IOTAUSDT Quantity: 294 Price: 0.6723 Amount: 197.65620000 Order Status: FILLED
+--------------------
+Date: 16/4/2022
+Time: 6:30
+Phone Number: +919600249294
+Message: Sell Order ==========Order Id: 636338843 Symbol: IOTAUSDT Quantity: 294 Price: 0.66963741 Amount: 196.87340000 Order Status: FILLED
+--------------------
+Date: 16/4/2022
+Time: 6:36
+Phone Number: +919600249294
+Message: Buy Order ==========Order Id: 484081265 Symbol: CVCUSDT Quantity: 672 Price: 0.2933 Amount: 197.09760000 Order Status: FILLED
+--------------------
