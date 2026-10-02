@@ -300,7 +300,13 @@ export default function SettingsPage() {
           {hasKeys && (
             <div className="mb-4 flex flex-wrap items-center gap-x-6 gap-y-2 rounded-lg border p-3 text-sm">
               <div><span className="text-muted-foreground">Current key:</span> <code>{config.api_key_masked}</code></div>
-              <div><span className="text-muted-foreground">Last synced USDT:</span> <strong>${formatUsd(config.binance_exchange_usdt)}</strong></div>
+              {config.show_spot_balance && (
+                <div><span className="text-muted-foreground">Spot USDT:</span> <strong>${formatUsd(config.binance_spot_usdt ?? 0)}</strong></div>
+              )}
+              {config.show_futures_balance && (
+                <div><span className="text-muted-foreground">Futures USDT:</span> <strong>${formatUsd(config.binance_futures_usdt ?? 0)}</strong></div>
+              )}
+              <div className="text-xs text-muted-foreground">Last synced</div>
               <Button type="button" size="sm" variant="outline" className="ml-auto" onClick={verifyKeys} disabled={verifying}>
                 {verifying ? 'Verifying...' : 'Verify & sync balance'}
               </Button>
@@ -309,7 +315,10 @@ export default function SettingsPage() {
           {verifyResult && (
             <div className="mb-4 flex items-center gap-2 rounded-lg border border-green-300 bg-green-50 p-3 text-sm text-green-900 dark:border-green-800 dark:bg-green-950/30 dark:text-green-200">
               <CheckCircle2 className="h-4 w-4 shrink-0" />
-              Connected. USDT balance ${formatUsd(verifyResult.usdt_total)} (${formatUsd(verifyResult.usdt_free)} free)
+              Connected.
+              {verifyResult.spot_usdt != null && ` Spot $${formatUsd(verifyResult.spot_usdt)}`}
+              {verifyResult.futures_usdt != null && ` Futures $${formatUsd(verifyResult.futures_usdt)}`}
+              {` (total $${formatUsd(verifyResult.usdt_total)}, $${formatUsd(verifyResult.usdt_free)} free)`}
               {verifyResult.futures_enabled ? ' - futures enabled.' : ' - futures not enabled on this key.'}
             </div>
           )}

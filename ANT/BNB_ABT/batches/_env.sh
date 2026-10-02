@@ -9,4 +9,7 @@ else
     PY="$(command -v python3 || command -v python)"
 fi
 cd "$ROOT" || exit 1
+# Optional output locations (defaults: $ROOT/log_path and $ROOT/scr_images). Uncomment to customize:
+# export LOG_PATH="/var/log/ant_bnb_abt"
+# export SCR_IMAGES_PATH="/var/lib/ant_bnb_abt/scr_images"
 export PYTHONPATH="$ROOT${PYTHONPATH:+:$PYTHONPATH}"

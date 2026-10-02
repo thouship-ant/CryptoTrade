@@ -66,6 +66,8 @@ CREATE TABLE IF NOT EXISTS ant_user_wallet (
   current_investment DECIMAL(15,2) NOT NULL DEFAULT 0,  -- day-to-day compounding baseline for daily_profit_report
   binance_exchange_usdt DECIMAL(15,2) NOT NULL DEFAULT 0, -- Binance futures/spot USDT balance, refreshed by the engine
   available_funds DECIMAL(15,2) NULL,
+  binance_spot_usdt DECIMAL(15,2) NULL,                  -- last synced Spot wallet USDT (set by Verify & sync)
+  binance_futures_usdt DECIMAL(15,2) NULL,               -- last synced USDT-M Futures wallet USDT
   ant_wallet_balance DECIMAL(15,2) NOT NULL DEFAULT 0,
   activation_balance DECIMAL(15,2) NOT NULL DEFAULT 0,
   total_deposit DECIMAL(15,2) NOT NULL DEFAULT 0,

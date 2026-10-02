@@ -502,6 +502,15 @@ def ensure_schema():
                 conn.commit()
             except Exception as e:
                 print(f"ensure_schema statement failed (continuing): {e}")
+        # CREATE TABLE IF NOT EXISTS won't add columns to an existing table.
+        for column in ('binance_spot_usdt', 'binance_futures_usdt'):
+            try:
+                cursor.execute("SHOW COLUMNS FROM ant_user_wallet LIKE %s", (column,))
+                if not cursor.fetchone():
+                    cursor.execute(f"ALTER TABLE ant_user_wallet ADD COLUMN {column} DECIMAL(15,2) NULL")
+                    conn.commit()
+            except Exception as e:
+                print(f"ensure_schema column {column} failed (continuing): {e}")
     finally:
         cursor.close()
         conn.close()
@@ -2060,6 +2069,17 @@ def _mask_key(key: Optional[str]) -> str:
         return ''
     return key if len(key) <= 8 else f"{key[:4]}{'*' * 8}{key[-4:]}"
 
+def purchased_bot_wallets(cursor, user_id: str):
+    """(show_spot, show_futures): which Binance wallets to report. Both until a bot is
+    bought; then only the wallet(s) of the bot(s) the user actually purchased."""
+    cursor.execute("SELECT DISTINCT bot_name FROM ant_user_bot_purchase WHERE user_id = %s", (user_id,))
+    names = [(r['bot_name'] or '').lower() for r in cursor.fetchall()]
+    spot = any('spot' in n for n in names)
+    futures = any('futures' in n for n in names)
+    if not spot and not futures:
+        return True, True
+    return spot, futures
+
 @app.get("/api/config/{user_id}")
 def get_config(user_id: str):
     try:
@@ -2076,6 +2096,7 @@ def get_config(user_id: str):
         cursor.execute("SELECT * FROM ant_user_wallet WHERE user_id = %s", (user_id,))
         wallet = cursor.fetchone()
         live_current_investment = compute_live_current_investment(cursor, user_id, wallet)
+        show_spot, show_futures = purchased_bot_wallets(cursor, user_id)
         cursor.close()
         conn.close()
 
@@ -2090,6 +2111,10 @@ def get_config(user_id: str):
             "total_investment_amount": float(user.get('total_investment_amount') or 0),
             "live_current_investment": round(live_current_investment, 2),
             "binance_exchange_usdt": float(wallet['binance_exchange_usdt']) if wallet and wallet.get('binance_exchange_usdt') is not None else 0.0,
+            "binance_spot_usdt": float(wallet['binance_spot_usdt']) if show_spot and wallet and wallet.get('binance_spot_usdt') is not None else None,
+            "binance_futures_usdt": float(wallet['binance_futures_usdt']) if show_futures and wallet and wallet.get('binance_futures_usdt') is not None else None,
+            "show_spot_balance": show_spot,
+            "show_futures_balance": show_futures,
             "single_trade_amount": float(user.get('single_trade_amount') or 0),
             "max_trade": user.get('max_trade', 5),
             "leverage": user.get('leverage', 1),
@@ -2213,20 +2238,42 @@ def verify_binance_keys(user_id: str):
         if str(restrictions.get('enableSpotAndMarginTrading')).lower() != 'true':
             raise HTTPException(status_code=400, detail="This API key does not have 'Enable Spot & Margin Trading'. Enable it on Binance and try again.")
 
-        try:
-            balance = exchange.fetch_balance()
-        except ccxt.BaseError as e:
-            raise HTTPException(status_code=502, detail=f"Could not read balance from Binance: {str(e)[:200]}")
-        usdt = balance.get('USDT') or {}
-        total = float(usdt.get('total') or 0)
-        free = float(usdt.get('free') or 0)
+        futures_enabled = str(restrictions.get('enableFutures')).lower() == 'true'
+        show_spot, show_futures = purchased_bot_wallets(cursor, user_id)
+
+        def read_usdt(default_type):
+            ex = exchange if default_type == 'spot' else ccxt.binance({
+                'apiKey': exchange.apiKey, 'secret': exchange.secret, 'enableRateLimit': True,
+                'options': {'defaultType': default_type}})
+            usdt = ex.fetch_balance().get('USDT') or {}
+            return float(usdt.get('total') or 0), float(usdt.get('free') or 0)
+
+        spot = futures = None
+        if show_spot:
+            try:
+                spot = read_usdt('spot')
+            except ccxt.BaseError as e:
+                raise HTTPException(status_code=502, detail=f"Could not read Spot balance from Binance: {str(e)[:200]}")
+        if show_futures:
+            try:
+                futures = read_usdt('future')
+            except ccxt.BaseError as e:
+                # Futures may simply not be enabled on the key; only fatal if it's the only wallet shown.
+                if spot is None:
+                    raise HTTPException(status_code=502, detail=f"Could not read Futures balance from Binance: {str(e)[:200]}")
+
+        total = sum(b[0] for b in (spot, futures) if b)
+        free = sum(b[1] for b in (spot, futures) if b)
 
         cursor.execute("""
-            UPDATE ant_user_wallet SET binance_exchange_usdt = %s, available_funds = %s WHERE user_id = %s
-        """, (total, free, user_id))
+            UPDATE ant_user_wallet SET binance_exchange_usdt = %s, available_funds = %s,
+                binance_spot_usdt = %s, binance_futures_usdt = %s WHERE user_id = %s
+        """, (total, free, spot[0] if spot else None, futures[0] if futures else None, user_id))
         conn.commit()
         return {"message": "Binance account connected", "usdt_total": round(total, 2), "usdt_free": round(free, 2),
-                "futures_enabled": str(restrictions.get('enableFutures')).lower() == 'true'}
+                "spot_usdt": round(spot[0], 2) if spot else None,
+                "futures_usdt": round(futures[0], 2) if futures else None,
+                "futures_enabled": futures_enabled}
     except HTTPException:
         raise
     except Exception as e:

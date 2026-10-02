@@ -36,7 +36,8 @@ def take_pic():
     try:
         img = pyscreenshot.grab()
         current_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), '../../')
-        img_folder = current_dir + 'scr_images/'
+        # Override with the SCR_IMAGES_PATH env var (see batches/_env.sh); defaults to <project>/scr_images/
+        img_folder = os.path.join(os.environ.get('SCR_IMAGES_PATH') or os.path.join(current_dir, 'scr_images'), '')
         if not os.path.exists(img_folder):
             os.makedirs(img_folder)
         dt_today = datetime.today()  # Local time

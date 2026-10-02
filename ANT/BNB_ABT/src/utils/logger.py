@@ -17,7 +17,8 @@ class logger:
         :return : no return value
         """
         current_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), '../..')
-        log_file = current_dir + "/log_path/"
+        # Override with the LOG_PATH env var (see batches/_env.sh); defaults to <project>/log_path/
+        log_file = os.path.join(os.environ.get('LOG_PATH') or os.path.join(current_dir, 'log_path'), '')
         if not os.path.exists(os.path.dirname(log_file)):
             os.makedirs(os.path.dirname(log_file))
         log_file = log_file + logFileName
